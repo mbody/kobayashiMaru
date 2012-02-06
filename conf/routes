@@ -9,7 +9,7 @@ GET     /                                       Application.index
 GET     /favicon.ico                            404
 
 
-GET     /question                               Questions.questions
+GET     /questions                               Questions.questions
 GET     /question/{id}                          Questions.question
 POST    /question/                              Questions.create
 PUT     /question/{id}                          Questions.update
