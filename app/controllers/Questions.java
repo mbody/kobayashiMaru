@@ -14,10 +14,29 @@ import java.util.List;
  */
 public class Questions extends Controller {
     
-    public void listAll(){
+    public static void questions(){
         List<Question> questionList = Question.findAll();
         renderJSON(questionList);
     }
-    
-    public void create(Question quest)
+
+    public static void create(Question question) {
+        question.save();
+        question(question.id);
+    }
+
+    public static void update(Long id, Question question) {
+        question.save();
+        question(id);
+    }
+
+    public static void delete(Long id) {
+        Question question = Question.findById(id);
+        question.delete();
+        renderText("success");
+    }
+
+    public static void question(Long id)  {
+        Question question = Question.findById(id);
+        render(question);
+    }
 }

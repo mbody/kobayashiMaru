@@ -8,6 +8,13 @@ GET     /                                       Application.index
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
+
+GET     /question                               Questions.questions
+GET     /question/{id}                          Questions.question
+POST    /question/                              Questions.create
+PUT     /question/{id}                          Questions.update
+DELETE  /question/{id}                          Questions.delete
+
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 

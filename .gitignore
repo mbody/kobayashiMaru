@@ -1,2 +1,4 @@
 *.ipr
 *.iml
+*.iws
+tmp
