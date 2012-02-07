@@ -15,5 +15,5 @@ import javax.persistence.Entity;
 public class Question extends Model {
     public int difficulte;
     public String libelle;
-    public Theme theme;
+    public Topic topic;
 }
