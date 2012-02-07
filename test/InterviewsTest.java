@@ -1,7 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import models.Interview;
-import models.Topic;
 import org.junit.Before;
 import org.junit.Test;
 import play.mvc.Http;
@@ -60,5 +59,31 @@ public class InterviewsTest extends FunctionalTest {
         String body = gson.toJson(interview);
         Http.Response postResponse = POST("/api/interviews/", "application/json" , body);
         assertStatus(Http.StatusCode.CREATED, postResponse);
+    }
+
+    @Test
+    public void modificationInterviewTest(){
+        Http.Response listInterviewResponse = GET("/api/interviews");
+        assertIsOk(listInterviewResponse);
+        Gson gson = new Gson();
+        Type type = new TypeToken<Collection<Interview>>() {}.getType();
+        Collection<Interview> interviewList = gson.fromJson(listInterviewResponse.out.toString(), type);
+        Interview interviewToModify = interviewList.iterator().next();
+        interviewToModify.interviewDate = Calendar.getInstance();
+        String body = gson.toJson(interviewToModify);
+        Http.Response putResponse = PUT("/api/interviews/" + interviewToModify.id, "application/json", body);
+        assertStatus(Http.StatusCode.OK, putResponse);
+    }
+
+    @Test
+    public void deleteInterviewTest(){
+        Http.Response listInterviewResponse = GET("/api/interviews");
+        assertIsOk(listInterviewResponse);
+        Gson gson = new Gson();
+        Type type = new TypeToken<Collection<Interview>>() {}.getType();
+        Collection<Interview> interviewList = gson.fromJson(listInterviewResponse.out.toString(), type);
+        Long id = interviewList.iterator().next().getId();
+        Http.Response putResponse = DELETE("/api/interviews/" + id);
+        assertStatus(Http.StatusCode.OK, putResponse);
     }
 }

@@ -37,7 +37,8 @@ public class Interviews extends Controller{
 
     public static void update(Long id, Interview interview) {
         interview.save();
-        interview(id);
+        response.status = Http.StatusCode.OK;
+        renderJSON(interview);
     }
 
     public static void delete(Long id) {
