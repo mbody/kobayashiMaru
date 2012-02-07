@@ -105,6 +105,11 @@ public class TopicsTest extends FunctionalTest{
 
         Http.Response getResponse = GET("/api/topics/" + topicToDelete.id);
         assertStatus(Http.StatusCode.NOT_FOUND, getResponse);
-
+    }
+    
+    @Test
+    public void should_return_404_when_delete_on_inexistant_Topic(){
+        Http.Response deleteResponse = DELETE("/api/topics/" + 20000000000000L);
+        assertStatus(Http.StatusCode.NOT_FOUND, deleteResponse);
     }
 }
