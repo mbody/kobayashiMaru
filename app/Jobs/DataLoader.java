@@ -11,7 +11,7 @@ import play.test.Fixtures;
  * Time: 11:23
  * To change this template use File | Settings | File Templates.
  */
-@OnApplicationStart
+//@OnApplicationStart
 public class DataLoader extends Job{
 
 

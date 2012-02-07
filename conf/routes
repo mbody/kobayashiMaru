@@ -29,6 +29,9 @@ DELETE  /api/interviews/{id}                    Interviews.delete
 # Topics
 GET     /api/topics/                                Topics.topics
 GET     /api/topics/{id}                            Topics.topic
+POST    /api/topics/                                Topics.create
+PUT     /api/topics/{id}                            Topics.update
+DELETE  /api/topics/{id}                            Topics.delete
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
