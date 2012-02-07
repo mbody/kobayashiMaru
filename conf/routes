@@ -19,6 +19,7 @@ GET     /interviews                             Interviews.interviews
 
 # Topics
 GET     /api/topics/                                Topics.topics
+GET     /api/topics/{id}                            Topics.topic
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
