@@ -16,7 +16,9 @@ public class DataLoader extends Job{
 
 
     public void doJob(){
+        Fixtures.delete();
         Fixtures.loadModels("Topics.yml");
+        Fixtures.loadModels("users.yml");
     }
     
 }

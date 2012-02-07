@@ -47,11 +47,7 @@ public class User extends Model {
         return passwordHash.equals(Codec.hexMD5(password));
     }
 
-    public boolean isAdmin() {
-        return email.equals(Play.configuration.getProperty("forum.adminEmail", ""));
-    }
-    
-    // ~~~~~~~~~~~~ 
+    // ~~~~~~~~~~~~
     
     public static User findByEmail(String email) {
         return find("email", email).first();
@@ -91,5 +87,18 @@ public class User extends Model {
     public String getFullname() {
         return firstname + " " + lastname.toUpperCase();
     }
+    
+    public boolean isStaffAdmin() {
+        return hasRole(Role.STAFF_ADMIN);
+    }
+
+    public boolean isTechAdmin() {
+        return hasRole(Role.TECHNICAL_ADMIN);
+    }
+
+    public boolean isExaminer() {
+        return hasRole(Role.EXAMINER);
+    }
+
 }
 
