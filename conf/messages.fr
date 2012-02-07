@@ -1,0 +1,4 @@
+invalid.credentials=Email ou mot de passe incorrect !
+logout=Déconnexion
+logged.in.as=Connecté(e) en tant que '%s'.
+login.success=Bonjour %s !

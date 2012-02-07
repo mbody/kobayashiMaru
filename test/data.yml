@@ -1,7 +1,15 @@
 # you describe your data using the YAML notation here
 # and then load them using Fixtures.load("data.yml")
 
-# User(bob):
-#   email: bob@gmail.com
-#   password: secret
-#   fullname: Bob
+# ***** Users *****
+User(jconnor):
+    email: john.connor@skynet.com
+    passwordHash: 5d41402abc4b2a76b9719d911017c592         # hello
+    firstname: John
+    lastname: CONNOR
+    roles: [ur1]
+
+# ***** Roles *****
+UserRole(ur1):
+    role: EXAMINER
+    user: jconnor

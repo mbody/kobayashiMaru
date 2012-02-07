@@ -1,0 +1,21 @@
+#{fixture delete:'all', load:'data.yml' /}
+
+#{selenium}
+    // Open the home page, and check that no error occured
+    open('/')
+    assertTitle('Accueil')
+
+    type('email', 'truc@machin.com')
+    type('password', 'password')
+    clickAndWait('btnGo')
+
+    // Verify that the user is NOT correctly logged in
+    assertText('error', 'Email ou mot de passe incorrect !')
+
+    // now, we test that the user is logged on with valid credentials
+    type('email', 'john.connor@skynet.com')
+    type('password', 'hello')
+    clickAndWait('btnGo')
+    assertText('success', 'Bonjour John !')
+
+#{/selenium}
