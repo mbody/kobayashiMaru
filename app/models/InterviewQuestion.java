@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-public class Answer extends Model {
+public class InterviewQuestion extends Model {
     
     public int mark;
     public String comment;
@@ -22,4 +22,10 @@ public class Answer extends Model {
     @ManyToOne
     public Interview interview;
 
+    public InterviewQuestion(int mark, String comment, Question question, Interview interview){
+        this.mark = mark;
+        this.comment = comment;
+        this.question = question;
+        this.interview = interview;
+    }
 }

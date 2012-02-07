@@ -17,5 +17,5 @@ public class QuestionsTest extends FunctionalTest {
         assertStatus(302, addQuestionResponse);
         Response listQuestionsResponse = GET("/questions");
         assertIsOk(listQuestionsResponse);
-    }
 }
+        }

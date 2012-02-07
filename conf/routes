@@ -8,15 +8,31 @@ GET     /                                       Application.index
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
+<<<<<<< HEAD
 
+=======
+# Questions
+>>>>>>> 5f49e0ec442a48c3a9dfcbe78334eb615d5bc82b
 GET     /questions                              Questions.questions
 GET     /question/{id}                          Questions.question
 POST    /question/                              Questions.create
 PUT     /question/{id}                          Questions.update
 DELETE  /question/{id}                          Questions.delete
 
+# Interviews
+GET     /api/interviews                         Interviews.interviews
+GET     /api/interviews/{id}                    Interviews.interview
+POST    /api/interviews/                        Interviews.create
+PUT     /api/interviews/{id}                    Interviews.update
+DELETE  /api/interviews/{id}                    Interviews.delete
+
+# Topics
+GET     /api/topics/                                Topics.topics
+GET     /api/topics/{id}                            Topics.topic
+
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+

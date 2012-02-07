@@ -1,5 +1,17 @@
-# you describe your data using the YAML notation here
-# and then load them using Fixtures.load("data.yml")
+Interview(interview1):
+   candidateName : Dupond
+   candidateFirstName : Charles
+   interviewDate : 2011-12-10
+   assessorName : Revel
+   assessorFirstName : Amaury
+
+Interview(interview2):
+  candidateName : Lafeuille
+  candidateFirstName : Benoit
+  interviewDate : 2011-10-25
+  assessorName : Body
+  assessorFirstName : Mathurin
+
 
 # ***** Users *****
 User(jconnor):
