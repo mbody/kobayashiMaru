@@ -25,3 +25,13 @@ User(jconnor):
 UserRole(ur1):
     role: EXAMINER
     user: jconnor
+
+
+# ****** Topics *******
+Topic(topic1):
+    label:          topic1
+    description:    description1
+
+Topic(topic2):
+    label:          topic2
+    description:    description2

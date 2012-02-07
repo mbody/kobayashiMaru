@@ -2,6 +2,7 @@ package controllers;
 
 import models.Topic;
 import org.omg.IOP.ComponentIdHelper;
+import play.db.jpa.JPABase;
 import play.mvc.Controller;
 import play.mvc.Http;
 
@@ -26,7 +27,29 @@ public class Topics extends Controller {
         Topic topic = Topic.findById(id);
         if(topic == null){
             response.status = Http.StatusCode.NOT_FOUND;
+        }else{
+            renderJSON(topic);
         }
+    }
+    
+    public static void create(Topic topic){
+        topic.save();
+        response.status = Http.StatusCode.CREATED;
         renderJSON(topic);
+    }
+
+    public static void update(Long id, Topic topic) {
+        topic.save();
+        response.status = Http.StatusCode.OK;
+    }
+    
+    public static void delete(Long id){
+        Topic topic = Topic.findById(id);
+        if(topic == null){
+            response.status = Http.StatusCode.NOT_FOUND;
+        }else{
+            topic.delete();
+            response.status = Http.StatusCode.OK;
+        }
     }
 }
