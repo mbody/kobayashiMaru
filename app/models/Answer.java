@@ -22,4 +22,10 @@ public class Answer extends Model {
     @ManyToOne
     public Interview interview;
 
+    public  Answer (int mark, String comment, Question question, Interview interview){
+        this.mark = mark;
+        this.comment = comment;
+        this.question = question;
+        this.interview = interview;
+    }
 }

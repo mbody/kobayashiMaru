@@ -9,11 +9,13 @@ GET     /                                       Application.index
 GET     /favicon.ico                            404
 
 
-GET     /questions                               Questions.questions
+GET     /questions                              Questions.questions
 GET     /question/{id}                          Questions.question
 POST    /question/                              Questions.create
 PUT     /question/{id}                          Questions.update
 DELETE  /question/{id}                          Questions.delete
+
+GET     /interviews                             Interviews.interviews
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public

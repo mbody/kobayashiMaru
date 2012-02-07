@@ -21,4 +21,11 @@ public class Interview extends Model {
     public String assessorName;
     public String assessorFirstName;
     
+    public Interview(String candidateName, String candidateFirstName, Calendar interviewDate, String assessorName, String assessorFirstName){
+        this.candidateName = candidateName;
+        this.candidateFirstName = candidateFirstName;
+        this.interviewDate = interviewDate;
+        this.assessorName = assessorName;
+        this.assessorFirstName = assessorFirstName;
+    }
 }
