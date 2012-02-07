@@ -3,6 +3,8 @@ package models;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,7 +14,10 @@ import javax.persistence.Entity;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-public class Theme extends Model {
-    public String libelle;
+public class Topic extends Model {
+    public String label;
     public String description;
+    @OneToMany
+    public List<Question> questions;
+
 }

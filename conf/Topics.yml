@@ -1,0 +1,7 @@
+Topic(topic1):
+    label:          topic1
+    description:    description1
+
+Topic(topic2):
+    label:          topic2
+    description:    description

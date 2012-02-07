@@ -17,8 +17,12 @@ DELETE  /question/{id}                          Questions.delete
 
 GET     /interviews                             Interviews.interviews
 
+# Topics
+GET     /api/topics/                                Topics.topics
+
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+
