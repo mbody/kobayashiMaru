@@ -25,7 +25,7 @@ public class TopicsTest extends FunctionalTest{
     @Before
     public void setUp() {
         Fixtures.deleteDatabase();
-        Fixtures.loadModels("Topics.yml");
+        Fixtures.loadModels("data.yml");
     }
     
     @Test
