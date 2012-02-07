@@ -8,11 +8,7 @@ GET     /                                       Application.index
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
-<<<<<<< HEAD
-
-=======
 # Questions
->>>>>>> 5f49e0ec442a48c3a9dfcbe78334eb615d5bc82b
 GET     /questions                              Questions.questions
 GET     /question/{id}                          Questions.question
 POST    /question/                              Questions.create
