@@ -20,7 +20,11 @@ public class Interview extends Model {
     public Calendar interviewDate;
     public String assessorName;
     public String assessorFirstName;
-    
+
+    public Interview(){
+
+    }
+
     public Interview(String candidateName, String candidateFirstName, Calendar interviewDate, String assessorName, String assessorFirstName){
         this.candidateName = candidateName;
         this.candidateFirstName = candidateFirstName;

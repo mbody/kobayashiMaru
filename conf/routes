@@ -8,14 +8,19 @@ GET     /                                       Application.index
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
-
+# Questions
 GET     /questions                              Questions.questions
 GET     /question/{id}                          Questions.question
 POST    /question/                              Questions.create
 PUT     /question/{id}                          Questions.update
 DELETE  /question/{id}                          Questions.delete
 
-GET     /interviews                             Interviews.interviews
+# Interviews
+GET     /api/interviews                         Interviews.interviews
+GET     /api/interviews/{id}                    Interviews.interview
+POST    /api/interviews/                        Interviews.create
+PUT     /api/interviews/{id}                    Interviews.update
+DELETE  /api/interviews/{id}                    Interviews.delete
 
 # Topics
 GET     /api/topics/                                Topics.topics

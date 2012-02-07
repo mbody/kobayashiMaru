@@ -1,8 +1,8 @@
 package controllers;
 
 import models.Interview;
-import models.Question;
 import play.mvc.Controller;
+import play.mvc.Http;
 
 import java.util.List;
 
@@ -18,5 +18,31 @@ public class Interviews extends Controller{
     public static void interviews(){
         List<Interview> interviewList = Interview.findAll();
         renderJSON(interviewList);
+    }
+
+    public static void interview(Long id){
+        Interview interview = Interview.findById(id);
+        if(interview == null){
+            response.status = Http.StatusCode.NOT_FOUND;
+        }
+        renderJSON(interview);
+    }
+
+    public static void
+        create(Interview interview) {
+        interview.save();
+        response.status = Http.StatusCode.CREATED;
+        renderJSON(interview);
+    }
+
+    public static void update(Long id, Interview interview) {
+        interview.save();
+        interview(id);
+    }
+
+    public static void delete(Long id) {
+        Interview interview = Interview.findById(id);
+        interview.delete();
+        response.status = Http.StatusCode.OK;
     }
 }
