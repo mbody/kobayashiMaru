@@ -1,3 +1,4 @@
+import models.Interview;
 import org.junit.Before;
 import org.junit.Test;
 import play.test.Fixtures;
@@ -20,7 +21,6 @@ public class InterviewTest extends UnitTest{
 
     @Test
     public void getListQuestionInterview(){
-
-
+         Interview interview = new Interview();
     }
 }
