@@ -23,6 +23,7 @@ interview.dateTime=Date et heure
 # Topic
 topic.label=Thème
 topic.difficulty=Difficulté
+topic.difficulty.none=N/A
 topic.difficulty.beginner=Notions
 topic.difficulty.intermediate=Utilisateur
 topic.difficulty.advanced=Confirmé

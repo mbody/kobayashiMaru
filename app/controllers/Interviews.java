@@ -2,6 +2,7 @@ package controllers;
 
 import models.Interview;
 import models.Role;
+import org.apache.commons.beanutils.converters.LongArrayConverter;
 import play.mvc.Controller;
 import play.mvc.Http;
 import security.Secure;
@@ -51,6 +52,11 @@ public class Interviews extends SecuredController{
 
     @Secure(role = Role.EXAMINER)
     public static void prepare() {
+        render();
+    }
+    
+    @Secure(role = Role.EXAMINER)
+    public static void question(Long idEntretien, Long questionNumber){
         render();
     }
 }
