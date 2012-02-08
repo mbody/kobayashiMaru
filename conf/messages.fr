@@ -1,4 +1,29 @@
+# Index page
 invalid.credentials=Email ou mot de passe incorrect !
 logout=Déconnexion
 logged.in.as=Connecté(e) en tant que '%s'.
 login.success=Bonjour %s !
+
+# Home page
+home.examiner=Tableau de bord - Examinateur
+home.prepareNewInterview=Préparer un nouvel entretien
+
+# Prepare interview page
+prepareInterview.title=Préparer un nouvel entretien
+
+# Candidate
+candidate=Candidat
+candidate.firstname=Prénom
+candidate.lastname=Nom
+
+# Interview
+interview.topics=Thèmes de l'entretien
+interview.dateTime=Date et heure
+
+# Topic
+topic.label=Thème
+topic.difficulty=Difficulté
+topic.difficulty.beginner=Notions
+topic.difficulty.intermediate=Utilisateur
+topic.difficulty.advanced=Confirmé
+topic.difficulty.expert=Expert

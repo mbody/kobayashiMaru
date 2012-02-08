@@ -1,8 +1,10 @@
 package controllers;
 
 import models.Interview;
+import models.Role;
 import play.mvc.Controller;
 import play.mvc.Http;
+import security.Secure;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
  * Time: 11:31
  * To change this template use File | Settings | File Templates.
  */
-public class Interviews extends Controller{
+public class Interviews extends SecuredController{
 
     public static void interviews(){
         List<Interview> interviewList = Interview.findAll();
@@ -45,5 +47,10 @@ public class Interviews extends Controller{
         Interview interview = Interview.findById(id);
         interview.delete();
         response.status = Http.StatusCode.OK;
+    }
+
+    @Secure(role = Role.EXAMINER)
+    public static void prepare() {
+        render();
     }
 }

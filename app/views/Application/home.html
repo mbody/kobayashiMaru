@@ -1,9 +1,6 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-
-<h1>Bonjour ${currentUser.firstname}</h1>
-
 #{if currentUser?.staffAdmin}
 <h2>You're a staff !</h2>
 #{/if}
@@ -11,5 +8,45 @@
 <h2>You're a Tech admin !</h2>
 #{/if}
 #{if currentUser?.examiner}
-<h2>You're an exanimer !</h2>
+
+<section id="examiner-dashboard">
+    <div class="page-header">
+        <h1>&{'home.examiner'}</h1>
+    </div>
+
+    <div class="row">
+        <div class="span6">
+        </div>
+    </div>
+
+    <!-- Supported devices -->
+    <div class="row">
+        <div class="span6">
+            <h3>Entretiens à faire passer</h3>
+            <ol>
+                <li><a href="">Entretien de Mr A.</a></li>
+                <li><a href="">Entretien de Mr B.</a></li>
+                <li><a href="">Entretien de Mr C.</a></li>
+            </ol>
+            <p>
+                <a class="btn btn-success" href="@{Interviews.prepare}"><i class="icon-plus icon-white"></i> &{'home.prepareNewInterview'}</a>
+            </p>
+        </div>
+        <div class="span6">
+            <h3>Derniers entretiens</h3>
+
+        </div>
+    </div>
+
+</section>
+
+<div class="row">
+       <div class="span4">
+            <h3></h3>
+            <p>
+
+            </p>
+       </div>
+
+</div>
 #{/if}

@@ -1,0 +1,111 @@
+#{extends 'main.html' /}
+#{set title:'Préparer un entretien technique' /}
+
+<div class="row">
+    <div class="span12">
+        <form class="well form-horizontal">
+            <fieldset>
+                <legend>&{'prepareInterview.title'}</legend>
+                <div class="control-group">
+                    <label class="control-label">&{'candidate'}</label>
+                    <div class="controls docs-input-sizes">
+                        <input class="span2" type="text" placeholder="&{'candidate.lastname'}"/>
+                        <input class="span2" type="text" placeholder="&{'candidate.firstname'}"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="prependedInput">&{'interview.dateTime'}</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <input class="span2" type="text" value="01/05/2011" data-datepicker="datepicker">
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="appendedInput">&{'interview.topics'}</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            <table class="table table-condensed">
+                                <thead>
+                                <tr>
+                                    <th>&{'topic.label'}</th>
+                                    <th>&{'topic.difficulty'}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>UML</td>
+                                    <td>
+                                        <label class="radio inline">
+                                            <input type="radio" name="optionsDifficulty-1" id="optionsDifficulty-1-1" value="1" checked="">
+                                            &{'topic.difficulty.beginner'}
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" name="optionsDifficulty-1" id="optionsDifficulty-1-2" value="2" checked="">
+                                            &{'topic.difficulty.intermediate'}
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" name="optionsDifficulty-1" id="optionsDifficulty-1-3" value="3" checked="">
+                                            &{'topic.difficulty.advanced'}
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" name="optionsDifficulty-1" id="optionsDifficulty-1-4" value="4" checked="">
+                                            &{'topic.difficulty.expert'}
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Java</td>
+                                    <td>
+                                        <label class="radio inline">
+                                            <input type="radio" name="optionsDifficulty-2" id="optionsDifficulty-2-1" value="1" checked="">
+                                            &{'topic.difficulty.beginner'}
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" name="optionsDifficulty-2" id="optionsDifficulty-2-2" value="2" checked="">
+                                            &{'topic.difficulty.intermediate'}
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" name="optionsDifficulty-2" id="optionsDifficulty-2-3" value="3" checked="">
+                                            &{'topic.difficulty.advanced'}
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" name="optionsDifficulty-2" id="optionsDifficulty-2-4" value="4" checked="">
+                                            &{'topic.difficulty.expert'}
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>JavaEE</td>
+                                    <td>
+                                        <label class="radio inline">
+                                            <input type="radio" name="optionsDifficulty-3" id="optionsDifficulty-3-1" value="1" checked="">
+                                            &{'topic.difficulty.beginner'}
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" name="optionsDifficulty-3" id="optionsDifficulty-3-2" value="2" checked="">
+                                            &{'topic.difficulty.intermediate'}
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" name="optionsDifficulty-3" id="optionsDifficulty-3-3" value="3" checked="">
+                                            &{'topic.difficulty.advanced'}
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" name="optionsDifficulty-3" id="optionsDifficulty-3-4" value="4" checked="">
+                                            &{'topic.difficulty.expert'}
+                                        </label>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+          <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="reset" class="btn">Cancel</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
