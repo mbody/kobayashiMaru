@@ -4,7 +4,6 @@ import play.db.jpa.Model;
 
 import javax.persistence.Entity;
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,13 +29,5 @@ public class Interview extends Model {
         this.candidateFirstName = candidateFirstName;
         this.interviewDate = interviewDate;
         this.examiner = examiner;
-    }
-
-    /**
-     * Méthode permettant de retourner l'ensemble des questions posées durant un entretien
-     * @return Une liste de questions liées à l'entretien (List<InterviewQuestion>)
-     */
-    public List<InterviewQuestion> getListQuestionInterview(){
-        return InterviewQuestion.find("select iq from InterviewQuestion as iq where iq.interview.id = ?", this.id).fetch();
     }
 }

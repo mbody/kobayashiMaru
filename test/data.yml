@@ -4,13 +4,13 @@ Interview(interview1):
    candidateName: Dupond
    candidateFirstName: Charles
    interviewDate: 2011-12-10
-   examiner: (jconnor)
+   examiner: jconnor
 
 Interview(interview2):
   candidateName: Lafeuille
   candidateFirstName: Benoit
   interviewDate: 2011-10-25
-  examiner: (jconnor)
+  examiner: jconnor
 
 # ***** Users *****
 User(jconnor):
@@ -24,7 +24,6 @@ User(jconnor):
 UserRole(ur1):
     role: EXAMINER
     user: jconnor
-
 
 # ****** Topics *******
 Topic(topic1):

@@ -3,6 +3,8 @@ package models;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,7 +15,9 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Question extends Model {
-    public int difficulte;
-    public String libelle;
+
+    @Enumerated(EnumType.STRING)
+    public Difficulty difficulty;
+    public String label;
     public Topic topic;
 }
