@@ -3,3 +3,13 @@
 
 
 <h1>Bonjour ${currentUser.firstname}</h1>
+
+#{if currentUser?.staffAdmin}
+<h2>You're a staff !</h2>
+#{/if}
+#{if currentUser?.techAdmin}
+<h2>You're a Tech admin !</h2>
+#{/if}
+#{if currentUser?.examiner}
+<h2>You're an exanimer !</h2>
+#{/if}
