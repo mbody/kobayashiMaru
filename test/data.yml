@@ -1,17 +1,16 @@
+
+# ***** Interviews *****
 Interview(interview1):
-   candidateName : Dupond
-   candidateFirstName : Charles
-   interviewDate : 2011-12-10
-   assessorName : Revel
-   assessorFirstName : Amaury
+   candidateName: Dupond
+   candidateFirstName: Charles
+   interviewDate: 2011-12-10
+   examiner: (jconnor)
 
 Interview(interview2):
-  candidateName : Lafeuille
-  candidateFirstName : Benoit
-  interviewDate : 2011-10-25
-  assessorName : Body
-  assessorFirstName : Mathurin
-
+  candidateName: Lafeuille
+  candidateFirstName: Benoit
+  interviewDate: 2011-10-25
+  examiner: (jconnor)
 
 # ***** Users *****
 User(jconnor):
@@ -35,3 +34,4 @@ Topic(topic1):
 Topic(topic2):
     label:          topic2
     description:    description2
+
