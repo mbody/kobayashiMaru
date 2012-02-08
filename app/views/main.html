@@ -47,7 +47,7 @@
                         #{else}
                             <form class="navbar-form pull-right" action="@{Application.authenticate()}" method="post">
                                 <input type="text" name="email" placeholder="email"/>
-                                <input type="text" name="password" placeholder="mot de passe"/>
+                                <input class="input-small" type="text" name="password" placeholder="mot de passe"/>
                                 <button name="btnGo" type="submit" class="btn">Go</button>
                             </form>
                         #{/else}
