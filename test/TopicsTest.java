@@ -3,6 +3,8 @@ import com.google.gson.reflect.TypeToken;
 import models.Topic;
 import org.junit.Before;
 import org.junit.Test;
+import play.db.jpa.JPA;
+import play.db.jpa.JPABase;
 import play.mvc.Http;
 import play.test.Fixtures;
 import play.test.FunctionalTest;
@@ -44,11 +46,7 @@ public class TopicsTest extends FunctionalTest{
     }
 
     private Collection<Topic> getTopicsCollection() {
-        Http.Response listThemeResponse = GET("/api/topics/");
-        assertIsOk(listThemeResponse);
-        Gson gson = new Gson();
-        Type type = new TypeToken<Collection<Topic>>() {}.getType();
-        return gson.fromJson(listThemeResponse.out.toString(), type);
+        return Topic.findAll();
     }
 
     @Test
@@ -85,10 +83,7 @@ public class TopicsTest extends FunctionalTest{
 
         Http.Response putResponse = PUT("/api/topics/" + idToRetrieve, "application/json", body);
 
-        Http.Response topicResponse = GET("/api/topics/" + idToRetrieve);
-        assertStatus(Http.StatusCode.OK, topicResponse);
-
-        Topic topicReturned = gson.fromJson(topicResponse.out.toString(), Topic.class);
+        Topic topicSaved= Topic.findById(idToRetrieve);
         assertEquals(newLabel,topic.label);
     }
     
@@ -100,11 +95,10 @@ public class TopicsTest extends FunctionalTest{
         Http.Response deleteResponse = DELETE("/api/topics/" + topicToDelete.id);
         assertStatus(Http.StatusCode.OK, deleteResponse);
 
-        Collection<Topic> topicsCollectionAfterDelete = getTopicsCollection();
-        assertTrue(topicsCollection.size() - 1 == topicsCollectionAfterDelete.size());
-
-        Http.Response getResponse = GET("/api/topics/" + topicToDelete.id);
-        assertStatus(Http.StatusCode.NOT_FOUND, getResponse);
+        JPA.em().flush();
+        JPA.em().clear();
+        JPABase topicDeleted = Topic.findById(topicToDelete.id);
+        assertNull(topicDeleted);
     }
     
     @Test
