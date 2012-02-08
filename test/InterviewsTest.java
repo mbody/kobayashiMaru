@@ -1,6 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import models.Interview;
+import models.User;
 import org.junit.Before;
 import org.junit.Test;
 import play.mvc.Http;
@@ -55,6 +56,8 @@ public class InterviewsTest extends FunctionalTest {
         interview.candidateName = "Durant";
         interview.candidateFirstName = "Ludovic";
         interview.interviewDate = Calendar.getInstance();
+        User examiner = new User("revel@apside.fr","lbg", "Amaury", "REVEL") ;
+        interview.examiner = examiner;
         Gson gson = new Gson();
         String body = gson.toJson(interview);
         Http.Response postResponse = POST("/api/interviews/", "application/json" , body);
