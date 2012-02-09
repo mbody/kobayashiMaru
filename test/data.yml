@@ -34,3 +34,15 @@ Topic(topic2):
     label:          topic2
     description:    description2
 
+# ******* Interviews ******
+Interview(int1):
+    candidateName: Doctor
+    candidateFirstName: Who
+    interviewDate: 2123-12-14t14:10
+    examiner: [jconnor]
+
+Interview(int2):
+    candidateName: Dalek
+    candidateFirstName: Sec
+    interviewDate: 2002-12-14t10:00
+    examiner: [jconnor]

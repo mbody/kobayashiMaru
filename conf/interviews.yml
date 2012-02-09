@@ -1,0 +1,17 @@
+Interview(int1):
+    candidateName: Doctor
+    candidateFirstName: Who
+    interviewDate: 2123-12-14t14:10
+    examiner: [examiner]
+
+Interview(int2):
+    candidateName: Tyler
+    candidateFirstName: Rose
+    interviewDate: 2012-05-22t16:30
+    examiner: [examiner]
+
+Interview(int3):
+    candidateName: Dalek
+    candidateFirstName: Sec
+    interviewDate: 2002-12-14t10:00
+    examiner: [examiner]

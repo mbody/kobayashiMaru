@@ -22,19 +22,23 @@
     <!-- Supported devices -->
     <div class="row">
         <div class="span6">
-            <h3>Entretiens à faire passer</h3>
+            <h3>&{'home.nextInterview'}</h3>
             <ol>
-                <li><a href="@{Interviews.question(1,0)}">Entretien de Mr A.</a></li>
-                <li><a href="@{Interviews.question(2,0)}">Entretien de Mr B.</a></li>
-                <li><a href="@{Interviews.question(3,0)}">Entretien de Mr C.</a></li>
+                #{list items: nextInterviewList, as:'nextInterview'}
+                    <li><a href="@{Interviews.question(nextInterview.id,0)}">&{'home.interviewOf'} ${nextInterview.candidateName} ${nextInterview.candidateFirstName}</a></li>
+                #{/list}
             </ol>
             <p>
                 <a class="btn btn-success" href="@{Interviews.prepare}"><i class="icon-plus icon-white"></i> &{'home.prepareNewInterview'}</a>
             </p>
         </div>
         <div class="span6">
-            <h3>Derniers entretiens</h3>
-
+            <h3>&{'home.pastInterview'}</h3>
+            <ol>
+                #{list items: pastInterviewList, as:'pastInterview'}
+                    <li><a href="@{Interviews.question(pastInterview.id,0)}">&{'home.interviewOf'} ${pastInterview.candidateName} ${pastInterview.candidateFirstName}</a></li>
+                #{/list}
+            </ol>
         </div>
     </div>
 
