@@ -4,7 +4,7 @@ import play.db.jpa.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Set;
 
 /**
@@ -19,7 +19,7 @@ public class Interview extends Model {
 
     public String candidateName;
     public String candidateFirstName;
-    public Date interviewDate;
+    public Calendar interviewDate;
     public User examiner;
 
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "interview")
@@ -29,7 +29,7 @@ public class Interview extends Model {
 
     }
 
-    public Interview(String candidateName, String candidateFirstName, Date interviewDate, User examiner){
+    public Interview(String candidateName, String candidateFirstName, Calendar interviewDate, User examiner){
         this.candidateName = candidateName;
         this.candidateFirstName = candidateFirstName;
         this.interviewDate = interviewDate;
