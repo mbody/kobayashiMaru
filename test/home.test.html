@@ -1,0 +1,25 @@
+#{fixture delete:'all', load:'data.yml' /}
+
+#{selenium}
+    // Open the home page, and check that no error occured
+    open('/')
+    assertTitle('Accueil')
+
+    // now, we test that the user is logged on with valid credentials
+    type('email', 'john.connor@skynet.com')
+    type('password', 'hello')
+    clickAndWait('btnGo')
+    assertText('success', 'Bonjour John !')
+
+    //check the data for next interview.
+    clickAndWait('//a[contains(text(),\'Entretien de Doctor Who\')]')
+    assertTextPresent('Question #1')
+
+    //back to home
+    clickAndWait('homeLink')
+
+    //check the data for next interview.
+    clickAndWait('//a[contains(text(),\'Entretien de Dalek Sec\')]')
+    assertTextPresent('Question #1')
+
+#{/selenium}
