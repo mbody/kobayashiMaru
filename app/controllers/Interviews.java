@@ -41,7 +41,7 @@ public class Interviews extends SecuredController{
                 iterator.remove();
             }
         }
-        interview.save();
+        interview.create();
         response.status = Http.StatusCode.CREATED;
         Application.home();
     }
