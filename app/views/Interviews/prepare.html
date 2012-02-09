@@ -9,15 +9,15 @@
                 <div class="control-group">
                     <label class="control-label">&{'candidate'}</label>
                     <div class="controls docs-input-sizes">
-                        <input class="span2" type="text" placeholder="&{'candidate.lastname'}"/>
-                        <input class="span2" type="text" placeholder="&{'candidate.firstname'}"/>
+                        <input class="span2" type="text" placeholder="&{'candidate.lastname'}" required />
+                        <input class="span2" type="text" placeholder="&{'candidate.firstname'}" required />
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="prependedInput">&{'interview.dateTime'}</label>
                     <div class="controls">
                         <div class="input-prepend">
-                            <input class="span2" type="text" value="01/05/2011" data-datepicker="datepicker">
+                            <input type="text" id="datetimepicker" size="30" class="span2"/>
                         </div>
                     </div>
                 </div>
@@ -33,81 +33,33 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                #{list items:topics, as:'topic'}
                                 <tr>
-                                    <td>UML</td>
+                                    <td>${topic.label}</td>
                                     <td>
                                         <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-1" id="optionsDifficulty-1-1" value="1" checked="checked">
+                                            <input type="radio" name="${topic.label}" id="${topic.label}_${topic.id}_0" value="0" checked="checked">
                                             &{'topic.difficulty.none'}
                                         </label>
                                         <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-1" id="optionsDifficulty-1-1" value="1" >
+                                            <input type="radio" name="${topic.label}" id="${topic.label}_${topic.id}_1" value="1" >
                                             &{'topic.difficulty.beginner'}
                                         </label>
                                         <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-1" id="optionsDifficulty-1-2" value="2" >
+                                            <input type="radio" name="${topic.label}" id="${topic.label}_${topic.id}_2" value="2" >
                                             &{'topic.difficulty.intermediate'}
                                         </label>
                                         <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-1" id="optionsDifficulty-1-3" value="3" >
+                                            <input type="radio" name="${topic.label}" id="${topic.label}_${topic.id}_3" value="3" >
                                             &{'topic.difficulty.advanced'}
                                         </label>
                                         <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-1" id="optionsDifficulty-1-4" value="4" >
+                                            <input type="radio" name="${topic.label}" id="${topic.label}_${topic.id}_4" value="4" >
                                             &{'topic.difficulty.expert'}
                                         </label>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Java</td>
-                                    <td>
-                                        <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-2" id="optionsDifficulty-1-1" value="1" checked="checked">
-                                        &{'topic.difficulty.none'}
-                                        </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-2" id="optionsDifficulty-2-1" value="1" >
-                                            &{'topic.difficulty.beginner'}
-                                        </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-2" id="optionsDifficulty-2-2" value="2" >
-                                            &{'topic.difficulty.intermediate'}
-                                        </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-2" id="optionsDifficulty-2-3" value="3" >
-                                            &{'topic.difficulty.advanced'}
-                                        </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-2" id="optionsDifficulty-2-4" value="4" >
-                                            &{'topic.difficulty.expert'}
-                                        </label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>JavaEE</td>
-                                    <td>
-                                        <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-3" id="optionsDifficulty-1-1" value="1" checked="checked">
-                                        &{'topic.difficulty.none'}
-                                        </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-3" id="optionsDifficulty-3-1" value="1" >
-                                            &{'topic.difficulty.beginner'}
-                                        </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-3" id="optionsDifficulty-3-2" value="2" >
-                                            &{'topic.difficulty.intermediate'}
-                                        </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-3" id="optionsDifficulty-3-3" value="3" >
-                                            &{'topic.difficulty.advanced'}
-                                        </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="optionsDifficulty-3" id="optionsDifficulty-3-4" value="4" >
-                                            &{'topic.difficulty.expert'}
-                                        </label>
-                                    </td>
-                                </tr>
+                                #{/list}
                                 </tbody>
                             </table>
                         </div>
@@ -121,3 +73,11 @@
         </form>
     </div>
 </div>
+#{set 'moreScripts'}
+<script src="@{'/public/js/jquery-ui-1.8.17.custom.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<script src="@{'/public/js/jquery-ui-timepicker-addon.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<script>$(function() {$( "#datetimepicker" ).datetimepicker({
+    hourGrid: 4,
+    minuteGrid: 10
+});});</script>
+#{/set}

@@ -1,4 +1,4 @@
-package Jobs;
+package jobs;
 
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
@@ -18,6 +18,8 @@ public class DataLoader extends Job{
     public void doJob(){
         Fixtures.delete();
         Fixtures.loadModels("users.yml");
+        Fixtures.loadModels("topics.yml");
+
     }
     
 }
