@@ -3,7 +3,9 @@ package models;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
-import java.util.Calendar;
+import javax.persistence.OneToMany;
+import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,14 +19,17 @@ public class Interview extends Model {
 
     public String candidateName;
     public String candidateFirstName;
-    public Calendar interviewDate;
+    public Date interviewDate;
     public User examiner;
+
+    @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "interview")
+    public Set<InterviewTopic> topics;
 
     public Interview(){
 
     }
 
-    public Interview(String candidateName, String candidateFirstName, Calendar interviewDate, User examiner){
+    public Interview(String candidateName, String candidateFirstName, Date interviewDate, User examiner){
         this.candidateName = candidateName;
         this.candidateFirstName = candidateFirstName;
         this.interviewDate = interviewDate;

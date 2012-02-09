@@ -3,21 +3,22 @@
 
 <div class="row">
     <div class="span12">
-        <form class="well form-horizontal">
+        #{form @create() }
+            <div class="well form-horizontal">
             <fieldset>
                 <legend>&{'prepareInterview.title'}</legend>
                 <div class="control-group">
                     <label class="control-label">&{'candidate'}</label>
                     <div class="controls docs-input-sizes">
-                        <input class="span2" type="text" placeholder="&{'candidate.lastname'}" required />
-                        <input class="span2" type="text" placeholder="&{'candidate.firstname'}" required />
+                        <input class="span2" type="text" placeholder="&{'candidate.lastname'}" name="interview.candidateName" required  />
+                        <input class="span2" type="text" placeholder="&{'candidate.firstname'}" name="interview.candidateFirstName" required />
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="prependedInput">&{'interview.dateTime'}</label>
                     <div class="controls">
                         <div class="input-prepend">
-                            <input type="text" id="datetimepicker" size="30" class="span2"/>
+                            <input type="text" id="interviewDate" size="17" class="span2" name="interview.interviewDate"required />
                         </div>
                     </div>
                 </div>
@@ -37,24 +38,25 @@
                                 <tr>
                                     <td>${topic.label}</td>
                                     <td>
+                                        <input type="hidden" name="interview.topics[${topic_index-1}].topic.id" value="${topic.id}">
                                         <label class="radio inline">
-                                            <input type="radio" name="${topic.label}" id="${topic.label}_${topic.id}_0" value="0" checked="checked">
+                                            <input type="radio" name="interview.topics[${topic_index-1}].initialDifficulty" id="${topic.label}_${topic.id}_0" value="" checked="checked">
                                             &{'topic.difficulty.none'}
                                         </label>
                                         <label class="radio inline">
-                                            <input type="radio" name="${topic.label}" id="${topic.label}_${topic.id}_1" value="1" >
+                                            <input type="radio" name="interview.topics[${topic_index-1}].initialDifficulty" id="${topic.label}_${topic.id}_1" value="${models.Difficulty.BEGINNER}" >
                                             &{'topic.difficulty.beginner'}
                                         </label>
                                         <label class="radio inline">
-                                            <input type="radio" name="${topic.label}" id="${topic.label}_${topic.id}_2" value="2" >
+                                            <input type="radio" name="interview.topics[${topic_index-1}].initialDifficulty" id="${topic.label}_${topic.id}_2" value="${models.Difficulty.INTERMEDIATE}" >
                                             &{'topic.difficulty.intermediate'}
                                         </label>
                                         <label class="radio inline">
-                                            <input type="radio" name="${topic.label}" id="${topic.label}_${topic.id}_3" value="3" >
+                                            <input type="radio" name="interview.topics[${topic_index-1}].initialDifficulty" id="${topic.label}_${topic.id}_3" value="${models.Difficulty.ADVANCED}" >
                                             &{'topic.difficulty.advanced'}
                                         </label>
                                         <label class="radio inline">
-                                            <input type="radio" name="${topic.label}" id="${topic.label}_${topic.id}_4" value="4" >
+                                            <input type="radio" name="interview.topics[${topic_index-1}].initialDifficulty" id="${topic.label}_${topic.id}_4" value="${models.Difficulty.EXPERT}" >
                                             &{'topic.difficulty.expert'}
                                         </label>
                                     </td>
@@ -65,18 +67,20 @@
                         </div>
                     </div>
                 </div>
-          <div class="form-actions">
+                <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Save changes</button>
                     <button type="reset" class="btn">Cancel</button>
                 </div>
             </fieldset>
-        </form>
+            </div>
+        #{/form}
     </div>
 </div>
 #{set 'moreScripts'}
 <script src="@{'/public/js/jquery-ui-1.8.17.custom.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 <script src="@{'/public/js/jquery-ui-timepicker-addon.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-<script>$(function() {$( "#datetimepicker" ).datetimepicker({
+<script>$(function() {$( "#interviewDate" ).datetimepicker({
+    dateFormat:'dd/mm/yy',
     hourGrid: 4,
     minuteGrid: 10
 });});</script>

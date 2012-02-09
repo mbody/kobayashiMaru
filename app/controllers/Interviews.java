@@ -1,12 +1,14 @@
 package controllers;
 
 import models.Interview;
+import models.InterviewTopic;
 import models.Role;
 import models.Topic;
 import play.db.jpa.JPABase;
 import play.mvc.Http;
 import security.Secure;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -31,11 +33,17 @@ public class Interviews extends SecuredController{
         renderJSON(interview);
     }
 
-    public static void
-        create(Interview interview) {
+    public static void create(Interview interview) {
+        for (Iterator<InterviewTopic> iterator = interview.topics.iterator(); iterator.hasNext(); ) {
+            InterviewTopic next =  iterator.next();
+            if (next.initialDifficulty == null || next.initialDifficulty.equals(""))
+            {
+                iterator.remove();
+            }
+        }
         interview.save();
         response.status = Http.StatusCode.CREATED;
-        renderJSON(interview);
+        Application.home();
     }
 
     public static void update(Long id, Interview interview) {
@@ -60,4 +68,6 @@ public class Interviews extends SecuredController{
     public static void question(Long idEntretien, Long questionNumber){
         render();
     }
+    
+
 }

@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 public class InterviewTopic extends Model {
 
     @Enumerated(EnumType.STRING)
-    public Difficulty intialDificulty;
+    public Difficulty initialDifficulty;
     @ManyToOne
     public Topic topic;
     @ManyToOne
