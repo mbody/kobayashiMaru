@@ -25,7 +25,7 @@
             <h3>&{'home.nextInterview'}</h3>
             <ol>
                 #{list items: nextInterviewList, as:'nextInterview'}
-                    <li><a href="@{Interviews.question(nextInterview.id,0)}">&{'home.interviewOf'} ${nextInterview.candidateName} ${nextInterview.candidateFirstName}</a></li>
+                    <li><a href="@{Interviews.question(nextInterview.id,0)}">&{'home.interviewOf'} ${nextInterview.candidateName} ${nextInterview.candidateFirstName} - &{nextInterview.interviewDate.format('dd/MM/yyyy HH:mm')}</a></li>
                 #{/list}
             </ol>
             <p>
