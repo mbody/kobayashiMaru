@@ -5,6 +5,9 @@ import play.db.jpa.JPABase;
 import play.mvc.Http;
 import security.Secure;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -41,6 +44,17 @@ public class Interviews extends SecuredController{
                 next.interview=interview;
             }
         }
+        String s = Http.Request.current().params.get("interview.interviewDate");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Calendar cal = Calendar.getInstance();
+
+        try{
+            Date dateInterview= sdf.parse(s);
+            cal.setTime(dateInterview);
+        }catch (Exception ex){
+
+        }
+        interview.interviewDate = cal;
         interview.examiner = connectedUser();
         interview.create();
         response.status = Http.StatusCode.CREATED;
