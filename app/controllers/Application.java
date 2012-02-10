@@ -1,14 +1,12 @@
 package controllers;
 
-import play.*;
-import play.db.jpa.JPABase;
+import models.Interview;
+import models.User;
 import play.i18n.Messages;
-import play.mvc.*;
-
-import java.util.*;
-
-import models.*;
 import security.Secure;
+
+import java.util.Calendar;
+import java.util.List;
 
 public class Application extends SecuredController {
 
@@ -31,7 +29,7 @@ public class Application extends SecuredController {
     @Secure
     public static void home(){
         Calendar currentDate = Calendar.getInstance();
-        List<Interview> nextInterviewList = Interview.find("interviewDate >= ? order by interviewDate asc", currentDate).fetch(10);
+        List<Interview> nextInterviewList = Interview.findAll();// Interview.find("interviewDate >= ? order by interviewDate asc", currentDate).fetch(10);
         List<Interview> pastInterviewList = Interview.find("interviewDate < ? order by interviewDate desc", currentDate).fetch(10);
         render(nextInterviewList, pastInterviewList);
     }

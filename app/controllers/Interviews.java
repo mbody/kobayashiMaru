@@ -38,8 +38,12 @@ public class Interviews extends SecuredController{
             if (next.initialDifficulty == null || next.initialDifficulty.equals(""))
             {
                 iterator.remove();
+            }else
+            {
+                next.interview=interview;
             }
         }
+        interview.examiner = connectedUser();
         interview.create();
         response.status = Http.StatusCode.CREATED;
         Application.home();
