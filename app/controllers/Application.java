@@ -29,7 +29,7 @@ public class Application extends SecuredController {
     @Secure
     public static void home(){
         Calendar currentDate = Calendar.getInstance();
-        List<Interview> nextInterviewList = Interview.findAll();// Interview.find("interviewDate >= ? order by interviewDate asc", currentDate).fetch(10);
+        List<Interview> nextInterviewList = Interview.find("interviewDate >= ? order by interviewDate asc", currentDate).fetch(10);
         List<Interview> pastInterviewList = Interview.find("interviewDate < ? order by interviewDate desc", currentDate).fetch(10);
         render(nextInterviewList, pastInterviewList);
     }
