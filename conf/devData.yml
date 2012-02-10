@@ -1,0 +1,82 @@
+Topic(topic1):
+    label:          Java
+    description:    description1
+
+Topic(topic2):
+    label:          JavaEE
+    description:    description2
+
+Topic(topic3):
+    label:          UML
+    description:    description3
+
+Topic(topic4):
+    label:          DotNet
+    description:    description4
+
+Topic(topic5):
+    label:          Html/Javascript/Css
+    description:    description5
+
+Topic(topic6):
+    label:          SQL
+    description:    description6
+
+# ***** Users *****
+User(examiner):
+    email: examiner@apside.fr
+    passwordHash: 5d41402abc4b2a76b9719d911017c592         # hello
+    firstname: Examiner
+    lastname: Apside
+    roles: [ur1]
+
+User(staffAdmin):
+    email: staffAdmin@apside.fr
+    passwordHash: 5d41402abc4b2a76b9719d911017c592         # hello
+    firstname: staffAdmin
+    lastname: Apside
+    roles: [ur2]
+
+User(techAdmin):
+    email: techAdmin@apside.fr
+    passwordHash: 5d41402abc4b2a76b9719d911017c592         # hello
+    firstname: techAdmin
+    lastname: Apside
+    roles: [ur3]
+
+# ***** Roles *****
+UserRole(ur1):
+    role: EXAMINER
+    user: examiner
+
+UserRole(ur2):
+    role: STAFF_ADMIN
+    user: staffAdmin
+
+UserRole(ur3):
+    role: TECHNICAL_ADMIN
+    user: techAdmin
+
+UserRole(ur4):
+    role: EXAMINER
+    user: techAdmin
+
+
+Interview(int1):
+    candidateName: Doctor
+    candidateFirstName: Who
+    interviewDate: 2123-12-14t14:10
+    examiner: [examiner]
+
+Interview(int2):
+    candidateName: Tyler
+    candidateFirstName: Rose
+    interviewDate: 2012-05-22t16:30
+    examiner: [examiner]
+
+Interview(int3):
+    candidateName: Dalek
+    candidateFirstName: Sec
+    interviewDate: 2002-12-14t10:00
+    examiner: [examiner]
+    examinerComment: passait son temps a repeter Exterminate

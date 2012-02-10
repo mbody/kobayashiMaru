@@ -16,7 +16,7 @@ import javax.persistence.Enumerated;
 @Entity
 public class Question extends Model {
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     public Difficulty difficulty;
     public String label;
     public Topic topic;

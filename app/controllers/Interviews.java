@@ -73,5 +73,9 @@ public class Interviews extends SecuredController{
         render();
     }
     
-
+    @Secure(role = Role.EXAMINER)
+    public static void bilan(Long idEntretien){
+        Interview interview = Interview.findById(idEntretien);
+        render(interview);
+    }
 }

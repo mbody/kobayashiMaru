@@ -14,6 +14,12 @@ home.pastInterview=Derniers entretiens
 # Prepare interview page
 prepareInterview.title=Préparer un nouvel entretien
 
+# bilan interview page
+bilanInterview.title= Bilan d'un entretien
+bilanInterview.date= Date de l'entretien
+bilanInterview.examinateur= Examinateur
+bilanInterview.examinerComment=Commentaire
+
 # Candidate
 candidate=Candidat
 candidate.firstname=Prénom
