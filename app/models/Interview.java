@@ -23,6 +23,7 @@ public class Interview extends Model {
     public Calendar interviewDate;
     @ManyToOne
     public User examiner;
+    public String examinerComment;
 
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "interview")
     public Set<InterviewTopic> topics;

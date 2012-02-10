@@ -1,0 +1,44 @@
+#{extends 'main.html' /}
+#{set title:'bilan d\'un entretien technique' /}
+
+<div class="row">
+    <div class="span12">
+        <form class="well form-horizontal">
+
+
+            <fieldset>
+                <legend>&{'bilanInterview.title'}</legend>
+
+                <div class="row">
+                    <div class="span3">&{'candidate'}</div>
+                    <div class="span3">
+                        ${interview.candidateName} ${interview.candidateFirstName}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="span3">&{'bilanInterview.date'}</div>
+                    <div class="span3">
+                        ${interview.interviewDate.format("dd/MM/yyyy HH:mm")}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="span3">&{'bilanInterview.examinateur'}</div>
+                    <div class="span3">
+                        ${interview.examiner?.lastname} ${interview.examiner?.firstname}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span 2">
+                        &{'bilanInterview.examinerComment'}
+                    </div>
+                    <div class="span8">
+                        ${interview.examinerComment}
+                    </div>
+                </div>
+            </fieldset>
+
+        </form>
+    </div>
+</div>

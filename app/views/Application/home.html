@@ -36,7 +36,7 @@
             <h3>&{'home.pastInterview'}</h3>
             <ol>
                 #{list items: pastInterviewList, as:'pastInterview'}
-                    <li><a href="@{Interviews.question(pastInterview.id,0)}">&{'home.interviewOf'} ${pastInterview.candidateName} ${pastInterview.candidateFirstName}</a></li>
+                    <li><a href="@{Interviews.bilan(pastInterview.id)}">&{'home.interviewOf'} ${pastInterview.candidateName} ${pastInterview.candidateFirstName}</a></li>
                 #{/list}
             </ol>
         </div>
