@@ -66,40 +66,40 @@ UserRole(ur4):
 Interview(int1):
     candidateName: Doctor
     candidateFirstName: Who
-    interviewDate: 2123-12-14t14:10
+    interviewDate: 14/12/2123 14:10
     examiner: [examiner]
 
 Interview(int2):
     candidateName: Tyler
     candidateFirstName: Rose
-    interviewDate: 2012-05-22t16:30
+    interviewDate: 22/05/2012 16:30
     examiner: [examiner]
 
 Interview(int3):
     candidateName: Dalek
     candidateFirstName: Sec
-    interviewDate: 2002-12-14t10:00
+    interviewDate: 14/12/2002 10:00
     examiner: [examiner]
     examinerComment: passait son temps a repeter Exterminate
 
 # ***** Questions *****
 Question(firstQuestion):
-    Complexity: 0
+    difficulty: BEGINNER
     label: First question very easy topic 1
     topic: [topic1]
 
 Question(secondQuestion):
-    Complexity: 1
+    difficulty: INTERMEDIATE
     label: Second question easy topic 1
     topic: [topic1]
 
 Question(thirdQuestion):
-    Complexity: 2
+    difficulty: ADVANCED
     label: Third question medium topic 2
     topic: [topic2]
 
 Question(forthQuestion):
-    Complexity: 3
+    difficulty: EXPERT
     label: Forth question hard topic 2
     topic: [topic2]
 

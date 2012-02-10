@@ -5,6 +5,7 @@ import play.db.jpa.Model;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,5 +20,6 @@ public class Question extends Model {
     @Enumerated(EnumType.ORDINAL)
     public Difficulty difficulty;
     public String label;
+    @ManyToOne
     public Topic topic;
 }
