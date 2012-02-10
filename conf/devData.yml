@@ -61,6 +61,7 @@ UserRole(ur4):
     role: EXAMINER
     user: techAdmin
 
+# ***** Interview *****
 
 Interview(int1):
     candidateName: Doctor
@@ -80,3 +81,50 @@ Interview(int3):
     interviewDate: 2002-12-14t10:00
     examiner: [examiner]
     examinerComment: passait son temps a repeter Exterminate
+
+# ***** Questions *****
+Question(firstQuestion):
+    Complexity: 0
+    label: First question very easy topic 1
+    topic: [topic1]
+
+Question(secondQuestion):
+    Complexity: 1
+    label: Second question easy topic 1
+    topic: [topic1]
+
+Question(thirdQuestion):
+    Complexity: 2
+    label: Third question medium topic 2
+    topic: [topic2]
+
+Question(forthQuestion):
+    Complexity: 3
+    label: Forth question hard topic 2
+    topic: [topic2]
+
+# ***** InterviewQuestions *****
+InterviewQuestion(firstIQ):
+    mark: 2
+    comment: not bad nor good answer
+    question: [firstQuestion]
+    interview: [int1]
+
+InterviewQuestion(secondIQ):
+    mark: 3
+    comment: good answer
+    question: [secondQuestion]
+    interview: [int3]
+
+InterviewQuestion(thirdIQ):
+    mark: 1
+    comment: bad answer
+    question: [thirdQuestion]
+    interview: [int3]
+
+InterviewQuestion(forthIQ):
+    mark: 3
+    comment: bad answer
+    question: [forthQuestion]
+    interview: [int3]
+
