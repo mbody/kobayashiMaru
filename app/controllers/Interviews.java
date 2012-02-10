@@ -1,12 +1,11 @@
 package controllers;
 
 import models.Interview;
+import models.InterviewQuestion;
 import models.InterviewTopic;
-import models.Role;
-import models.Topic;
-import play.db.jpa.JPABase;
+import models.Question;
+import play.mvc.Controller;
 import play.mvc.Http;
-import security.Secure;
 
 import java.util.Iterator;
 import java.util.List;
@@ -58,16 +57,11 @@ public class Interviews extends SecuredController{
         response.status = Http.StatusCode.OK;
     }
 
-    @Secure(role = Role.EXAMINER)
-    public static void prepare() {
-        List<JPABase> topics = Topic.findAll();
-        render(topics);
-    }
-    
-    @Secure(role = Role.EXAMINER)
-    public static void question(Long idEntretien, Long questionNumber){
+    public static void question(){
         render();
     }
-    
 
+    public static Question getNexQuestion(InterviewQuestion previousInterviewQuestion){
+        return null;
+    }
 }

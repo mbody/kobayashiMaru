@@ -1,6 +1,8 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import controllers.Interviews;
 import models.Interview;
+import models.InterviewQuestion;
 import models.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +13,7 @@ import play.test.FunctionalTest;
 import java.lang.reflect.Type;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -60,7 +63,7 @@ public class InterviewsTest extends FunctionalTest {
         interview.examiner = examiner;
         Gson gson = new Gson();
         String body = gson.toJson(interview);
-        Http.Response postResponse = POST("/api/interviews/", "application/json" , body);
+        Http.Response postResponse = POST("/api/interviews/", "application/json", body);
         assertStatus(Http.StatusCode.CREATED, postResponse);
     }
 
@@ -88,5 +91,16 @@ public class InterviewsTest extends FunctionalTest {
         Long id = interviewList.iterator().next().getId();
         Http.Response putResponse = DELETE("/api/interviews/" + id);
         assertStatus(Http.StatusCode.OK, putResponse);
+    }
+
+    //For the next tests if an answer value is 0 or 1 => next question difficulty will decrease,
+    //if it's 2 it will remain the same, otherwise it will increase
+
+    @Test
+    public void getNextQuestionPreviousOneWasGood(){
+
+        List<InterviewQuestion> IQCol = InterviewQuestion.findAll();
+
+        assertTrue(Interviews.getNexQuestion(IQCol.get(0)).difficulty.ordinal() < IQCol.get(0).question.difficulty.ordinal());
     }
 }

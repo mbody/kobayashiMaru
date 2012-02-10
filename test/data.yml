@@ -1,5 +1,3 @@
-
-# ***** Interviews *****
 Interview(interview1):
    candidateName: Dupond
    candidateFirstName: Charles
@@ -11,6 +9,7 @@ Interview(interview2):
   candidateFirstName: Benoit
   interviewDate: 2011-10-25
   examiner: jconnor
+
 
 # ***** Users *****
 User(jconnor):
@@ -25,6 +24,7 @@ UserRole(ur1):
     role: EXAMINER
     user: jconnor
 
+
 # ****** Topics *******
 Topic(topic1):
     label:          topic1
@@ -33,6 +33,7 @@ Topic(topic1):
 Topic(topic2):
     label:          topic2
     description:    description2
+
 
 # ******* Interviews ******
 Interview(int1):
@@ -46,3 +47,44 @@ Interview(int2):
     candidateFirstName: Sec
     interviewDate: 2002-12-14t10:00
     examiner: [jconnor]
+
+# ***** InterviewQuestions *****
+InterviewQuestion(firstIQ):
+    mark: 2
+    comment: not bad nor good answer
+    question: firstQuestion
+    interview: interview1
+
+InterviewQuestion(secondIQ):
+    mark: 3
+    comment: good answer
+    question: secondQuestion
+    interview: interview1
+
+InterviewQuestion(thirdIQ):
+    mark: 1
+    comment: bad answer
+    question: thirdQuestion
+    interview: interview1
+
+# ***** Questions *****
+Question(firstQuestion):
+    Complexity: VERY_EASY
+    label: First question very easy topic 1
+    topic: topic1
+
+Question(secondQuestion):
+    Complexity: EASY
+    label: Second question easy topic 1
+    topic: topic1
+
+Question(thirdQuestion):
+    Complexity: MEDIUM
+    label: Third question medium topic 2
+    topic: topic2
+
+Question(forthQuestion):
+    Complexity: HARD
+    label: Forth question hard topic 2
+    topic: topic2
+
