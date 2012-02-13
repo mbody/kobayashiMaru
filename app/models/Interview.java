@@ -1,11 +1,14 @@
 package models;
 
+import play.db.jpa.JPA;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Query;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -26,7 +29,7 @@ public class Interview extends Model {
     public String examinerComment;
 
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "interview")
-    public Set<InterviewTopic> topics;
+    public List<InterviewTopic> topics;
 
     public Interview(){
 
@@ -37,5 +40,12 @@ public class Interview extends Model {
         this.candidateFirstName = candidateFirstName;
         this.interviewDate = interviewDate;
         this.examiner = examiner;
+    }
+    
+    public List<Question> findUnusedQuestionByTopicAndDifficulty(Topic topic, int difficulty){
+        String queryStr = "select q from Question q where q.difficulty = " + difficulty + " and q.topic.id = " + topic.id +
+                " and q.id not in (select qi.question.id from InterviewQuestion qi where qi.interview.id = " + this.id + ")";
+        Query query = JPA.em().createQuery(queryStr);
+        return query.getResultList();
     }
 }

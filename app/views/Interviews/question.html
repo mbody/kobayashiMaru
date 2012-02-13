@@ -7,7 +7,9 @@
             <h3>Entretien John DOE</h3>
             <br>
             <h4>Progression</h4>
+
             <p>2 questions sur 20.</p>
+
             <div class="progress">
                 <div class="bar" style="width: 10%;"></div>
             </div>
@@ -32,29 +34,22 @@
                 <li><a href="#">Link</a></li>
             </ul>
         </div>
-        <!--/.well -->
     </div>
-    <div class="span9">
+    <div class="span8">
         <div class="well" id="question">
-            <h3>Thème actuel
-                <small>Question #1</small>
+            <h3>${interviewQuestion.question.topic.label}
+                <small>Question ${interviewQuestion.index}/20</small>
             </h3>
             <br>
 
             <div>
-                <h4>Quelle est la couleur d'un cheval blanc ?</h4>
-                <ol>
-                    <li>Blanc</li>
-                    <li>Rouge</li>
-                    <li>Rosé</li>
-                    <li>Jaune</li>
-                </ol>
+            ${interviewQuestion.question.label}
             </div>
         </div>
         <br>
 
         <div class="well" id="response">
-            <h3>Réponse</small></h3>
+            <h3>Réponse</h3>
 
             <div>
                 <p>La bonne réponse est rouge, mais blanc est acceptable !</p>
@@ -63,39 +58,51 @@
         <br>
 
         <div class="well" id="evaluation">
-            <h3>Evaluation</small></h3>
+            <h3>Evaluation</h3>
             <br>
 
-            <div class="row">
+            <form id="interviewQuestionForm" action="@{Interviews.saveQuestion()}" method="post">
+                <input type="hidden" name="idInterviewQuestion" value="${interviewQuestion.id}"/>
 
-                <div class="span4 offset2">
-                    <label class="radio inline">
-                        <input type="radio" name="optionsMark" id="optionsMark-0" value="1" checked="checked">
-                        0
-                    </label>
-                    <label class="radio inline">
-                        <input type="radio" name="optionsMark" id="optionsMark-1" value="1">
-                        1
-                    </label>
-                    <label class="radio inline">
-                        <input type="radio" name="optionsMark" id="optionsMark-2" value="2">
-                        2
-                    </label>
-                    <label class="radio inline">
-                        <input type="radio" name="optionsMark" id="optionsMark-3" value="3">
-                        3
-                    </label>
-                    <label class="radio inline">
-                        <input type="radio" name="optionsMark" id="optionsMark-4" value="4">
-                        4
-                    </label>
+                <div class="row">
+                    <div class="span4 offset2">
+                        <label class="radio inline">
+                            <input type="radio" name="mark" id="optionsMark-0" value="1"
+                                   #{if interviewQuestion.mark==0}checked#{/if}>
+                            0
+                        </label>
+                        <label class="radio inline">
+                            <input type="radio" name="mark" id="optionsMark-1" value="1"
+                                   #{if interviewQuestion.mark==1}checked#{/if} >
+                            1
+                        </label>
+                        <label class="radio inline">
+                            <input type="radio" name="mark" id="optionsMark-2" value="2"
+                                   #{if interviewQuestion.mark==2}checked#{/if} >
+                            2
+                        </label>
+                        <label class="radio inline">
+                            <input type="radio" name="mark" id="optionsMark-3" value="3"
+                                   #{if interviewQuestion.mark==3}checked#{/if} >
+                            3
+                        </label>
+                        <label class="radio inline">
+                            <input type="radio" name="mark" id="optionsMark-4" value="4"
+                                   #{if interviewQuestion.mark==4}checked#{/if} >
+                            4
+                        </label>
+                    </div>
                 </div>
-            </div>
-            <br>
-            <ul class="pager">
-                <li class="previous"><a href="#">Previous</a></li>
-                <li class="next"><a href="#">Next</a></li>
-            </ul>
+                <br>
+                <ul class="pager">
+                #{if interviewQuestion.index>0}
+                    <li class="previous"><a href="@{Interviews.question(interview.id,interviewQuestion.index-1)}">Previous</a>
+                    </li>
+                #{/if}
+                    <li class="next"><a href="javascript:$('#interviewQuestionForm').submit()">Next</a></li>
+                </ul>
+            </form>
         </div>
+
     </div>
 </div>

@@ -11,14 +11,14 @@ public enum Difficulty {
     BEGINNER, INTERMEDIATE, ADVANCED, EXPERT;
 
     public Difficulty levelUp(){
-        return getComplexityFromOrdinal(ordinal() + 1);
+        return getDifficultyFromOrdinal(ordinal() + 1);
     }
 
     public Difficulty levelDown(){
-        return getComplexityFromOrdinal(ordinal() - 1);
+        return getDifficultyFromOrdinal(ordinal() - 1);
     }
 
-    public static Difficulty getComplexityFromOrdinal(int level){
+    public static Difficulty getDifficultyFromOrdinal(int level){
         for (Difficulty difficulty : Difficulty.values()) {
             if(difficulty.ordinal()==level){
                 return difficulty;
