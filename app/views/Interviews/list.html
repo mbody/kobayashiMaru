@@ -20,7 +20,11 @@
         </div>
 
         <div id="crudListTable">
-        #{crud.table fields:['candidateName', 'candidateFirstName', 'interviewDate']/}
+        #{crud.table fields:['candidateName', 'candidateFirstName', 'interviewDate'], sort:[interviewDate]}
+            #{crud.custom 'interviewDate'}
+                ${object.interviewDate.format("dd/MM/yyyy HH:mm")}
+            #{/crud.custom}
+        #{/crud.table}
         </div>
 
         <br>
