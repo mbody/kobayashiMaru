@@ -3,10 +3,7 @@ package models;
 import play.db.jpa.JPA;
 import play.db.jpa.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
@@ -31,9 +28,11 @@ public class Interview extends Model {
     public String examinerComment;
 
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "interview")
+    @OrderBy("id ASC")
     public List<InterviewTopic> topics;
 
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "interview")
+    @OrderBy("index ASC")
     public List<InterviewQuestion> questions;
 
     public Interview(){
