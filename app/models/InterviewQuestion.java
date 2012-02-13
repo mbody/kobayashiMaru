@@ -2,6 +2,7 @@ package models;
 
 import play.db.jpa.Model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -14,18 +15,27 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class InterviewQuestion extends Model {
-    
+
+    @Column(name = "INDEX_QUESTION")
+    public int index;
     public int mark;
-    public String comment;
     @ManyToOne
     public Question question;
     @ManyToOne
     public Interview interview;
 
-    public InterviewQuestion(int mark, String comment, Question question, Interview interview){
+    public InterviewQuestion(int mark, Question question, Interview interview){
         this.mark = mark;
-        this.comment = comment;
         this.question = question;
         this.interview = interview;
+    }
+
+    public InterviewQuestion(){
+
+    }
+
+    public static InterviewQuestion getInterviewQuestion(Long interviewId, int questionIndex){
+        JPAQuery jpaQuery = find("interview.id = ? and index = ?", interviewId, questionIndex);
+        return jpaQuery.first();
     }
 }

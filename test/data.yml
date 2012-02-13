@@ -1,14 +1,4 @@
-Interview(interview1):
-   candidateName: Dupond
-   candidateFirstName: Charles
-   interviewDate: 2011-12-10
-   examiner: jconnor
 
-Interview(interview2):
-  candidateName: Lafeuille
-  candidateFirstName: Benoit
-  interviewDate: 2011-10-25
-  examiner: jconnor
 
 
 # ***** Users *****
@@ -36,6 +26,18 @@ Topic(topic2):
 
 
 # ******* Interviews ******
+Interview(interview1):
+   candidateName: Dupond
+   candidateFirstName: Charles
+   interviewDate: 2011-12-10
+   examiner: jconnor
+
+Interview(interview2):
+  candidateName: Lafeuille
+  candidateFirstName: Benoit
+  interviewDate: 2011-10-25
+  examiner: jconnor
+
 Interview(int1):
     candidateName: Doctor
     candidateFirstName: Who
@@ -47,25 +49,6 @@ Interview(int2):
     candidateFirstName: Sec
     interviewDate: 2002-12-14t10:00
     examiner: [jconnor]
-
-# ***** InterviewQuestions *****
-InterviewQuestion(firstIQ):
-    mark: 2
-    comment: not bad nor good answer
-    question: firstQuestion
-    interview: interview1
-
-InterviewQuestion(secondIQ):
-    mark: 3
-    comment: good answer
-    question: secondQuestion
-    interview: interview1
-
-InterviewQuestion(thirdIQ):
-    mark: 1
-    comment: bad answer
-    question: thirdQuestion
-    interview: interview1
 
 # ***** Questions *****
 Question(firstQuestion):
@@ -87,4 +70,25 @@ Question(forthQuestion):
     Complexity: HARD
     label: Forth question hard topic 2
     topic: topic2
+
+# ***** InterviewQuestions *****
+InterviewQuestion(firstIQ):
+    mark: 2
+    comment: not bad nor good answer
+    question: firstQuestion
+    interview: interview1
+
+InterviewQuestion(secondIQ):
+    mark: 3
+    comment: good answer
+    question: secondQuestion
+    interview: interview1
+
+InterviewQuestion(thirdIQ):
+    mark: 1
+    comment: bad answer
+    question: thirdQuestion
+    interview: interview1
+
+
 

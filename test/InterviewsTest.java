@@ -3,6 +3,7 @@ import com.google.gson.reflect.TypeToken;
 import controllers.Interviews;
 import models.Interview;
 import models.InterviewQuestion;
+import models.Topic;
 import models.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +30,6 @@ public class InterviewsTest extends FunctionalTest {
         Fixtures.deleteDatabase();
         Fixtures.loadModels("data.yml");
     }
-
 
     @Test
     public void getQuestionsTest() {
@@ -93,14 +93,15 @@ public class InterviewsTest extends FunctionalTest {
         assertStatus(Http.StatusCode.OK, putResponse);
     }
 
-    //For the next tests if an answer value is 0 or 1 => next question difficulty will decrease,
-    //if it's 2 it will remain the same, otherwise it will increase
-
+    //For the next tests if an answer value is 0 => next question difficulty will decrease,
+    //if it's 1,2 or 3 it will remain the same, otherwise it will increase
     @Test
-    public void getNextQuestionPreviousOneWasGood(){
+    public void getNextQuestionTest(){
 
-        List<InterviewQuestion> IQCol = InterviewQuestion.findAll();
-
-        assertTrue(Interviews.getNexQuestion(IQCol.get(0)).difficulty.ordinal() < IQCol.get(0).question.difficulty.ordinal());
+//        List<Interview> IQList = Interview.findAll();
+//        //Interview interview, Topic currentTopic, int currentDifficulty){
+//        Topic t = new Topic();
+//        t.questions.
+//        assertTrue(Interviews.getNextQuestion(
     }
 }
