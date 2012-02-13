@@ -41,7 +41,7 @@
                     <div class="nav-collapse">
                         <ul class="nav">
                             <li class="active"><a href="@{Application.home()}"><i class="icon-home icon-white"></i> Home</a></li>
-                            #{if currentUser?.hasRole(models.Role.STAFF_ADMIN)}
+                            #{if currentUser?.hasRole(models.Role.STAFF_ADMIN) || currentUser?.hasRole(models.Role.TECHNICAL_ADMIN) }
                             <li class="active"><a href="/admin"><i class="icon-cog icon-white"></i> Administration</a></li>
                             #{/if}
                             <li><a href="#">About</a></li>

@@ -12,7 +12,7 @@ import java.util.List;
  * Time: 10:36
  * To change this template use File | Settings | File Templates.
  */
-public class Topics extends SecuredCrudController {
+public class Topics extends SecuredController {
     
     public static void topics() {
         List<Topic> topicList = Topic.findAll();

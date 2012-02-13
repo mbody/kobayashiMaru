@@ -25,6 +25,11 @@ public class Application extends SecuredController {
         flash.success(Messages.get("login.success", user.firstname));
         home();
     }
+    
+    @Secure
+    public static void admin(){
+        render("Admin/index.html");
+    }
 
     @Secure
     public static void home(){

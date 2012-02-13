@@ -19,7 +19,7 @@ import java.util.*;
  * Time: 11:31
  * To change this template use File | Settings | File Templates.
  */
-public class Interviews extends SecuredCrudController{
+public class Interviews extends SecuredController {
 
     public static void interviews(){
         List<Interview> interviewList = Interview.findAll();

@@ -11,10 +11,13 @@ import security.Secure;
  * Time: 13:29
  * To change this template use File | Settings | File Templates.
  */
-public class SecuredCrudController extends CRUD{
+public class SecuredCrud extends CRUD{
     @Before
     static void checkSecure() {
-        Secure secure = getActionAnnotation(Secure.class);
+        Secure secure = getControllerAnnotation(Secure.class);
+        if(getActionAnnotation(Secure.class)!=null){
+            secure = getActionAnnotation(Secure.class);
+        }
         if (secure != null) {
             if (connectedUser() == null || (connectedUser().hasNotRole(secure.role()))) {
                 forbidden();

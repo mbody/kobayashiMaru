@@ -11,7 +11,7 @@ import java.util.List;
  * Time: 15:00
  * To change this template use File | Settings | File Templates.
  */
-public class Questions extends SecuredCrudController {
+public class Questions extends SecuredController {
     
     public static void questions(){
         List<Question> questionList = Question.findAll();
