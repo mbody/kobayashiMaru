@@ -18,7 +18,7 @@
                     <label class="control-label" for="prependedInput">&{'interview.dateTime'}</label>
                     <div class="controls">
                         <div class="input-prepend">
-                            <input type="text" id="interviewDate" size="17" class="span2" name="interview.interviewDate" required />
+                            <input type="text" id="interviewDate" size="30" class="span2" name="interview.interviewDate" required />
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,10 @@
 <script src="@{'/public/js/jquery-ui-timepicker-addon.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 <script>$(function() {$( "#interviewDate" ).datetimepicker({
     dateFormat:'dd/mm/yy',
+    timeFormat: 'hh:mm',
     hourGrid: 4,
-    minuteGrid: 10
+    minuteGrid: 10,
+    hourMin: 8,
+    hourMax: 20
 });});</script>
 #{/set}

@@ -16,6 +16,7 @@ prepareInterview.title=Préparer un nouvel entretien
 
 # bilan interview page
 bilanInterview.title= Bilan d'un entretien
+bilanInterview.notes= Notes
 bilanInterview.date= Date de l'entretien
 bilanInterview.examinateur= Examinateur
 bilanInterview.examinerComment=Commentaire
