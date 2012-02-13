@@ -2,30 +2,18 @@
 #{set title:'Home' /}
 
 #{if currentUser?.staffAdmin}
-<h2>You're a staff !</h2>
-#{/if}
-#{if currentUser?.techAdmin}
-<h2>You're a Tech admin !</h2>
-#{/if}
-#{if currentUser?.examiner}
-
 <section id="examiner-dashboard">
     <div class="page-header">
-        <h1>&{'home.examiner'}</h1>
-    </div>
-
-    <div class="row">
-        <div class="span6">
-        </div>
+        <h1>&{'home.staffAdmin'}</h1>
     </div>
 
     <!-- Supported devices -->
     <div class="row">
         <div class="span6 well">
-            <h3>&{'home.nextInterview'}</h3>
+            <h3>&{'home.uncompletedInterviews'}</h3>
             <ol>
-                #{list items: nextInterviewList, as:'nextInterview'}
-                    <li><a href="@{Interviews.question(nextInterview.id,0)}">&{'home.interviewOf'} ${nextInterview.candidateName} ${nextInterview.candidateFirstName} - &{nextInterview.interviewDate.format('dd/MM/yyyy HH:mm')}</a></li>
+                #{list items: uncompletedInterviews, as:'UInterview'}
+                    <li><a href="@{Interviews.question(UInterview.id,0)}">&{'home.interviewOf'} ${UInterview.candidateName} ${UInterview.candidateFirstName} - &{UInterview.interviewDate.format('dd/MM/yyyy HH:mm')}</a></li>
                 #{/list}
             </ol>
             <p>
@@ -33,10 +21,47 @@
             </p>
         </div>
         <div class="span6  well">
-            <h3>&{'home.pastInterview'}</h3>
+            <h3>&{'home.lastCompletedInterviews'}</h3>
             <ol>
-                #{list items: pastInterviewList, as:'pastInterview'}
-                    <li><a href="@{Interviews.bilan(pastInterview.id)}">&{'home.interviewOf'} ${pastInterview.candidateName} ${pastInterview.candidateFirstName}</a></li>
+                #{list items: lastCompletedInterviews, as:'LCInterview'}
+                    <li><a href="@{Interviews.bilan(LCInterview.id)}">&{'home.interviewOf'} ${LCInterview.candidateName} ${LCInterview.candidateFirstName}</a></li>
+                #{/list}
+            </ol>
+        </div>
+    </div>
+
+</section>
+#{/if}
+#{if currentUser?.techAdmin}
+<h2>You're a Tech admin !</h2>
+#{/if}
+
+
+#{if currentUser?.examiner}
+
+<section id="examiner-dashboard">
+    <div class="page-header">
+        <h1>&{'home.examiner'}</h1>
+    </div>
+
+    <!-- Supported devices -->
+    <div class="row">
+        <div class="span6 well">
+            <h3>&{'home.myUncompletedInterview'}</h3>
+            <ol>
+                #{list items: examinerUncompletedInterviews, as:'EUInterview'}
+                    <li><a href="@{Interviews.question(EUInterview.id,0)}">&{'home.interviewOf'} ${EUInterview.candidateName} ${EUInterview.candidateFirstName} - &{EUInterview.interviewDate.format('dd/MM/yyyy HH:mm')}</a></li>
+                #{/list}
+            </ol>
+            <p>
+                <a class="btn btn-success" href="@{Interviews.prepare}"><i class="icon-plus icon-white"></i> &{'home.prepareNewInterview'}</a>
+            </p>
+        </div>
+        <div class="span6  well">
+            <h3>&{'home.myLastCompletedInterview'}</h3>
+            <ol>
+                #{list items: examinerLastCompletedInterviews, as:'ELCInterview'}
+                    <li><a href="@{Interviews.bilan(ELCInterview.id)}">&{'home.interviewOf'} ${ELCInterview.candidateName} ${ELCInterview.candidateFirstName}</a></li>
                 #{/list}
             </ol>
         </div>
@@ -44,13 +69,4 @@
 
 </section>
 
-<div class="row">
-       <div class="span4">
-            <h3></h3>
-            <p>
-
-            </p>
-       </div>
-
-</div>
 #{/if}

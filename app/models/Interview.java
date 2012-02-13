@@ -1,5 +1,6 @@
 package models;
 
+import play.db.jpa.GenericModel;
 import play.db.jpa.JPA;
 import play.db.jpa.Model;
 
@@ -19,7 +20,9 @@ import java.util.Set;
 public class Interview extends Model {
 
     public static final int NB_QUESTIONS_PER_TOPIC = 5;
-    
+
+    /** True si l'entretien est achevé, false sinon */
+    public boolean complete;
     public String candidateName;
     public String candidateFirstName;
     public Calendar interviewDate;
@@ -55,5 +58,36 @@ public class Interview extends Model {
     
     public int getNbQuestions(){
         return topics.size() * NB_QUESTIONS_PER_TOPIC;
+    }
+
+    public static List<Interview> findAllUncompleted() {
+        return getQueryByCompletedAndUser(false, null).fetch();
+    }
+    public static List<Interview> findAllUncompleted(User user) {
+        return getQueryByCompletedAndUser(false, user).fetch();
+    }
+
+    public static List<Interview> findLastCompleted(User user, int max) {
+        return getQueryByCompletedAndUser(true, user).fetch(max);
+    }
+
+    public static List<Interview> findLastCompleted(int max) {
+        return getQueryByCompletedAndUser(true, null).fetch(max);
+    }
+    
+    private static JPAQuery getQueryByCompletedAndUser(boolean complete, User user){
+        Object[] params;
+        String query = "complete = ? ";
+
+        if(user!=null){
+            query += "and examiner = ? ";
+            params = new Object[]{complete, user};
+        }else{
+            params = new Object[]{complete};
+        }
+
+        query += "order by interviewDate desc";
+
+        return find(query, params);
     }
 }

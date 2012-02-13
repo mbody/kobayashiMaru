@@ -51,8 +51,8 @@
                         #{/if}
                         #{else}
                             <form class="navbar-form pull-right" action="@{Application.authenticate()}" method="post">
-                                <input type="text" name="email" placeholder="email"/>
-                                <input class="input-small" type="text" name="password" placeholder="mot de passe"/>
+                                <input type="text" name="email" placeholder="email" value="examiner@apside.fr"/>
+                                <input class="input-small" type="text" name="password" placeholder="mot de passe" value="hello"/>
                                 <button name="btnGo" type="submit" class="btn">Go</button>
                             </form>
                         #{/else}

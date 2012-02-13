@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Interview;
+import models.Role;
 import models.User;
 import play.i18n.Messages;
 import security.Secure;
@@ -33,10 +34,21 @@ public class Application extends SecuredController {
 
     @Secure
     public static void home(){
-        Calendar currentDate = Calendar.getInstance();
-        List<Interview> nextInterviewList = Interview.find("interviewDate >= ? order by interviewDate asc", currentDate).fetch(10);
-        List<Interview> pastInterviewList = Interview.find("interviewDate < ? order by interviewDate desc", currentDate).fetch(10);
-        render(nextInterviewList, pastInterviewList);
+        User currentUser = connectedUser();
+        List<Interview> examinerUncompletedInterviews = null;
+        List<Interview> examinerLastCompletedInterviews = null;
+        List<Interview> uncompletedInterviews = null;
+        List<Interview> lastCompletedInterviews = null;
+        if(currentUser.hasRole(Role.EXAMINER)){
+            examinerUncompletedInterviews = Interview.findAllUncompleted(currentUser);
+            examinerLastCompletedInterviews = Interview.findLastCompleted(currentUser, 10);
+        }
+        if(currentUser.hasRole(Role.STAFF_ADMIN)){
+            uncompletedInterviews = Interview.findAllUncompleted();
+            lastCompletedInterviews = Interview.findLastCompleted(10);
+        }
+
+        render(examinerUncompletedInterviews, examinerLastCompletedInterviews, uncompletedInterviews, lastCompletedInterviews);
     }
 
     public static void logout() {
