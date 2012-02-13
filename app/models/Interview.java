@@ -21,6 +21,8 @@ import java.util.Set;
 @Entity
 public class Interview extends Model {
 
+    public static final int NB_QUESTIONS_PER_TOPIC = 5;
+    
     public String candidateName;
     public String candidateFirstName;
     public Calendar interviewDate;
@@ -30,6 +32,9 @@ public class Interview extends Model {
 
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "interview")
     public List<InterviewTopic> topics;
+
+    @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "interview")
+    public List<InterviewQuestion> questions;
 
     public Interview(){
 
@@ -47,5 +52,9 @@ public class Interview extends Model {
                 " and q.id not in (select qi.question.id from InterviewQuestion qi where qi.interview.id = " + this.id + ")";
         Query query = JPA.em().createQuery(queryStr);
         return query.getResultList();
+    }
+    
+    public int getNbQuestions(){
+        return topics.size() * NB_QUESTIONS_PER_TOPIC;
     }
 }
