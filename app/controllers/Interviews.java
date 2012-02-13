@@ -1,8 +1,6 @@
 package controllers;
 
 import models.*;
-import play.db.jpa.GenericModel;
-import play.db.jpa.JPA;
 import play.db.jpa.JPABase;
 import play.mvc.Http;
 import security.Secure;
@@ -13,7 +11,6 @@ import java.util.Random;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
-import javax.persistence.Query;
 
 /**
  * Created by IntelliJ IDEA.
@@ -88,7 +85,7 @@ public class Interviews extends SecuredController{
         InterviewQuestion interviewQuestion = InterviewQuestion.findById(idInterviewQuestion);
         interviewQuestion.mark = mark;
         interviewQuestion.save();
-        question(interviewQuestion.interview.id, interviewQuestion.index+1);
+        question(interviewQuestion.interview.id, interviewQuestion.index + 1);
     }
 
     @Secure(role = Role.EXAMINER)
@@ -173,33 +170,19 @@ public class Interviews extends SecuredController{
         return iq;
     }
     
-    @Secure(role = Role.EXAMINER)
-    public static void bilan(Long idEntretien){
-        Interview interview = Interview.findById(idEntretien);
-        List<InterviewQuestion> interviewQuestions = InterviewQuestion.find("interview.id = ?", idEntretien).fetch();
+//    @Secure(role = Role.EXAMINER)
+    public static void bilan(Long idInterview){
+        Interview interview = Interview.findById(idInterview);
         //compute the average by topic and level.
-        String jpql = "select new models.NoteAggregate( avg(iq.mark), iq.question.topic, iq.question.difficulty) from InterviewQuestion as iq where iq.interview.id= :interviewId group by iq.question.topic, iq.question.difficulty";
-        Query query= JPA.em().createQuery(jpql);
-        query.setParameter("interviewId", idEntretien);
-        List<NoteAggregate> resultList = query.getResultList();
-        Map<String, String> notesForTopic = buildMapOfResult(resultList);
-        Set<String> keysForMap = notesForTopic.keySet();
-        String ticks=getLabelList();
-        render(interview, interviewQuestions, resultList, notesForTopic, keysForMap, ticks);
+        Map<Topic, Map<Difficulty, NoteAggregate>> mapOfNoteAggregate = NoteAggregate.getNoteAggregate(idInterview);
+        Map<String, String> notesAboveForTopic = buildMapOfResult(mapOfNoteAggregate, true);
+        Map<String, String> notesUnderForTopic = buildMapOfResult(mapOfNoteAggregate, false);
+        Set<String> keysForMap = notesAboveForTopic.keySet();
+        String ticks= getGraphLabelList();
+        render(interview, notesAboveForTopic, notesUnderForTopic, keysForMap, ticks);
     }
 
-    //TODO change later bug hack for js generation
-    public static class NoteForDifficulty{
-        public String difficulty;
-        public double average;
-
-        public NoteForDifficulty(String difficulty, double average) {
-            this.difficulty = difficulty;
-            this.average = average;
-        }
-    }
-
-    private static String getLabelList(){
+    private static String getGraphLabelList(){
         Difficulty[] values = Difficulty.values();
         StringBuilder sb = new StringBuilder();
         sb.append("[");
@@ -210,32 +193,29 @@ public class Interviews extends SecuredController{
         return result+"]";
     }
 
-    private static Map<String, String> buildMapOfResult(List<NoteAggregate> noteAggregateList){
-        Map<String, Map<Difficulty, Double>> mapForSorting = new HashMap<String, Map<Difficulty, Double>>();
-        for(NoteAggregate noteAggregate : noteAggregateList){
-            Map<Difficulty, Double> noteForDifficulties = mapForSorting.get(noteAggregate.topic.label);
-            if(noteForDifficulties==null) {
-                noteForDifficulties = new HashMap<Difficulty, Double>();
-                mapForSorting.put(noteAggregate.topic.label, noteForDifficulties);
-            }
-            noteForDifficulties.put(noteAggregate.difficulty, noteAggregate.average);
-        }
-
+    private static Map<String, String> buildMapOfResult(Map<Topic, Map<Difficulty, NoteAggregate>> mapOfNoteAggregate, boolean above3){
         Map<String, String> result = new HashMap<String, String>();
-        for(Map.Entry<String, Map<Difficulty,Double>> entry : mapForSorting.entrySet()) {
-            Map<Difficulty, Double> resultForTopic = entry.getValue();
+        for(Map.Entry<Topic, Map<Difficulty,NoteAggregate>> entry : mapOfNoteAggregate.entrySet()) {
+            Map<Difficulty,NoteAggregate> resultForTopic = entry.getValue();
             StringBuilder sortedNotes = new StringBuilder();
-            sortedNotes.append("[").append(resultForTopic.containsKey(Difficulty.BEGINNER)?resultForTopic.get(Difficulty.BEGINNER):"0");
-            sortedNotes.append(",").append(resultForTopic.containsKey(Difficulty.INTERMEDIATE)?resultForTopic.get(Difficulty.INTERMEDIATE):"0");
-            sortedNotes.append(",").append(resultForTopic.containsKey(Difficulty.ADVANCED)?resultForTopic.get(Difficulty.ADVANCED):"0");
-            sortedNotes.append(",").append(resultForTopic.containsKey(Difficulty.EXPERT)?resultForTopic.get(Difficulty.EXPERT):"0");
+            sortedNotes.append("[").append(above3? getValueAbove3ToAppend(resultForTopic, Difficulty.BEGINNER): getValueUnder3ToAppend(resultForTopic, Difficulty.BEGINNER));
+            sortedNotes.append(",").append(above3? getValueAbove3ToAppend(resultForTopic, Difficulty.INTERMEDIATE): getValueUnder3ToAppend(resultForTopic, Difficulty.INTERMEDIATE));
+            sortedNotes.append(",").append(above3? getValueAbove3ToAppend(resultForTopic, Difficulty.ADVANCED): getValueUnder3ToAppend(resultForTopic, Difficulty.ADVANCED));
+            sortedNotes.append(",").append(above3? getValueAbove3ToAppend(resultForTopic, Difficulty.EXPERT):getValueUnder3ToAppend(resultForTopic, Difficulty.EXPERT));
             sortedNotes.append("]");
-            result.put(entry.getKey(), sortedNotes.toString());
+            result.put(entry.getKey().label, sortedNotes.toString());
         }
 
         return result;
     }
-    
+
+    private static Object getValueAbove3ToAppend(Map<Difficulty, NoteAggregate> resultForTopic, Difficulty difficulty) {
+        return resultForTopic.containsKey(difficulty) ? resultForTopic.get(difficulty).sumOfNoteAbove3 : "0";
+    }
+    private static Object getValueUnder3ToAppend(Map<Difficulty, NoteAggregate> resultForTopic, Difficulty difficulty) {
+        return resultForTopic.containsKey(difficulty) ? resultForTopic.get(difficulty).sumOfNoteUnder3 : "0";
+    }
+
     private static Question getNewRandomQuestion(Interview interview, Topic currentTopic, int currentDifficulty){
 
         List<Question> list = interview.findUnusedQuestionByTopicAndDifficulty(currentTopic, currentDifficulty);
