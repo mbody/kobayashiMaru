@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Role;
 import models.User;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -18,7 +19,7 @@ public class SecuredController extends Controller {
     static void checkSecure() {
         Secure secure = getActionAnnotation(Secure.class);
         if (secure != null) {
-            if (connectedUser() == null || (connectedUser().hasNotRole(secure.role()))) {
+            if (connectedUser() == null || !(connectedUser().hasRole(secure.role()) || secure.role().equals(Role.AUTHENTICATED))) {
                 forbidden();
             }
         }

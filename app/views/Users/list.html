@@ -1,15 +1,6 @@
-#{extends 'main.html' /}
+#{extends 'main-admin.html' /}
 #{set title:messages.get('crud.list.title', type.name) /}
 
-<div class="row">
-    <div class="span3 well">
-        <ul class="nav nav-list">
-            <li class="nav-header"><i class="icon-cog"></i> administration</li>
-            <li class="active"><a href="#">Utilisateurs</a></li>
-            <li><a href="#">Entretiens</a></li>
-            <li><a href="#">Questions</a></li>
-        </ul>
-    </div>
     <div id="crudList" class="span9 well ${type.name}">
 
         <h2 id="crudListTitle">&{'crud.list.title', type.name}</h2>
@@ -33,4 +24,3 @@
         </p>
 
     </div>
-</div>

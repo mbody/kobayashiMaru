@@ -9,5 +9,9 @@ package models;
  */
 
 public enum Role {
-       EXAMINER, STAFF_ADMIN, TECHNICAL_ADMIN;
+    EXAMINER,
+    STAFF_ADMIN,
+    TECHNICAL_ADMIN,
+    /** */
+    AUTHENTICATED;
 }
