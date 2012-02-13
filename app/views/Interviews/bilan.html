@@ -39,21 +39,6 @@
                 </div>
             </fieldset>
 
-            <fieldset>
-                <legend>&{'bilanInterview.notes'}</legend>
-
-                <div class="row">
-
-                    #{list items:resultList, as:'noteAggregate' }
-
-                        <div class="span3">Topic : ${noteAggregate.topic.label} </div>
-                        <div class="span3">Difficulty : ${noteAggregate.difficulty} </div>
-                        <div class="span3">Note moyenne : ${noteAggregate.average}</div>
-                    #{/list}
-
-                </div>
-            </fieldset>
-
             #{list items:keysForMap, as: 'mapKey'}
                 <fieldset>
                     <legend>${mapKey}</legend>
@@ -82,10 +67,12 @@
                 var ticks = ${ticks};
 
             #{list items:keysForMap, as: 'mapKey'}
-                var serie${mapKey} = ${notesForTopic[mapKey]};
-                plot${mapKey} = $.jqplot('graph${mapKey}', [serie${mapKey}], {
+                var serieGood${mapKey} = ${notesAboveForTopic[mapKey]};
+                var serieBad${mapKey} = ${notesUnderForTopic[mapKey]};
+                plot${mapKey} = $.jqplot('graph${mapKey}', [serieGood${mapKey}, serieBad${mapKey}], {
                     // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
                     animate: !$.jqplot.use_excanvas,
+                    stackSeries: true,
                     seriesDefaults:{
                         renderer:$.jqplot.BarRenderer,
                         pointLabels: { show: true }
