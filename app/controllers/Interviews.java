@@ -1,19 +1,14 @@
 package controllers;
 
 import models.*;
-import play.db.jpa.GenericModel;
 import play.db.jpa.JPA;
 import play.db.jpa.JPABase;
 import play.mvc.Http;
 import security.Secure;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-
+import javax.persistence.Query;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import javax.persistence.Query;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,7 +17,7 @@ import javax.persistence.Query;
  * Time: 11:31
  * To change this template use File | Settings | File Templates.
  */
-public class Interviews extends SecuredController{
+public class Interviews extends SecuredCrudController{
 
     public static void interviews(){
         List<Interview> interviewList = Interview.findAll();

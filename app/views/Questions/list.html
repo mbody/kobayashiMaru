@@ -5,9 +5,9 @@
     <div class="span3 well">
         <ul class="nav nav-list">
             <li class="nav-header"><i class="icon-cog"></i> administration</li>
-            <li class="active"><a href="#">Utilisateurs</a></li>
+            <li><a href="users">Utilisateurs</a></li>
             <li><a href="interviews">Entretiens</a></li>
-            <li><a href="questions">Questions</a></li>
+            <li class="active"><a href="#">Questions</a></li>
             <li><a href="topics">Thèmes</a></li>
         </ul>
     </div>
@@ -16,17 +16,17 @@
         <h2 id="crudListTitle">&{'crud.list.title', type.name}</h2>
 
         <div id="crudListSearch">
-            #{crud.search /}
+        #{crud.search /}
         </div>
 
         <div id="crudListTable">
-            #{crud.table fields:['lastname', 'firstname']/}
+        #{crud.table fields:['label', 'difficulty']/}
         </div>
 
         <br>
 
         <div id="crudListPagination">
-            #{crud.pagination /}
+        #{crud.pagination /}
         </div>
 
         <p id="crudListAdd">
