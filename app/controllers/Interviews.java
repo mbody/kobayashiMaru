@@ -103,7 +103,7 @@ public class Interviews extends SecuredController{
             }
             interviewQuestion = createInterviewQuestion(interview, previousInterviewQuestion);
             if(interviewQuestion == null)
-                render();
+                bilan(idEntretien);
             else
                 render(interview, interviewQuestion, lastQuestion);
         }else{
@@ -120,7 +120,7 @@ public class Interviews extends SecuredController{
             currentInterviewTopic = currentInterview.topics.get((0));
         else if(previousInterviewQuestion.index % 5 == 0){
             int currentTopicIndex =(int) Math.floor(previousInterviewQuestion.index / 5);
-            if(currentTopicIndex <= currentInterview.topics.size())
+            if(currentTopicIndex <= currentInterview.topics.size()-1)
                 currentInterviewTopic = currentInterview.topics.get(currentTopicIndex);
             else
                 return null;
