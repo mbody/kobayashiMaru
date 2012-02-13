@@ -3,10 +3,7 @@ package models;
 import play.db.jpa.JPA;
 import play.db.jpa.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
@@ -21,6 +18,8 @@ import java.util.Set;
 @Entity
 public class Interview extends Model {
 
+    public static final int NB_QUESTIONS_PER_TOPIC = 5;
+    
     public String candidateName;
     public String candidateFirstName;
     public Calendar interviewDate;
@@ -29,7 +28,12 @@ public class Interview extends Model {
     public String examinerComment;
 
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "interview")
+    @OrderBy("id ASC")
     public List<InterviewTopic> topics;
+
+    @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "interview")
+    @OrderBy("index ASC")
+    public List<InterviewQuestion> questions;
 
     public Interview(){
 
@@ -47,5 +51,9 @@ public class Interview extends Model {
                 " and q.id not in (select qi.question.id from InterviewQuestion qi where qi.interview.id = " + this.id + ")";
         Query query = JPA.em().createQuery(queryStr);
         return query.getResultList();
+    }
+    
+    public int getNbQuestions(){
+        return topics.size() * NB_QUESTIONS_PER_TOPIC;
     }
 }
