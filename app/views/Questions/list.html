@@ -20,7 +20,12 @@
         </div>
 
         <div id="crudListTable">
-        #{crud.table fields:['label', 'difficulty']/}
+        #{crud.table fields:['label', 'difficulty', 'topic']}
+           #{crud.custom 'topic'}
+                ${object.topic.label}
+            #{/crud.custom}
+        #{/crud.table}
+
         </div>
 
         <br>
