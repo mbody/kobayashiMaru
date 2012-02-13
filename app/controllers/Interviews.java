@@ -81,31 +81,32 @@ public class Interviews extends SecuredController {
     }
 
     @Secure(role = Role.EXAMINER)
-    public static void saveQuestion(Long idInterviewQuestion, int mark){
+    public static void saveMark(Long idInterviewQuestion, int mark){
         InterviewQuestion interviewQuestion = InterviewQuestion.findById(idInterviewQuestion);
         interviewQuestion.mark = mark;
         interviewQuestion.save();
-        question(interviewQuestion.interview.id, interviewQuestion.index + 1);
+        renderText("success!");
     }
 
     @Secure(role = Role.EXAMINER)
     public static void question(Long idEntretien, int questionIndex){
         Interview interview = Interview.findById(idEntretien);
         InterviewQuestion interviewQuestion = InterviewQuestion.getInterviewQuestion(idEntretien, questionIndex);
-        boolean lastQuestion = (interviewQuestion==null);
-        if(lastQuestion){
-            InterviewQuestion previousInterviewQuestion= null;
-            if(questionIndex>0){
-                previousInterviewQuestion = InterviewQuestion.getInterviewQuestion(idEntretien, questionIndex-1);
-            }
+        if(interviewQuestion==null){
+            InterviewQuestion previousInterviewQuestion = InterviewQuestion.getInterviewQuestion(idEntretien, questionIndex-1);
             interviewQuestion = createInterviewQuestion(interview, previousInterviewQuestion);
-            if(interviewQuestion == null)
-                bilan(idEntretien);
-            else
-                render(interview, interviewQuestion, lastQuestion);
+            render(interview, interviewQuestion);
         }else{
-            render(interview, interviewQuestion, lastQuestion);
+            render(interview, interviewQuestion);
         }
+    }
+
+    @Secure(role = Role.EXAMINER)
+    public static void finalize(Long idEntretien){
+        Interview interview = Interview.findById(idEntretien);
+        interview.complete = true;
+        interview.save();
+        bilan(idEntretien);
     }
 
     private static InterviewQuestion createInterviewQuestion(Interview currentInterview, InterviewQuestion previousInterviewQuestion){
@@ -114,9 +115,9 @@ public class Interviews extends SecuredController {
         InterviewTopic currentInterviewTopic;
         boolean firstQuestionInTopic = true;
         if(previousInterviewQuestion == null)
-            currentInterviewTopic = currentInterview.topics.get((0));
-        else if(previousInterviewQuestion.index % 5 == 0){
-            int currentTopicIndex =(int) Math.floor(previousInterviewQuestion.index / 5);
+            currentInterviewTopic = currentInterview.topics.get(0);
+        else if(previousInterviewQuestion.index % Interview.NB_QUESTIONS_PER_TOPIC == 0){
+            int currentTopicIndex =(int) Math.floor(previousInterviewQuestion.index / Interview.NB_QUESTIONS_PER_TOPIC);
             if(currentTopicIndex <= currentInterview.topics.size()-1)
                 currentInterviewTopic = currentInterview.topics.get(currentTopicIndex);
             else
@@ -145,16 +146,8 @@ public class Interviews extends SecuredController {
             }
         }
 
-        //Test if we reach the last question for the last topic
-
-
         //Return the next available question with those criterias
         Question question = getNewRandomQuestion(currentInterview, currentInterviewTopic.topic, currentDifficulty);
-//        Question question = new Question();
-//        question.label = "la bete " + Math.random();
-//        question.topic = currentInterviewTopic.topic;
-//        question.difficulty = Difficulty.getDifficultyFromOrdinal(currentDifficulty);
-//        question.save();
         InterviewQuestion iq = new InterviewQuestion();
         iq.question = question;
         iq.interview = currentInterview;

@@ -1,5 +1,6 @@
 *.ipr
 *.iml
 *.iws
+*.log
 tmp
 test-result

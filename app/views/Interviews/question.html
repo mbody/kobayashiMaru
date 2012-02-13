@@ -52,14 +52,14 @@
             <h3>Evaluation</h3>
             <br>
 
-            <form id="interviewQuestionForm" action="@{Interviews.saveQuestion()}" method="post">
+            <form id="interviewQuestionForm" method="post">
                 <input type="hidden" name="idInterviewQuestion" value="${interviewQuestion.id}"/>
 
                 <div class="row">
                     <div class="span4 offset2">
                         #{list items:0..4, as:'i'}
                         <label class="radio inline">
-                            <input type="radio" name="mark" id="optionsMark-${i}" value="${i}"
+                            <input type="radio" name="mark" id="optionsMark-${i}" value="${i}" onchange="updateMark(${i})"
                                    #{if interviewQuestion.mark==i}checked#{/if}>
                            ${i}
                         </label>
@@ -68,14 +68,27 @@
                 </div>
                 <br>
                 <ul class="pager">
-                #{if interviewQuestion.index>0}
-                    <li class="previous"><a href="@{Interviews.question(interview.id,interviewQuestion.index-1)}">Previous</a>
+                #{if interviewQuestion.index>1}
+                    <li class="previous"><a href="@{Interviews.question(interview.id,interviewQuestion.index-1)}">Précédent</a>
                     </li>
                 #{/if}
-                    <li class="next"><a href="javascript:$('#interviewQuestionForm').submit()">Next</a></li>
+                #{if interviewQuestion.index<interview.nbQuestions}
+                    <li class="next"><a href="@{Interviews.question(interview.id,interviewQuestion.index+1)}">Suivant</a></li>
+                #{/if}
+                #{else}
+                    <li class="next"><a href="@{Interviews.finalize(interview.id)}">Terminer</a></li>
+                #{/else}
                 </ul>
             </form>
         </div>
 
     </div>
 </div>
+
+#{set 'moreScripts'}
+<script type="text/javascript">
+    function updateMark(mark){
+        $.post("@{Interviews.saveMark()}", { idInterviewQuestion: "${interviewQuestion.id}", mark: mark} );
+    }
+</script>
+#{/set}

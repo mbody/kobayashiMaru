@@ -13,7 +13,7 @@
             <h3>&{'home.uncompletedInterviews'}</h3>
             <ol>
                 #{list items: uncompletedInterviews, as:'UInterview'}
-                    <li><a href="@{Interviews.question(UInterview.id,0)}">&{'home.interviewOf'} ${UInterview.candidateName} ${UInterview.candidateFirstName} - &{UInterview.interviewDate.format('dd/MM/yyyy HH:mm')}</a></li>
+                    <li><a href="@{Interviews.question(UInterview.id,1)}">&{'home.interviewOf'} ${UInterview.candidateName} ${UInterview.candidateFirstName} - &{UInterview.interviewDate.format('dd/MM/yyyy HH:mm')}</a></li>
                 #{/list}
             </ol>
             <p>
