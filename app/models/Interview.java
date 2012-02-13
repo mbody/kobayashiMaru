@@ -1,12 +1,12 @@
 package models;
 
+import play.data.validation.Required;
 import play.db.jpa.JPA;
 import play.db.jpa.Model;
 
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,11 +19,14 @@ import java.util.Set;
 public class Interview extends Model {
 
     public static final int NB_QUESTIONS_PER_TOPIC = 5;
-    
+    @Required
     public String candidateName;
+    @Required
     public String candidateFirstName;
+    @Required
     public Calendar interviewDate;
     @ManyToOne
+    @Required
     public User examiner;
     public String examinerComment;
 
