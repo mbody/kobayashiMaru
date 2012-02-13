@@ -19,7 +19,7 @@ import java.util.*;
  * Time: 11:31
  * To change this template use File | Settings | File Templates.
  */
-public class Interviews extends SecuredController{
+public class Interviews extends SecuredCrudController{
 
     public static void interviews(){
         List<Interview> interviewList = Interview.findAll();
@@ -169,8 +169,8 @@ public class Interviews extends SecuredController{
 
         return iq;
     }
-    
-//    @Secure(role = Role.EXAMINER)
+
+    @Secure(role = Role.EXAMINER)
     public static void bilan(Long idInterview){
         Interview interview = Interview.findById(idInterview);
         //compute the average by topic and level.

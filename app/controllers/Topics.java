@@ -1,12 +1,8 @@
 package controllers;
 
 import models.Topic;
-import org.omg.IOP.ComponentIdHelper;
-import play.db.jpa.JPABase;
-import play.mvc.Controller;
 import play.mvc.Http;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +12,7 @@ import java.util.List;
  * Time: 10:36
  * To change this template use File | Settings | File Templates.
  */
-public class Topics extends SecuredController {
+public class Topics extends SecuredCrudController {
     
     public static void topics() {
         List<Topic> topicList = Topic.findAll();

@@ -1,12 +1,12 @@
-#{extends 'main-admin.html' /}
+#{extends 'main.html' /}
 #{set title:messages.get('crud.list.title', type.name) /}
 
 <div class="row">
     <div class="span3 well">
         <ul class="nav nav-list">
             <li class="nav-header"><i class="icon-cog"></i> administration</li>
-            <li class="active"><a href="#">Utilisateurs</a></li>
-            <li><a href="interviews">Entretiens</a></li>
+            <li><a href="users">Utilisateurs</a></li>
+            <li class="active"><a href="#">Entretiens</a></li>
             <li><a href="questions">Questions</a></li>
             <li><a href="topics">Thèmes</a></li>
         </ul>
@@ -20,7 +20,11 @@
         </div>
 
         <div id="crudListTable">
-        #{crud.table fields:['lastname', 'firstname']/}
+        #{crud.table fields:['candidateName', 'candidateFirstName', 'interviewDate'], sort:[interviewDate]}
+            #{crud.custom 'interviewDate'}
+                ${object.interviewDate.format("dd/MM/yyyy HH:mm")}
+            #{/crud.custom}
+        #{/crud.table}
         </div>
 
         <br>
