@@ -161,7 +161,7 @@ public class Interviews extends SecuredController{
 
         //Define the current question index
         if(previousInterviewQuestion == null)
-            iq.index = 0;
+            iq.index = 1;
         else
             iq.index = previousInterviewQuestion.index + 1;
 
