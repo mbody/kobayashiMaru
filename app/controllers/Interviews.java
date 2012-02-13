@@ -170,7 +170,7 @@ public class Interviews extends SecuredController{
         return iq;
     }
     
-//    @Secure(role = Role.EXAMINER)
+    @Secure(role = Role.EXAMINER)
     public static void bilan(Long idInterview){
         Interview interview = Interview.findById(idInterview);
         //compute the average by topic and level.
