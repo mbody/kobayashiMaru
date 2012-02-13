@@ -2,62 +2,100 @@
 #{set title:'Entretien technique' /}
 
 <div class="row">
-    <div class="span8 offset2 well" id="question">
-        <h3>Thème actuel <small>Question #1</small></h3>
-        <br>
-        <div>
-            <h4>Quelle est la couleur d'un cheval blanc ?</h4>
-            <ol>
-                <li>Blanc</li>
-                <li>Rouge</li>
-                <li>Rosé</li>
-                <li>Jaune</li>
-            </ol>
+    <div class="span3">
+        <div class="well sidebar-nav">
+            <h3>Entretien John DOE</h3>
+            <br>
+            <h4>Progression</h4>
+            <p>2 questions sur 20.</p>
+            <div class="progress">
+                <div class="bar" style="width: 10%;"></div>
+            </div>
+
+            <h4>Questions précédentes</h4>
+            <ul class="nav nav-list">
+                <li class="nav-header">Sidebar</li>
+                <li class="active"><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li class="nav-header">Sidebar</li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li class="nav-header">Sidebar</li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+            </ul>
         </div>
+        <!--/.well -->
     </div>
-</div>
-<br>
-<div class="row">
-    <div class="span8 offset2 well" id="response">
-        <h3>Réponse</small></h3>
-        <div>
-            <p>La bonne réponse est rouge, mais blanc est acceptable !</p>
-        </div>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="span8 offset2 well" id="evaluation">
-        <h3>Evaluation</small></h3>
-        <br>
-        <div class="row">
-            <div class="span4 offset2">
-            <label class="radio inline">
-                <input type="radio" name="optionsMark" id="optionsMark-0" value="1" checked="checked">
-                0
-            </label>
-                <label class="radio inline">
-                    <input type="radio" name="optionsMark" id="optionsMark-1" value="1" >
-                1
-                </label>
-                <label class="radio inline">
-                    <input type="radio" name="optionsMark" id="optionsMark-2" value="2" >
-                2
-                </label>
-                <label class="radio inline">
-                    <input type="radio" name="optionsMark" id="optionsMark-3" value="3" >
-                3
-                </label>
-                <label class="radio inline">
-                    <input type="radio" name="optionsMark" id="optionsMark-4" value="4" >
-                4
-                </label>
-           </div>
+    <div class="span9">
+        <div class="well" id="question">
+            <h3>Thème actuel
+                <small>Question #1</small>
+            </h3>
+            <br>
+
+            <div>
+                <h4>Quelle est la couleur d'un cheval blanc ?</h4>
+                <ol>
+                    <li>Blanc</li>
+                    <li>Rouge</li>
+                    <li>Rosé</li>
+                    <li>Jaune</li>
+                </ol>
+            </div>
         </div>
         <br>
-        <ul class="pager">
-            <li class="previous"><a href="#">Previous</a></li>
-            <li class="next"><a href="#">Next</a></li>
-        </ul>
+
+        <div class="well" id="response">
+            <h3>Réponse</small></h3>
+
+            <div>
+                <p>La bonne réponse est rouge, mais blanc est acceptable !</p>
+            </div>
+        </div>
+        <br>
+
+        <div class="well" id="evaluation">
+            <h3>Evaluation</small></h3>
+            <br>
+
+            <div class="row">
+
+                <div class="span4 offset2">
+                    <label class="radio inline">
+                        <input type="radio" name="optionsMark" id="optionsMark-0" value="1" checked="checked">
+                        0
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="optionsMark" id="optionsMark-1" value="1">
+                        1
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="optionsMark" id="optionsMark-2" value="2">
+                        2
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="optionsMark" id="optionsMark-3" value="3">
+                        3
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="optionsMark" id="optionsMark-4" value="4">
+                        4
+                    </label>
+                </div>
+            </div>
+            <br>
+            <ul class="pager">
+                <li class="previous"><a href="#">Previous</a></li>
+                <li class="next"><a href="#">Next</a></li>
+            </ul>
+        </div>
     </div>
 </div>
