@@ -9,15 +9,15 @@
         #{form action:@save(object._key()), enctype:'multipart/form-data'}
             #{crud.form /}
             <p class="crudButtons">
-                <button type="submit" name="_save" value="&{'crud.save', type.modelName}" />
-                <button type="submit" name="_saveAndContinue" value="&{'crud.saveAndContinue', type.modelName}" />
+                <button class="btn" type="submit" name="_save" >&{'crud.save', type.modelName}</button>
+                <button class="btn" type="submit" name="_saveAndContinue" >&{'crud.saveAndContinue', type.modelName}</button>
             </p>
         #{/form}
         </div>
 
     #{form @delete(object._key())}
         <p class="crudDelete">
-            <button type="submit" value="&{'crud.delete', type.modelName}" />
+            <button class="btn" type="submit" >&{'crud.delete', type.modelName}</button>
         </p>
     #{/form}
 
