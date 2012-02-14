@@ -90,11 +90,11 @@ public class Interviews extends SecuredController {
     }
 
     @Secure(role = Role.EXAMINER)
-    public static void question(Long idEntretien, int questionIndex){
-        Interview interview = Interview.findById(idEntretien);
-        InterviewQuestion interviewQuestion = InterviewQuestion.getInterviewQuestion(idEntretien, questionIndex);
+    public static void question(Long idInterview, int questionIndex){
+        Interview interview = Interview.findById(idInterview);
+        InterviewQuestion interviewQuestion = InterviewQuestion.getInterviewQuestion(idInterview, questionIndex);
         if(interviewQuestion==null){
-            InterviewQuestion previousInterviewQuestion = InterviewQuestion.getInterviewQuestion(idEntretien, questionIndex-1);
+            InterviewQuestion previousInterviewQuestion = InterviewQuestion.getInterviewQuestion(idInterview, questionIndex-1);
             interviewQuestion = createInterviewQuestion(interview, previousInterviewQuestion);
             render(interview, interviewQuestion);
         }else{
@@ -103,11 +103,19 @@ public class Interviews extends SecuredController {
     }
 
     @Secure(role = Role.EXAMINER)
-    public static void finalize(Long idEntretien){
-        Interview interview = Interview.findById(idEntretien);
+    public static void finalize(Long idInterview){
+        Interview interview = Interview.findById(idInterview);
         interview.complete = true;
         interview.save();
-        bilan(idEntretien);
+        bilan(idInterview);
+    }
+
+    @Secure(role = Role.EXAMINER)
+    public static void saveComments(Long idInterview, String comments){
+        Interview interview = Interview.findById(idInterview);
+        interview.examinerComment = comments;
+        interview.save();
+        renderText("comment updated !");
     }
 
     private static InterviewQuestion createInterviewQuestion(Interview currentInterview, InterviewQuestion previousInterviewQuestion){
