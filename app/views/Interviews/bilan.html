@@ -66,6 +66,10 @@
         charset="${_response_encoding}"></script>
 <script src="@{'/public/js/plugins/jqplot.categoryAxisRenderer.js'}" type="text/javascript"
         charset="${_response_encoding}"></script>
+<script src="@{'/public/js/plugins/jqplot.canvasTextRenderer.js'}" type="text/javascript"
+        charset="${_response_encoding}"></script>
+<script src="@{'/public/js/plugins/jqplot.canvasAxisLabelRenderer.js'}" type="text/javascript"
+        charset="${_response_encoding}"></script>
 <script>
     $(document).ready(function () {
         $.jqplot.config.enablePlugins = true;
@@ -85,8 +89,20 @@
                 },
                 axes:{
                     xaxis:{
+                        labelOptions: {
+                            fontFamily: 'Georgia, Serif',
+                            fontSize: '12pt'
+                        },
                         renderer:$.jqplot.CategoryAxisRenderer,
                         ticks:ticks
+                    },
+                    yaxis:{
+                        label:'Nb Questions',
+                        labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                        labelOptions: {
+                            fontFamily: 'Georgia, Serif',
+                            fontSize: '12pt'
+                        }
                     }
                 },
                 highlighter:{ show:false }
