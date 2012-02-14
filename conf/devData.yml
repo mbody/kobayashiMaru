@@ -82,6 +82,27 @@ Interview(int3):
     examiner: [examiner]
     examinerComment: passait son temps a repeter Exterminate
 
+# ***** InterviewTopic *****
+InterviewTopic(it1):
+    initialDifficulty: BEGINNER
+    topic: [topic1]
+    interview: [int1]
+
+InterviewTopic(it2):
+    initialDifficulty: BEGINNER
+    topic: [topic2]
+    interview: [int1]
+
+InterviewTopic(it3):
+    initialDifficulty: BEGINNER
+    topic: [topic3]
+    interview: [int2]
+
+InterviewTopic(it4):
+    initialDifficulty: BEGINNER
+    topic: [topic3]
+    interview: [int3]
+
 # ***** Questions *****
 Question(firstQuestion):
     difficulty: BEGINNER

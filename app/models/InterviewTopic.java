@@ -24,4 +24,7 @@ public class InterviewTopic extends Model {
     @ManyToOne
     public Interview interview;
 
+    public static InterviewTopic findByTopicId(Long topicId) {
+        return find("topic.id = ?", topicId).first();
+    }
 }

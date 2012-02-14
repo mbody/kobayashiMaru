@@ -1,6 +1,7 @@
 package controllers;
 
 import models.*;
+import org.apache.commons.lang.StringUtils;
 import play.db.jpa.JPABase;
 import play.mvc.Http;
 import security.Secure;
@@ -125,7 +126,7 @@ public class Interviews extends SecuredController {
         }
         else{
             firstQuestionInTopic = false;
-            currentInterviewTopic = InterviewTopic.findById(previousInterviewQuestion.question.topic.id);
+            currentInterviewTopic = InterviewTopic.findByTopicId(previousInterviewQuestion.question.topic.id);
         }
 
         //Define the current difficulty
@@ -167,12 +168,12 @@ public class Interviews extends SecuredController {
     public static void bilan(Long idInterview){
         Interview interview = Interview.findById(idInterview);
         //compute the average by topic and level.
-        Map<Topic, Map<Difficulty, NoteAggregate>> mapOfNoteAggregate = NoteAggregate.getNoteAggregate(idInterview);
-        Map<String, String> notesAboveForTopic = buildMapOfResult(mapOfNoteAggregate, true);
-        Map<String, String> notesUnderForTopic = buildMapOfResult(mapOfNoteAggregate, false);
-        Set<String> keysForMap = notesAboveForTopic.keySet();
+        Map<Topic, Map<Difficulty, MarkAggregate>> mapOfNoteAggregate = MarkAggregate.getMarkAggregateMap(idInterview);
+        Map<Long, String> goodMarkSeriesByTopic = buildMapOfSeries(mapOfNoteAggregate, true);
+        Map<Long, String> badMarkSeriesByTopic = buildMapOfSeries(mapOfNoteAggregate, false);
         String ticks= getGraphLabelList();
-        render(interview, notesAboveForTopic, notesUnderForTopic, keysForMap, ticks);
+        Set<Topic> topics = mapOfNoteAggregate.keySet();
+        render(interview, goodMarkSeriesByTopic, badMarkSeriesByTopic, ticks, topics);
     }
 
     private static String getGraphLabelList(){
@@ -186,27 +187,26 @@ public class Interviews extends SecuredController {
         return result+"]";
     }
 
-    private static Map<String, String> buildMapOfResult(Map<Topic, Map<Difficulty, NoteAggregate>> mapOfNoteAggregate, boolean above3){
-        Map<String, String> result = new HashMap<String, String>();
-        for(Map.Entry<Topic, Map<Difficulty,NoteAggregate>> entry : mapOfNoteAggregate.entrySet()) {
-            Map<Difficulty,NoteAggregate> resultForTopic = entry.getValue();
-            StringBuilder sortedNotes = new StringBuilder();
-            sortedNotes.append("[").append(above3? getValueAbove3ToAppend(resultForTopic, Difficulty.BEGINNER): getValueUnder3ToAppend(resultForTopic, Difficulty.BEGINNER));
-            sortedNotes.append(",").append(above3? getValueAbove3ToAppend(resultForTopic, Difficulty.INTERMEDIATE): getValueUnder3ToAppend(resultForTopic, Difficulty.INTERMEDIATE));
-            sortedNotes.append(",").append(above3? getValueAbove3ToAppend(resultForTopic, Difficulty.ADVANCED): getValueUnder3ToAppend(resultForTopic, Difficulty.ADVANCED));
-            sortedNotes.append(",").append(above3? getValueAbove3ToAppend(resultForTopic, Difficulty.EXPERT):getValueUnder3ToAppend(resultForTopic, Difficulty.EXPERT));
-            sortedNotes.append("]");
-            result.put(entry.getKey().label, sortedNotes.toString());
+    private static Map<Long, String> buildMapOfSeries(Map<Topic, Map<Difficulty, MarkAggregate>> mapOfNoteAggregate, boolean isGoodAnswer){
+        Map<Long, String> result = new HashMap<Long, String>();
+        for(Topic topic: mapOfNoteAggregate.keySet()) {
+            Map<Difficulty,MarkAggregate> markAggregateForTopic = mapOfNoteAggregate.get(topic);
+            Double[] data = new Double[Difficulty.values().length];
+            for (Difficulty difficulty : Difficulty.values()) {
+                MarkAggregate markAggregate = markAggregateForTopic.get(difficulty);
+                double markRatio;
+                // calcul de la note (1 point de la note sur 4 => 0.25)
+                markRatio =  markAggregate!=null?markAggregate.totalMark * 0.25:0;
+                if(!isGoodAnswer){
+                    // pour le calcul du restant de la note, on retranche au nb de questions posées
+                    markRatio = markAggregate!=null?(markAggregate.nbQuestions - markRatio):0;
+                }
+                data[difficulty.ordinal()]=markRatio;
+            }
+            result.put(topic.id, "[" + StringUtils.join(data, ',') + "]");
         }
 
         return result;
-    }
-
-    private static Object getValueAbove3ToAppend(Map<Difficulty, NoteAggregate> resultForTopic, Difficulty difficulty) {
-        return resultForTopic.containsKey(difficulty) ? resultForTopic.get(difficulty).sumOfNoteAbove3 : "0";
-    }
-    private static Object getValueUnder3ToAppend(Map<Difficulty, NoteAggregate> resultForTopic, Difficulty difficulty) {
-        return resultForTopic.containsKey(difficulty) ? resultForTopic.get(difficulty).sumOfNoteUnder3 : "0";
     }
 
     private static Question getNewRandomQuestion(Interview interview, Topic currentTopic, int currentDifficulty){
