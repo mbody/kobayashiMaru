@@ -90,5 +90,9 @@
     function updateMark(mark){
         $.post("@{Interviews.saveMark()}", { idInterviewQuestion: "${interviewQuestion.id}", mark: mark} );
     }
+    $(document).ready(function(){
+        var winQuestion = window.open("", "question");
+        $(winQuestion.document.body).html($("#question").html());
+    })
 </script>
 #{/set}
