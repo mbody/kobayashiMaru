@@ -38,3 +38,19 @@ topic.difficulty.beginner=Notions
 topic.difficulty.intermediate=Utilisateur
 topic.difficulty.advanced=Confirmé
 topic.difficulty.expert=Expert
+
+# CRUD Liste
+candidateName=Nom du candidat
+candidateFirstName=Prénom du candidat
+interviewDate=Date de l'entretien
+examiner=Examinateur
+examinerComment=Commentaire de l'examinateur
+difficulty=Difficulté
+label=Libellé
+topic=Thème
+firstname=Nom
+lastname=Prénom
+email=Courriel
+passwordHash=Mot de passe
+description=Description
+questions=Questions
