@@ -1,13 +1,15 @@
 package models;
 
-import javax.persistence.*;
+import play.data.validation.Email;
+import play.data.validation.Required;
+import play.db.jpa.Model;
+import play.libs.Codec;
 
-import java.util.*;
-
-import play.*;
-import play.db.jpa.*;
-import play.libs.*;
-import play.data.validation.*;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User extends Model {
@@ -24,7 +26,7 @@ public class User extends Model {
     
     @Required
     public String passwordHash;
-    
+
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userTo")
 //    public List<Interview> interviews;
 

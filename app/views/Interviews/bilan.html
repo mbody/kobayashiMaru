@@ -5,36 +5,36 @@
     <div class="span12">
         <form class="well form-horizontal">
 
-
             <fieldset>
                 <legend>&{'bilanInterview.title'}</legend>
 
                 <div class="row">
                     <div class="span3">&{'candidate'}</div>
                     <div class="span3">
-                    ${interview.candidateName} ${interview.candidateFirstName}
+                        ${interview.candidateName} ${interview.candidateFirstName}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="span3">&{'bilanInterview.date'}</div>
                     <div class="span3">
-                    ${interview.interviewDate?.format("dd/MM/yyyy HH:mm")}
+                        ${interview.interviewDate?.format("dd/MM/yyyy HH:mm")}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="span3">&{'bilanInterview.examinateur'}</div>
                     <div class="span3">
-                    ${interview.examiner?.lastname} ${interview.examiner?.firstname}
+                        ${interview.examiner?.lastname} ${interview.examiner?.firstname}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="span 2">
-                    &{'bilanInterview.examinerComment'}
+                    <div class="span3">
+                        &{'bilanInterview.examinerComment'}
                     </div>
-                    <div class="span8">
-                    ${interview.examinerComment}
+                    <div class="span3">
+                        <textarea class="input-xlarge" rows="3" id="comments">${interview.examinerComment}</textarea><br>
+                        <a type="submit" class="btn btn-success" onclick="updateComment()"><i class="icon-plus icon-white"></i>Enregistrer le commentaire</a>
                     </div>
                 </div>
             </fieldset>
@@ -57,7 +57,6 @@
     </div>
     #{/list}
 </div>
-
 
 
 #{set 'moreScripts'}
@@ -109,5 +108,10 @@
             });
         #{/list}
     });
+
+    function updateComment(){
+        $.post("@{Interviews.saveComments()}", { idInterview: "${interview.id}", comments: $("#comments").val()} );
+    }
+
 </script>
 #{/set}
