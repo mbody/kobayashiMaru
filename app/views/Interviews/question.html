@@ -56,7 +56,7 @@
                 <input type="hidden" name="idInterviewQuestion" value="${interviewQuestion.id}"/>
 
                 <div class="row">
-                    <div class="span4 offset2">
+                    <div class="span6 offset1">
                         #{list items:0..4, as:'i'}
                         <label class="radio inline">
                             <input type="radio" name="mark" id="optionsMark-${i}" value="${i}" onchange="updateMark(${i})"

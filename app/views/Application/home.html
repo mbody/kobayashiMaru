@@ -20,6 +20,7 @@
                 <a class="btn btn-success" href="@{Interviews.prepare}"><i class="icon-plus icon-white"></i> &{'home.prepareNewInterview'}</a>
             </p>
         </div>
+        #{if !lastCompletedInterviews.isEmpty()}
         <div class="span6  well">
             <h3>&{'home.lastCompletedInterviews'}</h3>
             <ol>
@@ -28,6 +29,7 @@
                 #{/list}
             </ol>
         </div>
+        #{/if}
     </div>
 
 </section>
@@ -57,6 +59,7 @@
                 <a class="btn btn-success" href="@{Interviews.prepare}"><i class="icon-plus icon-white"></i> &{'home.prepareNewInterview'}</a>
             </p>
         </div>
+        #{if !examinerLastCompletedInterviews.isEmpty()}
         <div class="span6  well">
             <h3>&{'home.myLastCompletedInterview'}</h3>
             <ol>
@@ -65,6 +68,7 @@
                 #{/list}
             </ol>
         </div>
+        #{/if}
     </div>
 
 </section>
