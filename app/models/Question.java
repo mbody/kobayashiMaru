@@ -1,11 +1,11 @@
 package models;
 
+import org.hibernate.annotations.Type;
+import play.data.validation.MaxSize;
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,7 +19,12 @@ public class Question extends Model {
 
     @Enumerated(EnumType.ORDINAL)
     public Difficulty difficulty;
+    @Required
     public String label;
+    @Required @Lob @MaxSize(10000)
+    public String description;
+    @Required @Lob @MaxSize(10000)
+    public String answer;
     @ManyToOne
     public Topic topic;
 }

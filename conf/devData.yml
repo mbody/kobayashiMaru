@@ -154,6 +154,8 @@ InterviewQuestion(forthIQ):
 
 Question(Q-topic1.BEGINNER.1):
     difficulty: BEGINNER
+    description: bla bla
+    answer: 42
     label: Libellé de la question 'Q-topic1.BEGINNER.1'
     topic: [topic1]
 

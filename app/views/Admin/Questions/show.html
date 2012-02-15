@@ -1,2 +1,26 @@
 #{extends 'Admin/main-show.html' /}
-#{crud.form /}
+#{crud.form }
+    #{crud.custom 'label'}
+        <label for="object_label">Libellé de la question</label>
+        <input id="object_label" class="" type="text" name="label" value="${object.label}" size="50" required><br />
+        Pour ajouter du code formaté à vos questions, utilisez <a href="http://hilite.me/" target="_blank">http://hilite.me/</a>
+    #{/crud.custom}
+    #{crud.custom 'description'}
+        <label for="object_description">Description</label>
+        <textarea id="object_description" name="description" rows="15" cols="80" style="width: 80%">${object.description}</textarea>
+    #{/crud.custom}
+    #{crud.custom 'answer'}
+        <label for="object_answer">Réponse à la question</label>
+        <textarea id="object_answer" name="answer" rows="15" cols="80" style="width: 80%">${object.answer}</textarea>
+    #{/crud.custom}
+#{/crud.form}
+
+#{set 'moreScripts'}
+<script src="@{'/public/javascripts/tiny_mce.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<script type="text/javascript">
+    tinyMCE.init({
+    mode : "textareas",
+    theme : "advanced"
+    });
+</script>
+#{/set}
