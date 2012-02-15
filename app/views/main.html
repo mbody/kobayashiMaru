@@ -41,11 +41,13 @@
                     <a class="brand" href="@{Application.index()}">Kobayashi Maru</a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                            <li class="active"><a href="@{Application.home()}"><i class="icon-home icon-white"></i> Home</a></li>
-                            #{if currentUser?.hasRole(models.Role.STAFF_ADMIN) || currentUser?.hasRole(models.Role.TECHNICAL_ADMIN) }
-                            <li class="active"><a href="/admin"><i class="icon-cog icon-white"></i> Administration</a></li>
-                            #{/if}
-                            <li><a href="#">About</a></li>
+                        #{if currentUser}
+                            <li #{if controllers.Application.menu.HOME.name().equals(session?.get('menu'))}class="active"#{/if}><a href="@{Application.home()}"><i class="icon-home icon-white"></i> Home</a></li>
+                        #{/if}
+                        #{if currentUser?.hasRole(models.Role.STAFF_ADMIN) || currentUser?.hasRole(models.Role.TECHNICAL_ADMIN) }
+                            <li #{if controllers.Application.menu.ADMIN.name().equals(session?.get('menu'))}class="active"#{/if}><a href="@{Application.admin()}"><i class="icon-cog icon-white"></i> Administration</a></li>
+                        #{/if}
+                            <li #{if controllers.Application.menu.ABOUT.name().equals(session?.get('menu'))}class="active"#{/if}><a href="#">About</a></li>
                         </ul>
                         #{if currentUser}
                             <p class="navbar-text pull-right">&{'logged.in.as', currentUser.fullname} <a href="@{Application.logout()}">&{'logout'}</a></p>

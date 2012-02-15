@@ -34,16 +34,24 @@
             <br>
 
             <div>
-            ${interviewQuestion.question.label}
+                <h4>${interviewQuestion.question.label}</h4>
+                <br>
+                <div>
+                    #{verbatim}
+                    ${interviewQuestion.question.description}
+                    #{/verbatim}
+                </div>
             </div>
         </div>
         <br>
 
         <div class="well" id="response">
             <h3>Réponse</h3>
-
+            <br />
             <div>
-                <p>La bonne réponse est rouge, mais blanc est acceptable !</p>
+                #{verbatim}
+                ${interviewQuestion.question.answer}
+                #{/verbatim}
             </div>
         </div>
         <br>
@@ -91,7 +99,7 @@
         $.post("@{Interviews.saveMark()}", { idInterviewQuestion: "${interviewQuestion.id}", mark: mark} );
     }
     $(document).ready(function(){
-        var winQuestion = window.open("", "question");
+        var winQuestion = window.open("", "question", );
         $(winQuestion.document.body).html($("#question").html());
     })
 </script>
