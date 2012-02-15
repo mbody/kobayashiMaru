@@ -195,9 +195,27 @@ public class Interviews extends SecuredController {
         Map<Topic, Map<Difficulty, MarkAggregate>> mapOfNoteAggregate = MarkAggregate.getMarkAggregateMap(idInterview);
         Map<Long, String> goodMarkSeriesByTopic = buildMapOfSeries(mapOfNoteAggregate, true);
         Map<Long, String> badMarkSeriesByTopic = buildMapOfSeries(mapOfNoteAggregate, false);
+        Map<Long, String> percentSuccessLabelsByTopic = buildPercentSuccessLabels(mapOfNoteAggregate);
         String ticks= getGraphLabelList();
         Set<Topic> topics = mapOfNoteAggregate.keySet();
-        render(interview, goodMarkSeriesByTopic, badMarkSeriesByTopic, ticks, topics);
+        render(interview, goodMarkSeriesByTopic, badMarkSeriesByTopic, percentSuccessLabelsByTopic, ticks, topics);
+    }
+
+    private static Map<Long, String> buildPercentSuccessLabels(Map<Topic, Map<Difficulty, MarkAggregate>> mapOfNoteAggregate) {
+        Map<Long, String> result = new HashMap<Long, String>();
+
+        for(Topic topic: mapOfNoteAggregate.keySet()) {
+            Map<Difficulty,MarkAggregate> markAggregateForTopic = mapOfNoteAggregate.get(topic);
+            String[] data = new String[Difficulty.values().length];
+            for (Difficulty difficulty : Difficulty.values()) {
+                MarkAggregate markAggregate = markAggregateForTopic.get(difficulty);
+                String percentSuccess =  markAggregate!=null? "'" + ( Math.round(((markAggregate.totalMark * 0.25 * 100)/markAggregate.nbQuestions))) + " %'" : "''";
+                data[difficulty.ordinal()]=percentSuccess;
+            }
+            result.put(topic.id, "[" + StringUtils.join(data, ',') + "]");
+        }
+
+        return result;
     }
 
     private static String getGraphLabelList(){

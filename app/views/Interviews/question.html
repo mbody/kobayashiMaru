@@ -99,7 +99,7 @@
         $.post("@{Interviews.saveMark()}", { idInterviewQuestion: "${interviewQuestion.id}", mark: mark} );
     }
     $(document).ready(function(){
-        var winQuestion = window.open("", "question", );
+        var winQuestion = window.open("", "question", 'scrollbars,resizable' );
         $(winQuestion.document.body).html($("#question").html());
     })
 </script>
