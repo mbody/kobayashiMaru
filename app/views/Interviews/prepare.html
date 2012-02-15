@@ -3,27 +3,28 @@
 
 <div class="row">
     <div class="span12">
-        #{form @create() }
+        #{form @save() }
+            <input type="hidden" name="interview.id" value="${interview?.id}" />
             <div class="well form-horizontal">
             <fieldset>
                 <legend>&{'prepareInterview.title'}</legend>
                 <div class="control-group">
                     <label class="control-label">&{'candidate'}</label>
                     <div class="controls docs-input-sizes">
-                        <input class="span2" type="text" placeholder="&{'candidate.lastname'}" name="interview.candidateName" required  />
-                        <input class="span2" type="text" placeholder="&{'candidate.firstname'}" name="interview.candidateFirstName" required />
+                        <input class="span2" type="text" placeholder="&{'candidate.lastname'}" name="interview.candidateName" value="${interview?.candidateName}" required  />
+                        <input class="span2" type="text" placeholder="&{'candidate.firstname'}" name="interview.candidateFirstName" value="${interview?.candidateFirstName}" required />
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="prependedInput">&{'interview.dateTime'}</label>
+                    <label class="control-label" for="interviewDate">&{'interview.dateTime'}</label>
                     <div class="controls">
                         <div class="input-prepend">
-                            <input type="text" id="interviewDate" size="30" class="span2" name="interview.interviewDate" required />
+                            <input type="text" id="interviewDate" size="30" class="span2" name="interview.interviewDate" value="${interview?.interviewDate?.format('dd/MM/yyyy HH:mm')}" required />
                         </div>
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="appendedInput">&{'interview.topics'}</label>
+                    <label class="control-label" >&{'interview.topics'}</label>
                     <div class="controls">
                         <div class="input-append">
                             <table class="table table-condensed">
@@ -38,27 +39,17 @@
                                 <tr>
                                     <td>${topic.label}</td>
                                     <td>
-                                        <input type="hidden" name="interview.topics[${topic_index-1}].topic.id" value="${topic.id}">
+                                        <input type="hidden" name="topics[${topic_index-1}].topic.id" value="${topic.id}">
                                         <label class="radio inline">
-                                            <input type="radio" name="interview.topics[${topic_index-1}].initialDifficulty" id="${topic.label}_${topic.id}_0" value="" checked="checked">
+                                            <input type="radio" name="topics[${topic_index-1}].initialDifficulty" value="" #{if !interview?.containsTopic(topic)}checked="checked"#{/if}>
                                             &{'topic.difficulty.none'}
                                         </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="interview.topics[${topic_index-1}].initialDifficulty" id="${topic.label}_${topic.id}_1" value="${models.Difficulty.BEGINNER}" >
-                                            &{'topic.difficulty.beginner'}
-                                        </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="interview.topics[${topic_index-1}].initialDifficulty" id="${topic.label}_${topic.id}_2" value="${models.Difficulty.INTERMEDIATE}" >
-                                            &{'topic.difficulty.intermediate'}
-                                        </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="interview.topics[${topic_index-1}].initialDifficulty" id="${topic.label}_${topic.id}_3" value="${models.Difficulty.ADVANCED}" >
-                                            &{'topic.difficulty.advanced'}
-                                        </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="interview.topics[${topic_index-1}].initialDifficulty" id="${topic.label}_${topic.id}_4" value="${models.Difficulty.EXPERT}" >
-                                            &{'topic.difficulty.expert'}
-                                        </label>
+                                        #{list items:models.Difficulty.values(), as:'difficulty'}
+                                            <label class="radio inline">
+                                                <input type="radio" name="topics[${topic_index-1}].initialDifficulty" value="${difficulty}" #{if interview?.hasInitialDifficulty(topic, difficulty)}checked="checked"#{/if}>
+                                            &{'topic.difficulty.' + difficulty}
+                                            </label>
+                                        #{/list}
                                     </td>
                                 </tr>
                                 #{/list}

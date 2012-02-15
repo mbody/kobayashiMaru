@@ -69,14 +69,14 @@
                 <br>
                 <ul class="pager">
                 #{if interviewQuestion.index>1}
-                    <li class="previous"><a href="@{Interviews.question(interview.id,interviewQuestion.index-1)}">Précédent</a>
+                    <li class="previous"><a href="@{Interviews.question(interview.id,interviewQuestion.index-1)}">&{'Précédent'}</a>
                     </li>
                 #{/if}
                 #{if interviewQuestion.index<interview.nbQuestions}
-                    <li class="next"><a href="@{Interviews.question(interview.id,interviewQuestion.index+1)}">Suivant</a></li>
+                    <li class="next"><a href="@{Interviews.question(interview.id,interviewQuestion.index+1)}">&{'Suivant'}</a></li>
                 #{/if}
                 #{else}
-                    <li class="next"><a href="@{Interviews.finalize(interview.id)}">Terminer</a></li>
+                    <li class="next"><a href="@{Interviews.finalize(interview.id)}" class="btn-warning">&{'Terminer'}</a></li>
                 #{/else}
                 </ul>
             </form>
