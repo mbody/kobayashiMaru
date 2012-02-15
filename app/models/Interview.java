@@ -33,7 +33,7 @@ public class Interview extends Model {
     public User examiner;
     public String examinerComment;
 
-    @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "interview")
+    @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "interview", orphanRemoval = true)
     @OrderBy("id ASC")
     public List<InterviewTopic> topics;
 
@@ -93,4 +93,35 @@ public class Interview extends Model {
 
         return find(query, params);
     }
+
+    /**
+     * Méthode utilitaire
+     * @param topic
+     * @param difficulty
+     * @return true si l'entretien courant contient la topic et est initialisé à la difficulté passées en param, false sinon
+     */
+    public boolean hasInitialDifficulty(Topic topic, Difficulty difficulty){
+        for (InterviewTopic interviewTopic : topics) {
+            if(interviewTopic.topic.id == topic.id){
+                return interviewTopic.initialDifficulty.equals(difficulty);
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * Méthode utilitaire
+     * @param topic
+     * @return true si l'entretien courant contient la topic
+     */
+    public boolean containsTopic(Topic topic){
+        for (InterviewTopic interviewTopic : topics) {
+            if(interviewTopic.topic.id == topic.id){
+                return true;
+            }
+        }
+        return false;
+    }
 }
+

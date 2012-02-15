@@ -35,8 +35,8 @@ public class Interviews extends SecuredController {
         renderJSON(interview);
     }
 
-    public static void create(Interview interview) {
-        for (Iterator<InterviewTopic> iterator = interview.topics.iterator(); iterator.hasNext(); ) {
+    public static void save(Interview interview, List<InterviewTopic> topics) {
+        for (Iterator<InterviewTopic> iterator = topics.iterator(); iterator.hasNext(); ) {
             InterviewTopic next =  iterator.next();
             if (next.initialDifficulty == null || next.initialDifficulty.equals(""))
             {
@@ -46,6 +46,13 @@ public class Interviews extends SecuredController {
                 next.interview=interview;
             }
         }
+        if(interview.topics!=null){
+            interview.topics.clear();
+            interview.topics.addAll(topics);
+        }else{
+            interview.topics = topics;
+        }
+
         String s = Http.Request.current().params.get("interview.interviewDate");
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Calendar cal = Calendar.getInstance();
@@ -58,7 +65,7 @@ public class Interviews extends SecuredController {
         }
         interview.interviewDate = cal;
         interview.examiner = connectedUser();
-        interview.create();
+        interview.save();
         response.status = Http.StatusCode.CREATED;
         Application.home();
     }
@@ -76,9 +83,13 @@ public class Interviews extends SecuredController {
     }
 
     @Secure(role = Role.EXAMINER)
-    public static void prepare() {
+    public static void prepare(Long id) {
         List<JPABase> topics = Topic.findAll();
-        render(topics);
+        Interview interview = null;
+        if(id!=null){
+            interview = Interview.findById(id);
+        }
+        render(topics, interview);
     }
 
     @Secure(role = Role.EXAMINER)

@@ -36,10 +36,10 @@ interview.dateTime=Date et heure
 topic.label=Thème
 topic.difficulty=Difficulté
 topic.difficulty.none=N/A
-topic.difficulty.beginner=Notions
-topic.difficulty.intermediate=Utilisateur
-topic.difficulty.advanced=Confirmé
-topic.difficulty.expert=Expert
+topic.difficulty.BEGINNER=Notions
+topic.difficulty.INTERMEDIATE=Utilisateur
+topic.difficulty.ADVANCED=Confirmé
+topic.difficulty.EXPERT=Expert
 
 # CRUD Liste
 candidateName=Nom du candidat
