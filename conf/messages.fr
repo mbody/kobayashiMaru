@@ -8,10 +8,9 @@ login.success=Bonjour %s !
 home.examiner=Tableau de bord - Examinateur
 home.prepareNewInterview=Préparer un nouvel entretien
 home.interviewOf=Entretien de
-home.nextInterview=Entretiens à faire passer
-home.pastInterview=Derniers entretiens
 home.myUncompletedInterview=Mes entretiens à faire passer
 home.myLastCompletedInterview=Mes derniers entretiens réalisés
+home.startInterview=Démarrer l'entretien
 
 # Prepare interview page
 prepareInterview.title=Préparer un nouvel entretien

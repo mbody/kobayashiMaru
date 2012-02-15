@@ -50,11 +50,16 @@
     <div class="row">
         <div class="span6 well">
             <h3>&{'home.myUncompletedInterview'}</h3>
-            <ol>
+            <br>
+            <table class="table">
                 #{list items: examinerUncompletedInterviews, as:'EUInterview'}
-                    <li><a href="@{Interviews.prepare(EUInterview.id)}">&{'home.interviewOf'} ${EUInterview.candidateName} ${EUInterview.candidateFirstName} - &{EUInterview.interviewDate.format('dd/MM/yyyy HH:mm')}</a> <a href="@{Interviews.startInterview(EUInterview.id)}" class="btn"> <i class="icon-play"></i> </a></li>
+                    <tr>
+                        <td><a href="@{Interviews.prepare(EUInterview.id)}">${EUInterview.interviewDate.format('dd/MM/yyyy HH:mm')}</a></td>
+                        <td><a href="@{Interviews.prepare(EUInterview.id)}">${EUInterview.candidateName} ${EUInterview.candidateFirstName}</a></td>
+                        <td><a href="@{Interviews.startInterview(EUInterview.id)}" class="btn" title="&{'home.startInterview'}"> <i class="icon-play"></i> </a></td>
+                    </tr>
                 #{/list}
-            </ol>
+            </table>
             <p>
                 <a class="btn btn-success" href="@{Interviews.prepare}"><i class="icon-plus icon-white"></i> &{'home.prepareNewInterview'}</a>
             </p>
@@ -62,6 +67,7 @@
         #{if !examinerLastCompletedInterviews.isEmpty()}
         <div class="span6  well">
             <h3>&{'home.myLastCompletedInterview'}</h3>
+            <br>
             <ol>
                 #{list items: examinerLastCompletedInterviews, as:'ELCInterview'}
                     <li><a href="@{Interviews.bilan(ELCInterview.id)}">&{'home.interviewOf'} ${ELCInterview.candidateName} ${ELCInterview.candidateFirstName}</a></li>
