@@ -3,6 +3,7 @@ package controllers;
 import models.*;
 import org.apache.commons.lang.StringUtils;
 import play.db.jpa.JPABase;
+import play.i18n.Messages;
 import play.mvc.Http;
 import security.Secure;
 
@@ -223,7 +224,7 @@ public class Interviews extends SecuredController {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         for(Difficulty difficulty : values){
-            sb.append("'").append(difficulty.toString()).append("',");
+            sb.append("'").append(Messages.get("difficulty." + difficulty.toString())).append("',");
         }
         String result = sb.substring(0, sb.length()-1);
         return result+"]";
