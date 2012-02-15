@@ -1,3 +1,43 @@
 #{extends 'Admin/main-show.html' /}
 #{crud.form}
+    #{crud.custom 'firstname'}
+        <div class="control-group">
+            <label for="object_firstname">&{'firstname'}</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    <input id="object_firstname"  size="30" class="span2" type="text" name="object.firstname" value="${object.firstname}" required/>
+                </div>
+            </div>
+        </div>
+    #{/crud.custom}
+    #{crud.custom 'lastname'}
+        <div class="control-group">
+            <label for="object_lastname">&{'lastname'}</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    <input  id="object_lastname" size="30" class="span2" type="text" name="object.lastname" value="${object.lastname}" required/>
+                </div>
+            </div>
+        </div>
+    #{/crud.custom}
+    #{crud.custom 'email'}
+        <div class="control-group">
+            <label for="object_email">&{'email'}</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    <input id="object_email" size="30" class="span2" type="text" name="object.email" value="${object.email}" required/>
+                </div>
+            </div>
+        </div>
+    #{/crud.custom}
+    #{crud.custom 'passwordHash'}
+    <div class="control-group">
+        <label for="object_passwordHash">&{'email'}</label>
+        <div class="controls">
+            <div class="input-prepend">
+                <input id="object_passwordHash" size="30" class="span2" type="password" name="object.passwordHash" value="${object.passwordHash}" required/>
+            </div>
+        </div>
+    </div>
+    #{/crud.custom}
 #{/crud.form}
