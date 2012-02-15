@@ -35,6 +35,11 @@ public class Interviews extends SecuredController {
         renderJSON(interview);
     }
 
+    public static void startInterview(Long interviewId){
+        Interview interview = Interview.findById(interviewId);
+        question(interviewId, 1);
+    }
+    
     public static void save(Interview interview, List<InterviewTopic> topics) {
         for (Iterator<InterviewTopic> iterator = topics.iterator(); iterator.hasNext(); ) {
             InterviewTopic next =  iterator.next();

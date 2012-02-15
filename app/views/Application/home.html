@@ -52,7 +52,7 @@
             <h3>&{'home.myUncompletedInterview'}</h3>
             <ol>
                 #{list items: examinerUncompletedInterviews, as:'EUInterview'}
-                    <li><a href="@{Interviews.prepare(EUInterview.id)}">&{'home.interviewOf'} ${EUInterview.candidateName} ${EUInterview.candidateFirstName} - &{EUInterview.interviewDate.format('dd/MM/yyyy HH:mm')}</a></li>
+                    <li><a href="@{Interviews.prepare(EUInterview.id)}">&{'home.interviewOf'} ${EUInterview.candidateName} ${EUInterview.candidateFirstName} - &{EUInterview.interviewDate.format('dd/MM/yyyy HH:mm')}</a> <a href="@{Interviews.startInterview(EUInterview.id)}" class="btn"> <i class="icon-play"></i> </a></li>
                 #{/list}
             </ol>
             <p>
