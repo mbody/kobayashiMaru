@@ -3,57 +3,73 @@
 
 <div class="row">
     <div class="span12">
-        <form class="well form-horizontal">
-
-            <fieldset>
-                <legend>&{'bilanInterview.title'}</legend>
-
-                <div class="row">
-                    <div class="span3">&{'candidate'}</div>
-                    <div class="span3">
-                        ${interview.candidateName} ${interview.candidateFirstName}
+        <div class="well">
+            <h3>&{'bilanInterview.title'}</h3>
+            <hr>
+        <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label">&{'candidate'}</label>
+                    <div class="controls">
+                        <span class="input-xlarge uneditable-input">${interview.candidateName} ${interview.candidateFirstName}</span>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="span3">&{'bilanInterview.date'}</div>
-                    <div class="span3">
-                        ${interview.interviewDate?.format("dd/MM/yyyy HH:mm")}
+                <div class="control-group">
+                    <label class="control-label">&{'bilanInterview.date'}</label>
+                    <div class="controls">
+                        <span class="input-xlarge uneditable-input">${interview.interviewDate?.format("dd/MM/yyyy HH:mm")}</span>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="span3">&{'bilanInterview.examinateur'}</div>
-                    <div class="span3">
-                        ${interview.examiner?.lastname} ${interview.examiner?.firstname}
+                <div class="control-group">
+                    <label class="control-label">&{'bilanInterview.examinateur'}</label>
+                    <div class="controls">
+                        <span class="input-xlarge uneditable-input">${interview.examiner?.lastname} ${interview.examiner?.firstname}</span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="span3">
-                        &{'bilanInterview.examinerComment'}
-                    </div>
-                    <div class="span3">
-                        <textarea class="input-xlarge" rows="3" id="comments">${interview.examinerComment}</textarea><br>
-                        <a type="submit" class="btn btn-success" onclick="updateComment()"><i class="icon-plus icon-white"></i>Enregistrer le commentaire</a>
+                <div class="control-group">
+                    <label class="control-label">&{'bilanInterview.examinerComment'}</label>
+                    <div class="controls">
+                        <textarea class="input-xlarge" id="textarea" rows="3">${interview.examinerComment}</textarea>
+                        <br><br>
+                        <a type="submit" class="btn btn-success" onclick="updateComment()">Enregistrer le commentaire</a>
                     </div>
                 </div>
-            </fieldset>
         </form>
+        </div>
     </div>
 </div>
 <div class="row">
+    <div class="span4">
+        <div class="well sidebar-nav">
+
+            <h3>Questions</h3>
+            <hr>
+            <ul class="nav nav-list">
+            #{set topic: -1 /}
+            #{list items:interview.questions, as:'iq' }
+                #{if topic != iq.question.topic.id}
+                    <li class="nav-header">${iq.question.topic.label} </li>
+                    #{set topic: iq.question.topic.id /}
+                #{/if}
+                <li><span><a href="@{Interviews.question(interview.id,iq.index)}" >Question ${iq.index}</a> <small style="float: right">&{'difficulty.' + iq.question.difficulty} - ${iq.mark}</small></span></li>
+            #{/list}
+            </ul>
+
+        </div>
+    </div>
+
     #{list items:topics, as: 'topic'}
-    <div class="span4 well">
-        <fieldset>
-            <legend>${topic.label}</legend>
+    <div class="span4">
+        <div class="well">
+            <h3>${topic.label}</h3>
+            <hr>
             <div id="graph${topic.id}"
-                 style="margin-top: 20px; margin-left: 20px; width: 300px; height: 300px; position: relative; "
+                 style="width: 280px; height: 280px; position: relative; "
                  class="jqplot-target">
             </div>
             <div id="detail${topic.id}">
 
             </div>
-        </fieldset>
+        </div>
     </div>
     #{/list}
 </div>
