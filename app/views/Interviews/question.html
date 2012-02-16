@@ -6,6 +6,7 @@
         <div class="well sidebar-nav">
             <h3>Entretien ${interview.candidateFirstName} ${interview.candidateName} </h3>
             <br>
+            #{if !interview.complete}
             <h4>Progression</h4>
 
             <p>Question ${interview.questions.size()} sur ${interview.nbQuestions}.</p>
@@ -13,20 +14,31 @@
             <div class="progress">
                 <div class="bar" style="width: ${interview.questions.size()*100/interview.nbQuestions}%;"></div>
             </div>
+            #{/if}
 
-            <h4>Questions précédentes</h4>
+            <h4>Questions</h4>
             <ul class="nav nav-list">
                 #{set topic: -1 /}
                 #{list items:interview.questions, as:'iq' }
                     #{if topic != iq.question.topic.id}
-                        <li class="nav-header">${iq.question.topic.label}</li>
+                        <li class="nav-header">${iq.question.topic.label} </li>
                         #{set topic: iq.question.topic.id /}
                     #{/if}
-                    <li #{if iq.index==interviewQuestion.index}class="active"#{/if}><a href="@{Interviews.question(interview.id,iq.index)}" >Question ${iq.index}</a></li>
+                    <li #{if iq.index==interviewQuestion.index}class="active"#{/if}><a href="@{Interviews.question(interview.id,iq.index)}" >Question ${iq.index}<small style="float: right; #{if iq.index==interviewQuestion.index}color: #fff #{/if}#{else} color: #666 #{/else}">&{'difficulty.' + iq.question.difficulty} - ${iq.mark}</small></a></li>
                 #{/list}
             </ul>
+            
+            #{if interview.complete}
+                <br/>
+                <h4>Synthèse</h4>
+                <ul class="nav nav-list">
+                <li><a href="@{Interviews.bilan(interview.id)}">Bilan de l'entretien</a></li>
+                </ul>
+            #{/if}
+
         </div>
     </div>
+
     <div class="span8">
         <div class="well" id="question">
             <h3>${interviewQuestion.question.topic.label}
@@ -34,22 +46,30 @@
             <br>
 
             <div>
-            ${interviewQuestion.question.label}
+                <h4>${interviewQuestion.question.label}</h4>
+                <br>
+                <div>
+                    #{verbatim}
+                    ${interviewQuestion.question.description}
+                    #{/verbatim}
+                </div>
             </div>
         </div>
         <br>
 
         <div class="well" id="response">
             <h3>Réponse</h3>
-
+            <br />
             <div>
-                <p>La bonne réponse est rouge, mais blanc est acceptable !</p>
+                #{verbatim}
+                ${interviewQuestion.question.answer}
+                #{/verbatim}
             </div>
         </div>
         <br>
 
         <div class="well" id="evaluation">
-            <h3>Evaluation</h3>
+            <h3>&{'Evaluation'}</h3>
             <br>
 
             <form id="interviewQuestionForm" method="post">
@@ -59,7 +79,7 @@
                     <div class="span6 offset1">
                         #{list items:0..4, as:'i'}
                         <label class="radio inline">
-                            <input type="radio" name="mark" id="optionsMark-${i}" value="${i}" onchange="updateMark(${i})"
+                            <input type="radio" name="mark" id="optionsMark-${i}" value="${i}" onchange="updateMark(${i})" #{if interview.complete}readonly="readonly"#{/if}
                                    #{if interviewQuestion.mark==i}checked#{/if}>
                            ${i}
                         </label>
@@ -90,9 +110,18 @@
     function updateMark(mark){
         $.post("@{Interviews.saveMark()}", { idInterviewQuestion: "${interviewQuestion.id}", mark: mark} );
     }
+    #{if interview.complete}
     $(document).ready(function(){
-        var winQuestion = window.open("", "question");
-        $(winQuestion.document.body).html($("#question").html());
+        var winQuestion = window.open("", "question", "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no");
+        winQuestion.document.open();
+        winQuestion.document.write(
+                '<html>'+
+                $("head").html()+
+                '<body><div class="container-fluid"><div class="row"><br/><div class="span12 well">'+
+                 $("#question").html()+
+                 '</div></div></div><\/body><\/html>');
+
     })
+    #{/if}
 </script>
 #{/set}

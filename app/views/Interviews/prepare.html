@@ -47,7 +47,7 @@
                                         #{list items:models.Difficulty.values(), as:'difficulty'}
                                             <label class="radio inline">
                                                 <input type="radio" name="topics[${topic_index-1}].initialDifficulty" value="${difficulty}" #{if interview?.hasInitialDifficulty(topic, difficulty)}checked="checked"#{/if}>
-                                            &{'topic.difficulty.' + difficulty}
+                                            &{'difficulty.' + difficulty}
                                             </label>
                                         #{/list}
                                     </td>

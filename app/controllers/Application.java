@@ -11,6 +11,10 @@ import java.util.List;
 
 public class Application extends SecuredController {
 
+    public enum menu{
+        HOME, ADMIN, ABOUT
+    }
+
     public static void index() {
         render();
     }
@@ -29,11 +33,13 @@ public class Application extends SecuredController {
     
     @Secure
     public static void admin(){
+        session.put("menu", menu.ADMIN);
         render("Admin/index.html");
     }
 
     @Secure
     public static void home(){
+        session.put("menu", menu.HOME);
         User currentUser = connectedUser();
         List<Interview> examinerUncompletedInterviews = null;
         List<Interview> examinerLastCompletedInterviews = null;
