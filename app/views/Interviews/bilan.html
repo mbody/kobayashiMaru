@@ -37,6 +37,7 @@
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="span4">
         <div class="well sidebar-nav">
@@ -50,7 +51,7 @@
                     <li class="nav-header">${iq.question.topic.label} </li>
                     #{set topic: iq.question.topic.id /}
                 #{/if}
-                <li><span><a href="@{Interviews.question(interview.id,iq.index)}" >Question ${iq.index}</a> <small style="float: right">&{'difficulty.' + iq.question.difficulty} - ${iq.mark}</small></span></li>
+                <li><a href="@{Interviews.question(interview.id,iq.index)}" >Question ${iq.index} <small style="float: right; color: #666">&{'difficulty.' + iq.question.difficulty} - ${iq.mark}</small></a></li>
             #{/list}
             </ul>
 
