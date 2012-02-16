@@ -1,5 +1,6 @@
 package models;
 
+import controllers.CRUD;
 import play.db.jpa.GenericModel;
 import play.data.validation.Required;
 import play.db.jpa.JPA;
@@ -8,6 +9,8 @@ import play.db.jpa.Model;
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.List;
+
+import static controllers.CRUD.Hidden;
 
 /**
  * Created by IntelliJ IDEA.
