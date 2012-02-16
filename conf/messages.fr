@@ -31,6 +31,22 @@ candidate.lastname=Nom
 interview.topics=Thèmes de l'entretien
 interview.dateTime=Date et heure
 
+# Edit interview page
+editInterview.interviewOf = Entretien de
+editInterview.bilan = Bilan
+editInterview.date = fait le
+editInterview.by = par
+editInterview.examinerComment = Commentaires
+editInterview.uncomplete = Cet entretien n'a pas encore eu lieu, il n'y a pas de bilan à afficher
+editInterview.complete = Bilan pour cet entretien
+
+# Question
+question.label = Libellé de la question
+question.addFormatedCode = Pour ajouter du code formaté à vos questions, utilisez
+question.codeFormaterUrl = http://hilite.me
+question.description = Description
+question.answer = Réponse à la question
+
 # Topic
 topic.label=Thème
 topic.difficulty=Difficulté

@@ -17,9 +17,11 @@
     #{crud.pagination /}
     </div>
 
-    <p id="crudListAdd">
-        <a class="btn" href="@{blank()}"><i class="icon-plus"></i> &{'crud.add', type.modelName}</a>
-    </p>
+    #{if !(type.modelName == 'Interview') }
+        <p id="crudListAdd">
+            <a class="btn" href="@{blank()}"><i class="icon-plus"></i> &{'crud.add', type.modelName}</a>
+        </p>
+    #{/if}
 
 </div>
 

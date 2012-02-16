@@ -1,10 +1,13 @@
 #{extends 'Admin/main-list.html' /}
 
 <div id="crudListTable">
-#{crud.table fields:['candidateName', 'candidateFirstName', 'interviewDate'], sort:[interviewDate]}
-            #{crud.custom 'interviewDate'}
-${object.interviewDate.format("dd/MM/yyyy HH:mm")}
-#{/crud.custom}
-        #{/crud.table}
+#{crud.table fields:['candidateName', 'candidateFirstName', 'interviewDate', 'bilan'], sort:[interviewDate]}
+    #{crud.custom 'interviewDate'}
+        ${object.interviewDate.format("dd/MM/yyyy HH:mm")}
+    #{/crud.custom}
+    #{crud.custom 'bilan'}
+        <a href="@{Interviews.bilan(object.id)}">Bilan</a>
+    #{/crud.custom}
+#{/crud.table}
 </div>
 
