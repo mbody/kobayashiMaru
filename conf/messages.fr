@@ -17,6 +17,8 @@ home.question=Questions
 home.topic=Thèmes
 home.uncompletedInterviews=Entretiens en préparation
 home.lastCompletedInterviews=Entretiens récents
+home.addNewTopic=Ajouter un thème
+home.addNewQuestion=Ajouter une question
 
 # Prepare interview page
 prepareInterview.title=Préparer un nouvel entretien
