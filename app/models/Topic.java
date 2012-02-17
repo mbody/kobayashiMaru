@@ -17,7 +17,9 @@ import java.util.List;
 public class Topic extends Model {
     public String label;
     public String description;
-    @OneToMany
-    public List<Question> questions;
 
+    @Override
+    public String toString(){
+        return label;
+    }
 }

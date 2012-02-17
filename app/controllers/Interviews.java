@@ -40,7 +40,8 @@ public class Interviews extends SecuredController {
         Interview interview = Interview.findById(interviewId);
         question(interviewId, 1);
     }
-    
+
+    @Secure
     public static void save(Interview interview, List<InterviewTopic> topics) {
         for (Iterator<InterviewTopic> iterator = topics.iterator(); iterator.hasNext(); ) {
             InterviewTopic next =  iterator.next();
@@ -51,6 +52,11 @@ public class Interviews extends SecuredController {
             {
                 next.interview=interview;
             }
+        }
+        if(topics.isEmpty()){
+            flash.error(play.i18n.Messages.get("interview.noTopicSelected"));
+            prepare(interview.id);
+            return;
         }
         if(interview.topics!=null){
             interview.topics.clear();
@@ -88,7 +94,7 @@ public class Interviews extends SecuredController {
         response.status = Http.StatusCode.OK;
     }
 
-    @Secure(role = Role.EXAMINER)
+    @Secure
     public static void prepare(Long id) {
         List<JPABase> topics = Topic.findAll();
         Interview interview = null;
@@ -224,7 +230,7 @@ public class Interviews extends SecuredController {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         for(Difficulty difficulty : values){
-            sb.append("'").append(Messages.get("difficulty." + difficulty.toString())).append("',");
+            sb.append("'").append(Messages.get(difficulty.toString())).append("',");
         }
         String result = sb.substring(0, sb.length()-1);
         return result+"]";

@@ -526,30 +526,30 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-.table {
+.table, div.crudList table {
   width: 100%;
   margin-bottom: 18px;
 }
-.table th, .table td {
+.table th, .table td, div.crudList table th, div.crudList table td {
   padding: 8px;
   line-height: 18px;
   text-align: left;
   border-top: 1px solid #ddd;
 }
-.table th {
+.table th, div.crudList table th {
   font-weight: bold;
   vertical-align: bottom;
 }
-.table td {
+.table td, div.crudList table td {
   vertical-align: top;
 }
 .table thead:first-child tr th, .table thead:first-child tr td {
   border-top: 0;
 }
-.table tbody + tbody {
+.table tbody + tbody, tbody + tbody{
   border-top: 2px solid #ddd;
 }
-.table-condensed th, .table-condensed td {
+.table-condensed th {
   padding: 4px 5px;
 }
 .table-bordered {

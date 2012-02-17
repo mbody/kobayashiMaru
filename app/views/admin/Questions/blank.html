@@ -1,1 +1,27 @@
 #{extends 'admin/main-blank.html' /}
+#{crud.form }
+    #{crud.custom 'label'}
+    <label for="object_label">&{'question.label'}</label>
+    <input id="object_label" class="" type="text" name="object.label" value="${object.label}" size="50" required><br />
+    &{'question.addFormatedCode'} <a href="http://hilite.me/" target="_blank">&{'question.codeFormaterUrl'}</a>
+    #{/crud.custom}
+    #{crud.custom 'description'}
+    <label for="object_description">&{'question.description'}</label>
+    <textarea id="object_description" name="object.description" rows="15" cols="80" style="width: 80%">${object.description}</textarea>
+    #{/crud.custom}
+    #{crud.custom 'answer'}
+    <label for="object_answer">&{'question.answer'}</label>
+    <textarea id="object_answer" name="object.answer" rows="15" cols="80" style="width: 80%">${object.answer}</textarea>
+    #{/crud.custom}
+
+#{/crud.form}
+
+#{set 'moreScripts'}
+<script src="@{'/public/javascripts/tiny_mce.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<script type="text/javascript">
+    tinyMCE.init({
+        mode : "textareas",
+        theme : "advanced"
+    });
+</script>
+#{/set}
