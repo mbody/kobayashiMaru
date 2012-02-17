@@ -6,7 +6,7 @@
         <h2 id="crudShowTitle">&{'crud.show.title', type.modelName}</h2>
 
         <div class="objectForm">
-        #{form action:@save(object._key()), enctype:'multipart/form-data'}
+        #{form action:@save(object._key()), enctype:'multipart/form-data', class:'form-horizontal'}
 
         #{doLayout /}
 

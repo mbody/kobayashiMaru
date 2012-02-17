@@ -140,20 +140,8 @@
 
 /** Forms **/
 
-form {
-	margin: 0;
-}
-
 .objectForm {
 	border: 1px solid #ddd;
-}
-
-label {
-	display: block;
-	width: 15%;
-	float: left;
-	color: #666;
-	cursor: pointer;
 }
 
 .crudField {

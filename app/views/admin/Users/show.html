@@ -44,13 +44,15 @@
         <div class="control-group">
             <label for="object_roles">&{'roles'}</label>
             <div class="controls">
-                <div class="input-prepend" id="object_roles"><br /><br />
                     #{list items:models.Role.values(), as:'role'}
                         #{if role!=models.Role.AUTHENTICATED}
-                            <input align="right" type="checkbox" name="roles[${role_index-1}]" value="${role}" #{if object?.hasRole(role)}checked#{/if}>&{role}<br />
+                            <label class="checkbox">
+                            <input type="checkbox" name="roles[${role_index-1}]" value="${role}" #{if object?.hasRole(role)}checked#{/if}>
+                                &{'role.' + role}
+                            </label>
                         #{/if}
                     #{/list}
-                </div>
+                <p class="help-block"><strong>Note:</strong> Un utilisateur doit avoir impérativement un rôle au moins.</p>
             </div>
         </div>
     #{/crud.custom}
