@@ -40,7 +40,8 @@ public class Interviews extends SecuredController {
         Interview interview = Interview.findById(interviewId);
         question(interviewId, 1);
     }
-    
+
+    @Secure
     public static void save(Interview interview, List<InterviewTopic> topics) {
         for (Iterator<InterviewTopic> iterator = topics.iterator(); iterator.hasNext(); ) {
             InterviewTopic next =  iterator.next();
@@ -93,7 +94,7 @@ public class Interviews extends SecuredController {
         response.status = Http.StatusCode.OK;
     }
 
-    @Secure(role = Role.EXAMINER)
+    @Secure
     public static void prepare(Long id) {
         List<JPABase> topics = Topic.findAll();
         Interview interview = null;

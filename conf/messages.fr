@@ -11,6 +11,12 @@ home.interviewOf=Entretien de
 home.myUncompletedInterview=Mes entretiens à faire passer
 home.myLastCompletedInterview=Mes derniers entretiens réalisés
 home.startInterview=Démarrer l'entretien
+home.techAdmin=Tableau de bord - Admin technique
+home.staffAdmin=Tableau de bord - Staff
+home.question=Questions
+home.topic=Thèmes
+home.uncompletedInterviews=Entretiens en préparation
+home.lastCompletedInterviews=Entretiens récents
 
 # Prepare interview page
 prepareInterview.title=Préparer un nouvel entretien

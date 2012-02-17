@@ -4,6 +4,7 @@
     <div class="span3 well">
         <ul class="nav nav-list">
             <h3>Administration</h3>
+            <hr>
             #{if currentUser?.hasRole(models.Role.TECHNICAL_ADMIN)}
                 <li #{if type?.name=='Topics'}class="active"#{/if}><a href="/admin/topics">Thèmes</a></li>
                 <li #{if type?.name=='Questions'}class="active"#{/if}><a href="/admin/questions">Questions</a></li>

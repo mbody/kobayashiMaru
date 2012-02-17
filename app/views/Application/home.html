@@ -70,7 +70,7 @@
     <div class="row">
         <div class="span6 well">
             <h3>&{'home.myUncompletedInterview'}</h3>
-            <br>
+            <hr>
             <table class="table">
                 #{list items: examinerUncompletedInterviews, as:'EUInterview'}
                     <tr>
@@ -87,7 +87,7 @@
         #{if !examinerLastCompletedInterviews.isEmpty()}
         <div class="span6  well">
             <h3>&{'home.myLastCompletedInterview'}</h3>
-            <br>
+            <hr>
             <ol>
                 #{list items: examinerLastCompletedInterviews, as:'ELCInterview'}
                     <li><a href="@{Interviews.bilan(ELCInterview.id)}">&{'home.interviewOf'} ${ELCInterview.candidateName} ${ELCInterview.candidateFirstName}</a></li>
