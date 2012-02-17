@@ -1,5 +1,7 @@
 package jobs;
 
+import play.Logger;
+import play.Play;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 import play.test.Fixtures;
@@ -16,6 +18,12 @@ public class DataLoader extends Job{
 
 
     public void doJob(){
+        if(Play.configuration.get("application.mode").equals("prod")){
+            Logger.info("Pas de chargement des données en production !");
+            return;
+        }else{
+            Logger.info("Chargement des données à partir du yaml !");
+        }
         Fixtures.deleteAllModels();
         Fixtures.loadModels("devData.yml");
     }
