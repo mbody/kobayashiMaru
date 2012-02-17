@@ -18,7 +18,6 @@ import security.Secure;
 @Secure(role = Role.TECHNICAL_ADMIN)
 @CRUD.For(Question.class)
 public class Questions extends SecuredCrud {
-
     public static void save(Long id){
         Question q = Question.findById(id);
         String questionLabel = Http.Request.current().params.get("label");

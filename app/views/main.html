@@ -69,8 +69,8 @@
             <h1>#{get 'title' /}</h1>
 
 
-        #{if flash?.error}
-            <div id="error" class="error">${flash.error}</div>
+        #{if flash?.error || error}
+            <div id="error" class="error"> ${error ?: flash.error}</div>
         #{/if}
 
         #{if flash?.success}

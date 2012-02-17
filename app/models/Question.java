@@ -25,6 +25,7 @@ public class Question extends Model {
     public String description;
     @Required @Lob @MaxSize(10000)
     public String answer;
+    @Required
     @ManyToOne
     public Topic topic;
 }
