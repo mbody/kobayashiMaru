@@ -2,11 +2,16 @@
 
 <div id="crudListTable">
 #{crud.table fields:['candidateName', 'candidateFirstName', 'interviewDate', 'bilan'], sort:[interviewDate]}
+    #{crud.custom 'candidateName'}
+        ${object.candidateName}
+    #{/crud.custom}
     #{crud.custom 'interviewDate'}
         ${object.interviewDate.format("dd/MM/yyyy HH:mm")}
     #{/crud.custom}
     #{crud.custom 'bilan'}
-        <a href="@{Interviews.bilan(object.id)}">Bilan</a>
+        #{if object.complete}
+            <a href="@{Interviews.bilan(object.id)}">Bilan</a>
+        #{/if}
     #{/crud.custom}
 #{/crud.table}
 </div>

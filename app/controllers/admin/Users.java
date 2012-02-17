@@ -9,6 +9,8 @@ import play.libs.Codec;
 import play.mvc.Http;
 import security.Secure;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Mathurin
@@ -20,16 +22,29 @@ import security.Secure;
 @CRUD.For(User.class)
 public class Users extends SecuredCrud {
 
-    public static void save(Long id){
+    public static void save(Long id, List<Role> roles){
         ObjectType type = ObjectType.get(getControllerClass());
         User user = User.findById(id);
         user.lastname = Http.Request.current().params.get("object.lastname");
         user.firstname = Http.Request.current().params.get("object.firstname");
         user.email = Http.Request.current().params.get("object.email");
         String pwd = Http.Request.current().params.get("object.passwordHash");
+
+        boolean isExaminer = Http.Request.current().params.get("chkRolesE") != null;
+        boolean isStaff = Http.Request.current().params.get("chkRolesSA") != null;
+        boolean isTechAdmin = Http.Request.current().params.get("chkRolesTA") != null;
+
+        user.clearRoles();
+        if(roles!=null){
+            for (Role role : roles) {
+                user.addRole(role);
+            }
+        }
+
         if (pwd.compareTo(user.passwordHash)!=0)
             user.passwordHash = Codec.hexMD5(pwd);
         validation.valid(user);
+
         if (validation.hasErrors()) {
             renderArgs.put("error", play.i18n.Messages.get("crud.hasErrors"));
             try {
@@ -38,11 +53,18 @@ public class Users extends SecuredCrud {
                 render("CRUD/show.html", type, user);
             }
         }
+
         user._save();
+
         flash.success(play.i18n.Messages.get("crud.saved", Users.class.getSimpleName()));
         if (params.get("_save") != null) {
             redirect(request.controller + ".list");
         }
         redirect(request.controller + ".show", id);
+    }
+
+    private static void updateRoles(User user){
+
+
     }
 }

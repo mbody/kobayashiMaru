@@ -29,10 +29,9 @@ public class User extends Model {
 
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userTo")
 //    public List<Interview> interviews;
-
-    @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "user")
+    @Required
+    @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
     public Set<UserRole> roles;
-
 
     // ~~~~~~~~~~~~
     public User(String email, String password, String firstname, String lastname) {
@@ -44,11 +43,9 @@ public class User extends Model {
     }
     
     // ~~~~~~~~~~~~ 
-    
     public boolean checkPassword(String password) {
         return passwordHash.equals(Codec.hexMD5(password));
     }
-
     // ~~~~~~~~~~~~
     
     public static User findByEmail(String email) {
@@ -63,11 +60,17 @@ public class User extends Model {
         return findByEmail(email) == null;
     }
 
+    public void clearRoles(){
+        roles.clear();
+    }
+
     public void addRole(Role role) {
         if(roles==null){
             roles = new HashSet<UserRole>();
         }
-        roles.add(new UserRole(this, role));
+        if(role!=null){
+            roles.add(new UserRole(this, role));
+        }
     }
 
     public boolean hasRole(Role role) {
@@ -101,6 +104,5 @@ public class User extends Model {
     public boolean isExaminer() {
         return hasRole(Role.EXAMINER);
     }
-
 }
 

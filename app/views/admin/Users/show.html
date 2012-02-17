@@ -32,12 +32,26 @@
     #{/crud.custom}
     #{crud.custom 'passwordHash'}
     <div class="control-group">
-        <label for="object_passwordHash">&{'email'}</label>
+        <label for="object_passwordHash">&{'password'}</label>
         <div class="controls">
             <div class="input-prepend">
                 <input id="object_passwordHash" size="30" class="span2" type="password" name="object.passwordHash" value="${object.passwordHash}" required/>
             </div>
         </div>
     </div>
+    #{/crud.custom}
+    #{crud.custom 'roles'}
+        <div class="control-group">
+            <label for="object_roles">&{'roles'}</label>
+            <div class="controls">
+                <div class="input-prepend" id="object_roles"><br /><br />
+                    #{list items:models.Role.values(), as:'role'}
+                        #{if role!=models.Role.AUTHENTICATED}
+                            <input align="right" type="checkbox" name="roles[${role_index-1}]" value="${role}" #{if object?.hasRole(role)}checked#{/if}>&{role}<br />
+                        #{/if}
+                    #{/list}
+                </div>
+            </div>
+        </div>
     #{/crud.custom}
 #{/crud.form}
