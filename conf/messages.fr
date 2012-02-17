@@ -54,6 +54,11 @@ question.codeFormaterUrl = http://hilite.me
 question.description = Description
 question.answer = Réponse à la question
 
+# Role
+role.EXAMINER=Examinateur
+role.STAFF_ADMIN=Staff
+role.TECHNICAL_ADMIN=Admin Technique
+
 # Topic
 topic.label=Thème
 topic.difficulty=Difficulté
@@ -68,7 +73,6 @@ candidateName=Nom du candidat
 candidateFirstName=Prénom du candidat
 interviewDate=Date de l'entretien
 examiner=Examinateur
-examinerComment=Commentaire de l'examinateur
 difficulty=Difficulté
 label=Libellé
 topic=Thème
@@ -79,7 +83,6 @@ password=Mot de passe
 passwordHash=Mot de passe
 roles=Rôles
 examiner=Examinateur
-staffAdmin=Staff
-techAdmin=Administrateur technique
 description=Description
 questions=Questions
+
