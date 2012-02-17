@@ -110,7 +110,7 @@
     function updateMark(mark){
         $.post("@{Interviews.saveMark()}", { idInterviewQuestion: "${interviewQuestion.id}", mark: mark} );
     }
-    #{if interview.complete}
+    #{if !interview.complete}
     $(document).ready(function(){
         var winQuestion = window.open("", "question", "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no");
         winQuestion.document.open();
