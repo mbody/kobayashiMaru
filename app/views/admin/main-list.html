@@ -3,7 +3,13 @@
 
 <div id="crudList" class="span9 well ${type.name}">
 
+    #{if !(type.modelName == 'Interview') }
+        <span style="float: right">
+            <a class="btn btn-success" href="@{blank()}"><i class="icon-plus icon-white"></i> &{'crud.add', type.modelName}</a>
+        </span>
+    #{/if}
     <h2 id="crudListTitle">&{'crud.list.title', type.name}</h2>
+    <hr>
 
     <div id="crudListSearch">
     #{crud.search /}
@@ -16,12 +22,6 @@
     <div id="crudListPagination">
     #{crud.pagination /}
     </div>
-
-    #{if !(type.modelName == 'Interview') }
-        <p id="crudListAdd">
-            <a class="btn" href="@{blank()}"><i class="icon-plus"></i> &{'crud.add', type.modelName}</a>
-        </p>
-    #{/if}
 
 </div>
 

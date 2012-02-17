@@ -34,8 +34,29 @@
 
 </section>
 #{/if}
+
 #{if currentUser?.techAdmin}
-<h2>You're a Tech admin !</h2>
+<section id="examiner-dashboard">
+    <div class="page-header">
+        <h1>&{'home.techAdmin'}</h1>
+    </div>
+    <div class="row">
+        <div class="span6 well">
+            <h3>&{'home.question'}</h3>
+            <hr>
+            <p>
+                <a class="btn btn-success" href="/admin/questions/new"><i class="icon-plus icon-white"></i> &{'home.addNewQuestion'}</a>
+            </p>
+        </div>
+        <div class="span6  well">
+            <h3>&{'home.topic'}</h3>
+            <hr>
+            <p>
+                <a class="btn btn-success" href="/admin/topics/new"><i class="icon-plus icon-white"></i> &{'home.addNewTopic'}</a>
+            </p>
+        </div>
+    </div>
+</section>
 #{/if}
 
 
@@ -46,7 +67,6 @@
         <h1>&{'home.examiner'}</h1>
     </div>
 
-    <!-- Supported devices -->
     <div class="row">
         <div class="span6 well">
             <h3>&{'home.myUncompletedInterview'}</h3>
