@@ -473,6 +473,7 @@ code {
   background-color: #f7f7f9;
   border: 1px solid #e1e1e8;
 }
+/*
 pre {
   display: block;
   padding: 8.5px;
@@ -489,6 +490,7 @@ pre {
   white-space: pre-wrap;
   word-break: break-all;
 }
+*/
 pre.prettyprint {
   margin-bottom: 18px;
 }
