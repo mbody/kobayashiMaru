@@ -11,14 +11,19 @@
     <div class="row">
         <div class="span6 well">
             <h3>&{'home.uncompletedInterviews'}</h3>
-            <ol>
+            <hr>
+            <table class="table">
+                <tr>
+                    <th>Date</th><th>Candidat</th><th>Examinateur</th>
+                </tr>
                 #{list items: uncompletedInterviews, as:'UInterview'}
-                    <li><a href="@{Interviews.prepare(UInterview.id)}">&{'home.interviewOf'} ${UInterview.candidateName} ${UInterview.candidateFirstName} - &{UInterview.interviewDate.format('dd/MM/yyyy HH:mm')}</a></li>
+                    <tr>
+                        <td>&{UInterview.interviewDate.format('dd/MM/yyyy HH:mm')}</td>
+                        <td>&{'home.interviewOf'} ${UInterview.candidateName} ${UInterview.candidateFirstName}</td>
+                        <td>${UInterview.examiner.fullname}</td>
+                    </tr>
                 #{/list}
-            </ol>
-            <p>
-                <a class="btn btn-success" href="@{Interviews.prepare}"><i class="icon-plus icon-white"></i> &{'home.prepareNewInterview'}</a>
-            </p>
+            </table>
         </div>
         #{if !lastCompletedInterviews.isEmpty()}
         <div class="span6  well">
@@ -72,6 +77,9 @@
             <h3>&{'home.myUncompletedInterview'}</h3>
             <hr>
             <table class="table">
+                <tr>
+                    <th>Date</th><th>Candidat</th>
+                </tr>
                 #{list items: examinerUncompletedInterviews, as:'EUInterview'}
                     <tr>
                         <td><a href="@{Interviews.prepare(EUInterview.id)}">${EUInterview.interviewDate.format('dd/MM/yyyy HH:mm')}</a></td>
