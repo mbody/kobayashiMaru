@@ -1,0 +1,28 @@
+#{extends 'Admin/main.html' /}
+#{set title:messages.get('crud.list.title', type.name) /}
+
+<div id="crudList" class="span9 well ${type.name}">
+
+    <h2 id="crudListTitle">&{'crud.list.title', type.name}</h2>
+
+    <div id="crudListSearch">
+    #{crud.search /}
+    </div>
+
+    #{doLayout /}
+
+    <br>
+
+    <div id="crudListPagination">
+    #{crud.pagination /}
+    </div>
+
+    #{if !(type.modelName == 'Interview') }
+        <p id="crudListAdd">
+            <a class="btn" href="@{blank()}"><i class="icon-plus"></i> &{'crud.add', type.modelName}</a>
+        </p>
+    #{/if}
+
+</div>
+
+
