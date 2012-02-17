@@ -24,7 +24,7 @@
                         <li class="nav-header">${iq.question.topic.label} </li>
                         #{set topic: iq.question.topic.id /}
                     #{/if}
-                    <li #{if iq.index==interviewQuestion.index}class="active"#{/if}><a href="@{Interviews.question(interview.id,iq.index)}" >Question ${iq.index}<small style="float: right; #{if iq.index==interviewQuestion.index}color: #fff #{/if}#{else} color: #666 #{/else}">&{'difficulty.' + iq.question.difficulty} - ${iq.mark}</small></a></li>
+                    <li #{if iq.index==interviewQuestion.index}class="active"#{/if}><a href="@{Interviews.question(interview.id,iq.index)}" >Question ${iq.index}<small style="float: right; #{if iq.index==interviewQuestion.index}color: #fff #{/if}#{else} color: #666 #{/else}">${iq.question.difficulty} - ${iq.mark}</small></a></li>
                 #{/list}
             </ul>
             

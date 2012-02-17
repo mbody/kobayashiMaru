@@ -1,5 +1,7 @@
 package models;
 
+import play.i18n.Messages;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Romano
@@ -27,4 +29,7 @@ public enum Difficulty {
         return null;
     }
     
+    public String toString(){
+        return Messages.get("difficulty." + this.name());
+    }
 }

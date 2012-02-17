@@ -20,4 +20,8 @@ public class Topic extends Model {
     @OneToMany
     public List<Question> questions;
 
+    @Override
+    public String toString(){
+        return label;
+    }
 }

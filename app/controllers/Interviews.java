@@ -224,7 +224,7 @@ public class Interviews extends SecuredController {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         for(Difficulty difficulty : values){
-            sb.append("'").append(Messages.get("difficulty." + difficulty.toString())).append("',");
+            sb.append("'").append(Messages.get(difficulty.toString())).append("',");
         }
         String result = sb.substring(0, sb.length()-1);
         return result+"]";
