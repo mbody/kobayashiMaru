@@ -34,7 +34,7 @@ public class Application extends SecuredController {
     @Secure
     public static void admin(){
         session.put("menu", menu.ADMIN);
-        render("Admin/index.html");
+        render("admin/index.html");
     }
 
     @Secure
