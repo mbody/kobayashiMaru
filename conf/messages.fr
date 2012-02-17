@@ -14,6 +14,7 @@ home.startInterview=Démarrer l'entretien
 
 # Prepare interview page
 prepareInterview.title=Préparer un nouvel entretien
+interview.noTopicSelected=Vous devez sélectionner au moins un thème pour l'entretien !
 
 # bilan interview page
 bilanInterview.title= Bilan d'un entretien

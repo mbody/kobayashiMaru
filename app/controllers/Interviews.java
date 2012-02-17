@@ -52,6 +52,11 @@ public class Interviews extends SecuredController {
                 next.interview=interview;
             }
         }
+        if(topics.isEmpty()){
+            flash.error(play.i18n.Messages.get("interview.noTopicSelected"));
+            prepare(interview.id);
+            return;
+        }
         if(interview.topics!=null){
             interview.topics.clear();
             interview.topics.addAll(topics);
