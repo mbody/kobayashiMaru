@@ -83,3 +83,7 @@ staffAdmin=Staff
 techAdmin=Administrateur technique
 description=Description
 questions=Questions
+
+# Users
+users.firstname = Prénom
+users.name = Nom

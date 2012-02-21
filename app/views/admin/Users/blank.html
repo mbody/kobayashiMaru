@@ -1,2 +1,59 @@
 #{extends 'admin/main-blank.html' /}
-#{crud.form /}
+#{crud.form}
+    #{crud.custom 'firstname'}
+        <div class="control-group">
+            <label for="object_firstname">&{'firstname'}</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    <input id="object_firstname"  size="30" class="span2" type="text" name="object.firstname" value="" required/>
+                </div>
+            </div>
+        </div>
+    #{/crud.custom}
+    #{crud.custom 'lastname'}
+        <div class="control-group">
+            <label for="object_lastname">&{'lastname'}</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    <input  id="object_lastname" size="30" class="span2" type="text" name="object.lastname" value="" required/>
+                </div>
+            </div>
+        </div>
+    #{/crud.custom}
+    #{crud.custom 'email'}
+        <div class="control-group">
+            <label for="object_email">&{'email'}</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    <input id="object_email" size="30" class="span2" type="text" name="object.email" value="" required/>
+                </div>
+            </div>
+        </div>
+    #{/crud.custom}
+    #{crud.custom 'passwordHash'}
+        <div class="control-group">
+            <label for="object_passwordHash">&{'password'}</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    <input id="object_passwordHash" size="30" class="span2" type="password" name="object.passwordHash" value="" required/>
+                </div>
+            </div>
+        </div>
+    #{/crud.custom}
+    #{crud.custom 'roles'}
+        <div class="control-group">
+            <label for="object_roles">&{'roles'}</label>
+            <div class="controls">
+                #{list items:models.Role.values(), as:'role'}
+                #{if role!=models.Role.AUTHENTICATED}
+                <label class="checkbox">
+                    <input type="checkbox" name="roles[${role_index-1}]" value="${role}" #{if object?.hasRole(role)}checked#{/if}>
+                    &{'role.' + role}
+                </label>
+                #{/if}
+                #{/list}
+                <p class="help-block"><strong>Note:</strong> Un utilisateur doit avoir impérativement un rôle au moins.</p>
+            </div>
+        </div>
+    #{/crud.custom}
+#{/crud.form}

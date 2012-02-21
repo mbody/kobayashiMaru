@@ -61,6 +61,13 @@ public class Interview extends Model {
         Query query = JPA.em().createQuery(queryStr);
         return query.getResultList();
     }
+
+    public boolean isAllQuestionsWhereAnswered(Topic topic){
+        String queryStr = "select q from Question q where q.topic.id = " + topic.id +
+                "and q.id not in (select qi.question.id from InterviewQuestion qi where qi.interview.id = " + this.id + ")";
+        Query query = JPA.em().createQuery(queryStr);
+        return query.getResultList().isEmpty();
+    }
     
     public int getNbQuestions(){
         return topics.size() * NB_QUESTIONS_PER_TOPIC;
