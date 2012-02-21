@@ -1,0 +1,37 @@
+#{extends 'main.html' /}
+#{set title:'Changement de mot de passe' /}
+
+<div class="row">
+    <div class="span12">
+    #{form @saveNewPwd()}
+        <input type="hidden" name="interview.id" value="${interview?.id}" />
+        <div class="well form-horizontal">
+            <fieldset>
+                <legend>&{'login.password.change'}</legend>
+                <div class="control-group">
+                    <label class="control-label">&{'login.password.old'}</label>
+                    <div class="controls docs-input-sizes">
+                        <input class="span2" type="password" placeholder="&{'login.password.old'}" name="login.password.old" required  />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">&{'login.password.new'}</label>
+                    <div class="controls docs-input-sizes">
+                        <input class="span2" type="password" placeholder="&{'login.password.new'}" name="login.password.new" required  />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">&{'login.password.new.confirm'}</label>
+                    <div class="controls docs-input-sizes">
+                        <input class="span2" type="password" placeholder="&{'login.password.new.confirm'}" name="login.password.new.confirm" required  />
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">&{'Enregistrer'}</button>
+                    <a href="@{Application.home()}" class="btn">&{'Annuler'}</a>
+                </div>
+            </fieldset>
+        </div>
+    #{/form}
+    </div>
+</div>

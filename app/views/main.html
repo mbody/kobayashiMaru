@@ -47,6 +47,9 @@
                         #{if currentUser?.hasRole(models.Role.STAFF_ADMIN) || currentUser?.hasRole(models.Role.TECHNICAL_ADMIN) }
                             <li #{if controllers.Application.menu.ADMIN.name().equals(session?.get('menu'))}class="active"#{/if}><a href="@{Application.admin()}"><i class="icon-cog icon-white"></i> Administration</a></li>
                         #{/if}
+                        #{if currentUser}
+                            <li #{if controllers.Application.menu.ACCOUNT.name().equals(session?.get('menu'))}class="active"#{/if}><a href="@{Application.changepwd()}"><i class="icon-user icon-white"></i> Mon Compte</a></li>
+                        #{/if}
                             <li #{if controllers.Application.menu.ABOUT.name().equals(session?.get('menu'))}class="active"#{/if}><a href="#">About</a></li>
                         </ul>
                         #{if currentUser}

@@ -4,15 +4,16 @@ import models.Interview;
 import models.Role;
 import models.User;
 import play.i18n.Messages;
+import play.libs.Codec;
+import play.mvc.Http;
 import security.Secure;
 
-import java.util.Calendar;
 import java.util.List;
 
 public class Application extends SecuredController {
 
     public enum menu{
-        HOME, ADMIN, ABOUT
+        HOME, ADMIN, ACCOUNT, ABOUT
     }
 
     public static void index() {
@@ -55,6 +56,39 @@ public class Application extends SecuredController {
         }
 
         render(examinerUncompletedInterviews, examinerLastCompletedInterviews, uncompletedInterviews, lastCompletedInterviews);
+    }
+
+    public static void changepwd(){
+        session.put("menu", menu.ACCOUNT);
+        render();
+    }
+
+    @Secure
+    public static void saveNewPwd(){
+        String oldPwd = Http.Request.current().params.get("login.password.old");
+        String newPwd = Http.Request.current().params.get("login.password.new");
+        String newPwdConfirm = Http.Request.current().params.get("login.password.new.confirm");
+
+        // Vérifications
+        User usr = connectedUser();
+        if (!usr.checkPassword(oldPwd)){
+            flash.error(Messages.get("login.password.old.error"));
+            changepwd();
+        }
+        if (!newPwdConfirm.equals(newPwd)){
+            flash.error(Messages.get("login.password.new.confirm.error"));
+            changepwd();
+        }
+        if (newPwd.equals(oldPwd)){
+            flash.error(Messages.get("login.password.new.error"));
+            changepwd();
+        }
+
+        usr.passwordHash = Codec.hexMD5(newPwd);
+        usr.save();
+        flash.success(Messages.get("login.password.new.success"));
+        home();
+
     }
 
     public static void logout() {
