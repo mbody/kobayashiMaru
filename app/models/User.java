@@ -42,6 +42,10 @@ public class User extends Model {
         create();
     }
     
+    public User(){
+
+    }
+    
     // ~~~~~~~~~~~~ 
     public boolean checkPassword(String password) {
         return passwordHash.equals(Codec.hexMD5(password));

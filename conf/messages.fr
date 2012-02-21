@@ -95,3 +95,6 @@ roles=Rôles
 description=Description
 questions=Questions
 
+# Users
+users.firstname = Prénom
+users.name = Nom

@@ -180,6 +180,7 @@ public class Interviews extends SecuredController {
 
         //Return the next available question with those criterias
         Question question = getNewRandomQuestion(currentInterview, currentInterviewTopic.topic, currentDifficulty);
+
         InterviewQuestion iq = new InterviewQuestion();
         iq.question = question;
         iq.interview = currentInterview;
@@ -260,12 +261,22 @@ public class Interviews extends SecuredController {
 
     private static Question getNewRandomQuestion(Interview interview, Topic currentTopic, int currentDifficulty){
 
+        if(interview.isAllQuestionsWhereAnswered(currentTopic)){
+            return null;
+        }
+
         List<Question> list = interview.findUnusedQuestionByTopicAndDifficulty(currentTopic, currentDifficulty);
         Random rnd = new Random();
 
-        if(list.isEmpty())
-            return null;
-        else
+        if(list.isEmpty()){
+            if(currentDifficulty > 2){
+                currentDifficulty = 0;
+            }else{
+                currentDifficulty++;
+            }
+            return getNewRandomQuestion(interview, currentTopic, currentDifficulty);
+        }else{
             return list.get(rnd.nextInt(list.size()));
+        }
     }
 }
