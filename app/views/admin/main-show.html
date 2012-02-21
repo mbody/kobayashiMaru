@@ -3,6 +3,12 @@
 
 <div id="crudShow" class="span9 well ${type.name}">
 
+        #{form @delete(object._key()), style:"float: right"}
+            <p>
+                <button class="btn btn-danger" type="submit" ><i class="icon-trash icon-white"></i> &{'crud.delete', type.modelName} </button>
+            </p>
+        #{/form}
+
         <h2 id="crudShowTitle">&{'crud.show.title', type.modelName}</h2>
 
         <div class="objectForm">
@@ -11,16 +17,12 @@
         #{doLayout /}
 
             <p class="crudButtons">
-                <button class="btn" type="submit" name="_save" >&{'crud.save', type.modelName}</button>
-                <button class="btn" type="submit" name="_saveAndContinue" >&{'crud.saveAndContinue', type.modelName}</button>
+                <button class="btn btn-success" type="submit" name="_save" >&{'crud.save', type.modelName}</button>
+                <button class="btn btn-success" type="submit" name="_saveAndContinue" >&{'crud.saveAndContinue', type.modelName}</button>
             </p>
         #{/form}
         </div>
 
-    #{form @delete(object._key())}
-        <p class="crudDelete">
-            <button class="btn" type="submit" >&{'crud.delete', type.modelName}</button>
-        </p>
-    #{/form}
+
 
 </div>
