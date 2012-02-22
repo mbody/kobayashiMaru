@@ -1,4 +1,6 @@
 #{extends 'admin/main-show.html' /}
+#{set addTitle:messages.get('crud.show.title', 'un entretien') /}
+#{set deleteButton:messages.get('crud.delete', 'un entretien') /}
 <div>
     &{'editInterview.interviewOf'} ${object.candidateName} ${object.candidateFirstName} &{'editInterview.date'} ${object.interviewDate?.format("dd/MM/yyyy HH:mm")} &{'editInterview.by'} ${object.examiner}
     <br /><br />

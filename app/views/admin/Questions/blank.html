@@ -1,4 +1,5 @@
 #{extends 'admin/main-blank.html' /}
+#{set addTitle:messages.get('crud.blank.title', 'une question') /}
 #{crud.form }
     #{crud.custom 'label'}
     <label for="object_label">&{'question.label'}</label>

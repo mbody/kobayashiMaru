@@ -1,4 +1,5 @@
 #{extends 'admin/main-blank.html' /}
+#{set addTitle:messages.get('crud.blank.title', 'un utilisateur') /}
 #{crud.form}
     #{crud.custom 'firstname'}
         <div class="control-group">
@@ -52,7 +53,7 @@
                 </label>
                 #{/if}
                 #{/list}
-                <p class="help-block"><strong>Note:</strong> Un utilisateur doit avoir impérativement un rôle au moins.</p>
+                <p class="help-block"><strong>&{'help.user.note'}</strong> &{'help.user.role'}</p>
             </div>
         </div>
     #{/crud.custom}

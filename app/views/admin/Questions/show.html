@@ -1,4 +1,6 @@
 #{extends 'admin/main-show.html' /}
+#{set addTitle:messages.get('crud.show.title', 'une question') /}
+#{set deleteButton:messages.get('crud.delete', 'une question') /}
 #{crud.form }
     #{crud.custom 'label'}
         <label for="object_label">&{'question.label'}</label>

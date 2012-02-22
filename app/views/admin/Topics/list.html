@@ -1,5 +1,6 @@
 #{extends 'admin/main-list.html' /}
-
+#{set addTitle:messages.get('crud.list.title', 'Thèmes') /}
+#{set addButton:messages.get('crud.add', 'un thème') /}
 <div id="crudListTable">
 #{crud.table fields:['label', 'description']/}
 </div>

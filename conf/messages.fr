@@ -1,6 +1,13 @@
 # Index page
+apsidetop=Une réalisation Apside TOP
+application.nom=Kobayashi Maru
 invalid.credentials=Email ou mot de passe incorrect !
 logout=Déconnexion
+home=Accueil
+administration=Administration
+compte=Mon compte
+about=A propos
+date=Date
 logged.in.as=Connecté(e) en tant que '%s'.
 login.success=Bonjour %s !
 login.password.old=Ancien mot de passe
@@ -55,7 +62,7 @@ editInterview.date = fait le
 editInterview.by = par
 editInterview.examinerComment = Commentaires
 editInterview.uncomplete = Cet entretien n'a pas encore eu lieu, il n'y a pas de bilan à afficher
-editInterview.complete = Bilan pour cet entretien
+editInterview.complete = Bilan de l'entretien
 
 # Question
 question.label = Libellé de la question
@@ -71,6 +78,7 @@ role.TECHNICAL_ADMIN=Admin Technique
 
 # Topic
 topic.label=Thème
+topics.label=Thèmes
 topic.difficulty=Difficulté
 topic.difficulty.none=N/A
 difficulty.BEGINNER=Notions
@@ -94,7 +102,56 @@ passwordHash=Mot de passe
 roles=Rôles
 description=Description
 questions=Questions
+interviews=Entretiens
+users=Utilisateurs
 
 # Users
 users.firstname = Prénom
 users.name = Nom
+help.user.note=Note:
+help.user.role=Un utilisateur doit avoir impérativement un rôle au moins.
+
+#CRUD
+crud.title=Administration
+crud.home=Accueil
+crud.blank=Nouveau
+crud.index.title=Choisissez l'objet à éditer
+crud.index.objectType=Type de l'objet
+crud.index.action=
+crud.index.add=Ajouter
+crud.add=Ajouter &{%s}
+crud.list.title=&{%s}
+crud.list.size=%d &{%s}
+crud.list.totalSize=%d total
+crud.pagination.previous=« Précédent
+crud.pagination.next=Suivant »
+crud.pagination.last=Dernier »»
+crud.pagination.first=«« Premier
+crud.show.title=Editer &{%s}
+crud.save=Sauvegarder
+crud.saveAndContinue=Sauvegarder et continuer
+crud.cancel=Annuler
+crud.hasErrors=Corriger les erreurs s'il vous plait
+crud.blank.title=Ajouter &{%s}
+crud.saveAndAddAnother=Sauvegarder et créer un nouveau
+crud.delete=Supprimer &{%s}
+crud.created=L'élément &{%s} a été créé
+crud.saved=L'élément &{%s} a été sauvegardé
+crud.deleted=L'élément &{%s} a été supprimé
+crud.delete.error=Impossible de supprimer cet objet
+crud.search=Recherche
+crud.none=(Aucun)
+crud.selectValue=(Sélectionnez une valeur)
+
+crud.help.required=Requis.
+crud.help.minlength=La taille minimum est %d.
+crud.help.maxlength=La taille maximum est %d.
+crud.help.email=Adresse email valide.
+crud.help.dateformat=&{%s} format.
+crud.help.numeric=Numeric.
+crud.help.min=Doit être supérieur à %d.
+crud.help.future=Dans le futur.
+crud.help.past=Dans le passé.
+crud.help.after=Après %s.
+crud.help.before=Avant %s.
+crud.help.range=Entre %d et %d

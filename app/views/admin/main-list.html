@@ -1,14 +1,14 @@
 #{extends 'admin/main.html' /}
-#{set title:messages.get('crud.list.title', type.name) /}
+#{set title:addTitle /}
 
-<div id="crudList" class="span9 well ${type.name}">
+<div id="crudList" class="span9 well">
 
     #{if !(type.modelName == 'Interview') }
         <span style="float: right">
-            <a class="btn btn-success" href="@{blank()}"><i class="icon-plus icon-white"></i> &{'crud.add', type.modelName}</a>
+            <a class="btn btn-success" href="@{blank()}"><i class="icon-plus icon-white"></i> #{get 'addButton' /}</a>
         </span>
     #{/if}
-    <h2 id="crudListTitle">&{'crud.list.title', type.name}</h2>
+    <h2 id="crudListTitle">#{get 'addTitle' /}</h2>
     <hr>
 
     <div id="crudListSearch">

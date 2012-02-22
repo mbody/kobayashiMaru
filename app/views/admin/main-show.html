@@ -1,15 +1,15 @@
 #{extends 'admin/main.html' /}
-#{set title:messages.get('crud.show.title', type.name) /}
+#{set title:addTitle /}
 
-<div id="crudShow" class="span9 well ${type.name}">
+<div id="crudShow" class="span9 well">
 
         #{form @delete(object._key()), style:"float: right"}
             <p>
-                <button class="btn btn-danger" type="submit" ><i class="icon-trash icon-white"></i> &{'crud.delete', type.modelName} </button>
+                <button class="btn btn-danger" type="submit" ><i class="icon-trash icon-white"></i> #{get 'deleteButton' /} </button>
             </p>
         #{/form}
 
-        <h2 id="crudShowTitle">&{'crud.show.title', type.modelName}</h2>
+        <h2 id="crudShowTitle">#{get 'addTitle' /}</h2>
 
         <div class="objectForm">
         #{form action:@save(object._key()), enctype:'multipart/form-data', class:'form-horizontal'}

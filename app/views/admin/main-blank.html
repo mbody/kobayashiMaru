@@ -1,9 +1,9 @@
 #{extends 'admin/main.html' /}
-#{set title:messages.get('crud.show.title', type.name) /}
+#{set title:addTitle /}
 
-<div id="crudBlank" class="span9 well ${type.name}">
+<div id="crudBlank" class="span9 well">
 
-    <h2 id="crudBlankTitle">&{'crud.blank.title', type.modelName}</h2>
+    <h2 id="crudBlankTitle">#{get 'addTitle' /}</h2>
 
     <div class="objectForm">
 

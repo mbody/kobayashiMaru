@@ -1,5 +1,6 @@
 #{extends 'admin/main-list.html' /}
-
+#{set addTitle:messages.get('crud.list.title', 'Entretiens') /}
+#{set addButton:messages.get('crud.add', 'un entretien') /}
 <div id="crudListTable">
 #{crud.table fields:['candidateName', 'candidateFirstName', 'interviewDate', 'bilan'], sort:[interviewDate]}
     #{crud.custom 'candidateName'}
@@ -10,7 +11,7 @@
     #{/crud.custom}
     #{crud.custom 'bilan'}
         #{if object.complete}
-            <a href="@{Interviews.bilan(object.id)}">Bilan</a>
+            <a href="@{Interviews.bilan(object.id)}">&{'editInterview.bilan'}</a>
         #{/if}
     #{/crud.custom}
 #{/crud.table}
