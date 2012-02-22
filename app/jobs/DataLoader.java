@@ -18,12 +18,14 @@ public class DataLoader extends Job{
 
 
     public void doJob(){
-        if(Play.configuration.get("application.mode").equals("prod")){
+/*
+        if(Play.configuration.get("application.mode").toString().startsWith("prod")){
             Logger.info("Pas de chargement des données en production !");
             return;
         }else{
             Logger.info("Chargement des données à partir du yaml !");
         }
+*/
         Fixtures.deleteAllModels();
         Fixtures.loadModels("devData.yml");
     }
