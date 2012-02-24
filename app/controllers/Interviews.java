@@ -7,10 +7,6 @@ import play.i18n.Messages;
 import play.mvc.Http;
 import security.Secure;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -38,7 +34,7 @@ public class Interviews extends SecuredController {
 
     public static void startInterview(Long interviewId){
         Interview interview = Interview.findById(interviewId);
-        question(interviewId, 1);
+        question(interviewId, 1, "");
     }
 
     @Secure
@@ -118,6 +114,27 @@ public class Interviews extends SecuredController {
         InterviewQuestion interviewQuestion = InterviewQuestion.getInterviewQuestion(idInterview, questionIndex);
         if(interviewQuestion==null){
             InterviewQuestion previousInterviewQuestion = InterviewQuestion.getInterviewQuestion(idInterview, questionIndex-1);
+            interviewQuestion = createInterviewQuestion(interview, previousInterviewQuestion);
+            render(interview, interviewQuestion);
+        }else{
+            render(interview, interviewQuestion);
+        }
+    }
+
+    @Secure(role = Role.EXAMINER)
+    public static void question(Long idInterview, int questionIndex, String pass){
+        Interview interview = Interview.findById(idInterview);
+        InterviewQuestion interviewQuestion = InterviewQuestion.getInterviewQuestion(idInterview, questionIndex);
+        if(interviewQuestion==null){
+            InterviewQuestion previousInterviewQuestion = InterviewQuestion.getInterviewQuestion(idInterview, questionIndex-1);
+            if (pass.equals("pass")){
+                InterviewQuestionPass questionPass = new InterviewQuestionPass();
+                questionPass.interview = interview;
+                questionPass.question = previousInterviewQuestion.question;
+                questionPass.save();
+                previousInterviewQuestion.delete();
+                previousInterviewQuestion = InterviewQuestion.getInterviewQuestion(idInterview, questionIndex-2);
+            }
             interviewQuestion = createInterviewQuestion(interview, previousInterviewQuestion);
             render(interview, interviewQuestion);
         }else{

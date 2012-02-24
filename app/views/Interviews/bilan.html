@@ -51,7 +51,7 @@
                     <li class="nav-header">${iq.question.topic.label} </li>
                     #{set topic: iq.question.topic.id /}
                 #{/if}
-                <li><a href="@{Interviews.question(interview.id,iq.index)}" >Question ${iq.index} <small style="float: right; color: #666">${iq.question.difficulty} - ${iq.mark}</small></a></li>
+                <li><a href="@{Interviews.question(interview.id,iq.index,'')}" >Question ${iq.index} <small style="float: right; color: #666">${iq.question.difficulty} - ${iq.mark}</small></a></li>
             #{/list}
             </ul>
 

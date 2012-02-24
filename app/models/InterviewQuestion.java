@@ -35,7 +35,12 @@ public class InterviewQuestion extends Model {
     }
 
     public static InterviewQuestion getInterviewQuestion(Long interviewId, int questionIndex){
-        JPAQuery jpaQuery = find("interview.id = ? and index = ?", interviewId, questionIndex);
+        JPAQuery jpaQuery = find("interview.id = ? and index = ?" , interviewId, questionIndex);
+        return jpaQuery.first();
+    }
+
+    public static InterviewQuestion getInterviewQuestionPassed(Long interviewId, int questionIndex){
+        JPAQuery jpaQuery = find("interview.id = ?", interviewId, questionIndex);
         return jpaQuery.first();
     }
 }

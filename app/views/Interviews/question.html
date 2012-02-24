@@ -24,7 +24,7 @@
                         <li class="nav-header">${iq.question.topic.label} </li>
                         #{set topic: iq.question.topic.id /}
                     #{/if}
-                    <li #{if iq.index==interviewQuestion.index}class="active"#{/if}><a href="@{Interviews.question(interview.id,iq.index)}" >Question ${iq.index}<small style="float: right; #{if iq.index==interviewQuestion.index}color: #fff #{/if}#{else} color: #666 #{/else}">${iq.question.difficulty} - ${iq.mark}</small></a></li>
+                    <li #{if iq.index==interviewQuestion.index}class="active"#{/if}><a href="@{Interviews.question(interview.id,iq.index, '')}" >Question ${iq.index}<small style="float: right; #{if iq.index==interviewQuestion.index}color: #fff #{/if}#{else} color: #666 #{/else}">${iq.question.difficulty} - ${iq.mark}</small></a></li>
                 #{/list}
             </ul>
             
@@ -89,11 +89,15 @@
                 <br>
                 <ul class="pager">
                 #{if interviewQuestion.index>1}
-                    <li class="previous"><a href="@{Interviews.question(interview.id,interviewQuestion.index-1)}">&{'Précédent'}</a>
+                    <li class="previous"><a href="@{Interviews.question(interview.id,interviewQuestion.index-1, '')}">&{'Précédent'}</a>
                     </li>
                 #{/if}
+
                 #{if interviewQuestion.index<interview.nbQuestions}
-                    <li class="next"><a href="@{Interviews.question(interview.id,interviewQuestion.index+1)}">&{'Suivant'}</a></li>
+                    #{ifnot interview.complete}
+                        <li style="text-align: center"><a href="@{Interviews.question(interview.id,interviewQuestion.index+1,'pass')}">&{'Passer'}</a></li>
+                    #{/ifnot}
+                    <li class="next"><a href="@{Interviews.question(interview.id,interviewQuestion.index+1, '')}">&{'Suivant'}</a></li>
                 #{/if}
                 #{else}
                     <li class="next"><a href="@{Interviews.finalize(interview.id)}" class="btn-warning">&{'Terminer'}</a></li>

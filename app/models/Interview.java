@@ -1,7 +1,5 @@
 package models;
 
-import controllers.CRUD;
-import play.db.jpa.GenericModel;
 import play.data.validation.Required;
 import play.db.jpa.JPA;
 import play.db.jpa.Model;
@@ -9,8 +7,6 @@ import play.db.jpa.Model;
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.List;
-
-import static controllers.CRUD.Hidden;
 
 /**
  * Created by IntelliJ IDEA.
@@ -57,14 +53,16 @@ public class Interview extends Model {
     
     public List<Question> findUnusedQuestionByTopicAndDifficulty(Topic topic, int difficulty){
         String queryStr = "select q from Question q where q.difficulty = " + difficulty + " and q.topic.id = " + topic.id +
-                " and q.id not in (select qi.question.id from InterviewQuestion qi where qi.interview.id = " + this.id + ")";
+                " and q.id not in (select qi.question.id from InterviewQuestion qi where qi.interview.id = " + this.id + ")" +
+                " and q.id not in (select qip.question.id from InterviewQuestionPass qip where qip.interview.id = " + this.id + ")";
         Query query = JPA.em().createQuery(queryStr);
         return query.getResultList();
     }
 
     public boolean isAllQuestionsWhereAnswered(Topic topic){
         String queryStr = "select q from Question q where q.topic.id = " + topic.id +
-                "and q.id not in (select qi.question.id from InterviewQuestion qi where qi.interview.id = " + this.id + ")";
+                " and q.id not in (select qi.question.id from InterviewQuestion qi where qi.interview.id = " + this.id + ")" +
+                " and q.id not in (select qip.question.id from InterviewQuestionPass qip where qip.interview.id = " + this.id + ")";
         Query query = JPA.em().createQuery(queryStr);
         return query.getResultList().isEmpty();
     }
